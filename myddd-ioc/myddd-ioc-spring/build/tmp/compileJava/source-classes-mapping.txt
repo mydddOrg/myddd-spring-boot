@@ -1,0 +1,2 @@
+org/myddd/ioc/spring/SpringInstanceProvider.java
+ org.myddd.ioc.spring.SpringInstanceProvider
