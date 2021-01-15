@@ -24,7 +24,7 @@ subprojects {
 
     apply(plugin = "maven-publish")
     apply(plugin = "java")
-    
+
     publishing {
 
         publications {

@@ -1,7 +1,7 @@
 org/myddd/security/account/MD5PasswordEncrypt.java
  org.myddd.security.account.MD5PasswordEncrypt
-org/myddd/security/account/Application.java
- org.myddd.security.account.Application
+org/myddd/security/account/application/assembler/LoginAssembler.java
+ org.myddd.security.account.application.assembler.LoginAssembler
 org/myddd/security/account/domain/LoginRepository.java
  org.myddd.security.account.domain.LoginRepository
 org/myddd/security/account/infra/LoginRepositoryJPA.java
@@ -10,5 +10,3 @@ org/myddd/security/account/domain/LoginEntity.java
  org.myddd.security.account.domain.LoginEntity
 org/myddd/security/account/application/LoginApplicationImpl.java
  org.myddd.security.account.application.LoginApplicationImpl
-org/myddd/security/account/application/assembler/LoginAssembler.java
- org.myddd.security.account.application.assembler.LoginAssembler

@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
 public class TestApplication {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        ApplicationContext ctx = SpringApplication.run(TestApplication.class, args);
         InstanceFactory.setInstanceProvider(SpringInstanceProvider.createInstance(ctx));
     }
 
