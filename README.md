@@ -59,7 +59,7 @@ ddd领域驱动的理念较为复杂，概念较多。包含实体，值对象�
 
 # 官网
 
-myddd官网：https://myddd.org
+个人官网：https://lingenliu.cc
 
 Github官网:   https://github.com/mydddOrg
 
