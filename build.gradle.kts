@@ -24,9 +24,7 @@ subprojects {
 
     apply(plugin = "maven-publish")
     apply(plugin = "java")
-
-    extra["projectVersion"] = "1.1.0-SNAPSHOT"
-
+    
     publishing {
 
         publications {
