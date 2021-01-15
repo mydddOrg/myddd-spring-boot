@@ -4,21 +4,21 @@
 
 ## 致敬
 
-向[dddlib](https://github.com/dayatang/dddlib) 致敬。myddd来源于[dddlib](https://github.com/dayatang/dddlib). 
+向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-backend**(java版)来源于[dddlib](https://github.com/dayatang/dddlib). 
 
 数年前，我有幸与dddlib开发者杨宇老师一同工作，使用dddlib，讨论DDD，参与dddlib的开发。一晃数年已过。
 
 我与杨宇老师仍保持密切交流。
 
-myddd来源于dddlib，无论何时，我都会明白无误的说明这一点。
+**myddd-backend**来源于dddlib，无论何时，我都会明白无误的说明这一点。
 
 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD
 
 
 
-## myddd的原则与宗旨
+## myddd-backend的原则与宗旨
 
-myddd始终坚持以下两个原则：
+myddd-backend始终坚持以下两个原则：
 
 1. 最大化的倡导ddd编码风格与模式
 
