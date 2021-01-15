@@ -1,6 +1,6 @@
-# myddd
+# myddd-backend
 
-支持Spring Boot的DDD框架
+myddd-backend是**myddd**全栈式领域驱动实践的java部分，用于支持基于java及spring boot的后端开发。
 
 ## 致敬
 
