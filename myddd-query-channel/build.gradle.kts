@@ -23,7 +23,7 @@ tasks.jar {
 dependencies {
     api(project(":myddd-domain"))
     implementation("org.hibernate:hibernate-core")
-    implementation("org.eclipse.persistence:javax.persistence:2.2.1")
-    implementation("javax.inject:javax.inject:1")
+    api("org.eclipse.persistence:javax.persistence:2.2.1")
+    api("javax.inject:javax.inject:1")
 
 }
