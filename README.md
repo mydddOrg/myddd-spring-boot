@@ -71,5 +71,7 @@ Gitee官网：   https://gitee.com/mydddOrg
 
 如果你想尽快了解如何使用，请参照示例项目
 
-[myddd-backend-example](https://gitee.com/mydddOrg/myddd-backend-example)
+
+
+示例项目位于：example目录， 是一个完整按照TDD及myddd开发的项目
 
