@@ -24,3 +24,14 @@ include("myddd-extentions:myddd-media:myddd-media-aliyun")
 include("myddd-extentions:myddd-security:myddd-security-api")
 include("myddd-extentions:myddd-security:myddd-security-login")
 include("myddd-extentions:myddd-security:myddd-security-oauth2")
+
+
+//document示例项目
+include(":example:document-domain")
+include(":example:document-infra")
+include(":example:document-api")
+include(":example:document-application")
+include(":example:document-starter")
+
+
+
