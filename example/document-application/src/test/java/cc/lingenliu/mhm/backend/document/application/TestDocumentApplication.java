@@ -79,6 +79,15 @@ class TestDocumentApplication extends AbstractDocumentTest {
     }
 
     @Test
+    void testQueryDocumentById(){
+        DocumentDTO createdDocument = documentApplication.createDocument(createDocument());
+        Assertions.assertNotNull(createdDocument.getId() > 0);
+
+        DocumentDTO query = documentApplication.queryDocumentById(createdDocument.getId());
+        Assertions.assertNotNull(query);
+    }
+
+    @Test
     void testCreateDocuments(){
         List<DocumentDTO> documentDTOS = new ArrayList<>();
         for(int i = 0 ;i < 10 ;i++){

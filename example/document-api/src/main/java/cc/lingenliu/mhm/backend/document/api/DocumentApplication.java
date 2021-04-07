@@ -14,6 +14,8 @@ public interface DocumentApplication {
 
     DocumentDTO createDocument(DocumentDTO documentDTO);
 
+    DocumentDTO queryDocumentById(Long documentId);
+
     boolean createDocuments(List<DocumentDTO> documentDTOList);
     
     DocumentDTO updateNewVersion(DocumentDTO documentDTO);

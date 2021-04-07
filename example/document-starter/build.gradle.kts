@@ -1,5 +1,9 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
+    java
     `java-library`
+    id("org.springframework.boot")
 }
 
 group = "cc.lingenliu.document"
@@ -7,6 +11,14 @@ version = rootProject.extra["projectVersion"]!!
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}
+
+tasks.getByName<Jar>("jar") {
+    enabled = true
+}
+
+tasks.getByName<BootJar>("bootJar") {
+    classifier = "boot"
 }
 
 dependencies {
@@ -21,6 +33,12 @@ dependencies {
     implementation(project(":example:document-infra"))
     implementation(project(":example:document-api"))
     implementation(project(":example:document-application"))
+
+    implementation("mysql:mysql-connector-java:8.0.23")
+
+    implementation("jakarta.xml.bind:jakarta.xml.bind-api:2.3.2")
+    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.2")
+
 
     testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
     testImplementation("com.h2database:h2:1.4.200")

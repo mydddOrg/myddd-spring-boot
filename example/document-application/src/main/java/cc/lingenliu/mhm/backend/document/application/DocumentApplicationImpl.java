@@ -57,6 +57,12 @@ public class DocumentApplicationImpl implements DocumentApplication {
     }
 
     @Override
+    public DocumentDTO queryDocumentById(Long documentId) {
+        Document query = Document.queryDocumentById(documentId);
+        return documentAssembler.toDTO(query);
+    }
+
+    @Override
     @Transactional
     public boolean createDocuments(List<DocumentDTO> documentDTOList) {
         for (DocumentDTO documentDTO : documentDTOList){
