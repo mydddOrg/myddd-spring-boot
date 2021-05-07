@@ -4,20 +4,42 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.4.1"
+    id("org.springframework.boot") version "2.4.5"
 }
 
-val projectVersion = "1.1.0-SNAPSHOT"
+val projectVersion = "1.2.0-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.30"
-extra["spring.boot"] = "2.4.1"
+extra["spring.boot"] = "2.4.5"
 
 allprojects {
     repositories {
+
+        maven {
+            setUrl("https://maven.aliyun.com/repository/public/")
+        }
+        maven {
+            setUrl("https://maven.aliyun.com/repository/spring/")
+        }
+
         mavenCentral()
     }
 }
+
+repositories {
+
+    maven {
+        setUrl("https://maven.aliyun.com/repository/public/")
+    }
+    maven {
+        setUrl("https://maven.aliyun.com/repository/spring/")
+    }
+
+    mavenCentral()
+}
+
+
 
 
 subprojects {

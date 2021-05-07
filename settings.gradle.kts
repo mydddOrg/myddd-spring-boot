@@ -1,4 +1,4 @@
-rootProject.name = "myddd-backend"
+rootProject.name = "myddd-java"
 
 //一些基础类库
 include("myddd-utils")
