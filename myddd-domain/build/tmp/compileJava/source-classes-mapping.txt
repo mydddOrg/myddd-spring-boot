@@ -7,10 +7,10 @@ org/myddd/domain/ValueObjectEntity.java
  org.myddd.domain.ValueObjectEntity$EntityEqualsBuilder
 org/myddd/domain/CriteriaQuery.java
  org.myddd.domain.CriteriaQuery
-org/myddd/domain/NotSpecification.java
- org.myddd.domain.NotSpecification
 org/myddd/domain/AndSpecification.java
  org.myddd.domain.AndSpecification
+org/myddd/domain/NotSpecification.java
+ org.myddd.domain.NotSpecification
 org/myddd/domain/internal/criterion/SizeEqCriterion.java
  org.myddd.domain.internal.criterion.SizeEqCriterion
 org/myddd/domain/BaseQuery.java
@@ -19,18 +19,18 @@ org/myddd/domain/internal/criterion/LePropCriterion.java
  org.myddd.domain.internal.criterion.LePropCriterion
 org/myddd/domain/PositionalParameters.java
  org.myddd.domain.PositionalParameters
-org/myddd/domain/internal/criterion/InCriterion.java
- org.myddd.domain.internal.criterion.InCriterion
 org/myddd/domain/JpqlQuery.java
  org.myddd.domain.JpqlQuery
+org/myddd/domain/internal/criterion/InCriterion.java
+ org.myddd.domain.internal.criterion.InCriterion
 org/myddd/domain/internal/criterion/NotCriterion.java
  org.myddd.domain.internal.criterion.NotCriterion
-org/myddd/domain/IocInstanceNotUniqueException.java
- org.myddd.domain.IocInstanceNotUniqueException
-org/myddd/domain/Entity.java
- org.myddd.domain.Entity
 org/myddd/domain/AbstractSpecification.java
  org.myddd.domain.AbstractSpecification
+org/myddd/domain/Entity.java
+ org.myddd.domain.Entity
+org/myddd/domain/IocInstanceNotUniqueException.java
+ org.myddd.domain.IocInstanceNotUniqueException
 org/myddd/domain/BaseEntity.java
  org.myddd.domain.BaseEntity
  org.myddd.domain.BaseEntity$EntityEqualsBuilder
@@ -42,10 +42,10 @@ org/myddd/domain/specification/AndSpecification.java
  org.myddd.domain.specification.AndSpecification
 org/myddd/domain/internal/criterion/AndCriterion.java
  org.myddd.domain.internal.criterion.AndCriterion
-org/myddd/domain/internal/criterion/GtPropCriterion.java
- org.myddd.domain.internal.criterion.GtPropCriterion
 org/myddd/domain/internal/criterion/IsEmptyCriterion.java
  org.myddd.domain.internal.criterion.IsEmptyCriterion
+org/myddd/domain/internal/criterion/GtPropCriterion.java
+ org.myddd.domain.internal.criterion.GtPropCriterion
 org/myddd/domain/QueryCriterion.java
  org.myddd.domain.QueryCriterion
 org/myddd/domain/ValueObject.java
@@ -58,58 +58,56 @@ org/myddd/domain/QueryParameters.java
  org.myddd.domain.QueryParameters
 org/myddd/domain/internal/criterion/IsNullCriterion.java
  org.myddd.domain.internal.criterion.IsNullCriterion
-org/myddd/domain/IocInstanceNotFoundException.java
- org.myddd.domain.IocInstanceNotFoundException
 org/myddd/domain/SqlQuery.java
  org.myddd.domain.SqlQuery
-org/myddd/domain/internal/criterion/CriterionBuilderImpl.java
- org.myddd.domain.internal.criterion.CriterionBuilderImpl
+org/myddd/domain/IocInstanceNotFoundException.java
+ org.myddd.domain.IocInstanceNotFoundException
 org/myddd/domain/internal/criterion/SizeNotEqCriterion.java
  org.myddd.domain.internal.criterion.SizeNotEqCriterion
+org/myddd/domain/internal/criterion/CriterionBuilderImpl.java
+ org.myddd.domain.internal.criterion.CriterionBuilderImpl
 org/myddd/domain/internal/criterion/SizeGeCriterion.java
  org.myddd.domain.internal.criterion.SizeGeCriterion
-org/myddd/domain/internal/criterion/SizeLtCriterion.java
- org.myddd.domain.internal.criterion.SizeLtCriterion
 org/myddd/domain/internal/criterion/SizeGtCriterion.java
  org.myddd.domain.internal.criterion.SizeGtCriterion
+org/myddd/domain/internal/criterion/SizeLtCriterion.java
+ org.myddd.domain.internal.criterion.SizeLtCriterion
 org/myddd/domain/Value.java
  org.myddd.domain.Value
-org/myddd/domain/internal/criterion/LeCriterion.java
- org.myddd.domain.internal.criterion.LeCriterion
 org/myddd/domain/internal/criterion/GePropCriterion.java
  org.myddd.domain.internal.criterion.GePropCriterion
-org/myddd/domain/Criteria.java
- org.myddd.domain.Criteria
+org/myddd/domain/internal/criterion/LeCriterion.java
+ org.myddd.domain.internal.criterion.LeCriterion
 org/myddd/domain/internal/criterion/GeCriterion.java
  org.myddd.domain.internal.criterion.GeCriterion
+org/myddd/domain/Criteria.java
+ org.myddd.domain.Criteria
 org/myddd/domain/package-info.java
  org.myddd.domain.package-info
 org/myddd/domain/internal/criterion/SizeCompareCriterion.java
  org.myddd.domain.internal.criterion.SizeCompareCriterion
-org/myddd/domain/AbstractEntity.java
- org.myddd.domain.AbstractEntity
 org/myddd/domain/internal/criterion/GtCriterion.java
  org.myddd.domain.internal.criterion.GtCriterion
+org/myddd/domain/AbstractEntity.java
+ org.myddd.domain.AbstractEntity
 org/myddd/domain/internal/criterion/StartsWithTextCriterion.java
  org.myddd.domain.internal.criterion.StartsWithTextCriterion
 org/myddd/domain/internal/criterion/LtCriterion.java
  org.myddd.domain.internal.criterion.LtCriterion
-org/myddd/domain/internal/criterion/LtPropCriterion.java
- org.myddd.domain.internal.criterion.LtPropCriterion
 org/myddd/domain/LegacyEntity.java
  org.myddd.domain.LegacyEntity
-org/myddd/domain/BaseIDEntity.java
- org.myddd.domain.BaseIDEntity
+org/myddd/domain/internal/criterion/LtPropCriterion.java
+ org.myddd.domain.internal.criterion.LtPropCriterion
 org/myddd/domain/OrderSettings.java
  org.myddd.domain.OrderSettings
-org/myddd/domain/internal/criterion/BasicCriterion.java
- org.myddd.domain.internal.criterion.BasicCriterion
+org/myddd/domain/BaseIDEntity.java
+ org.myddd.domain.BaseIDEntity
 org/myddd/domain/EntityRepository.java
  org.myddd.domain.EntityRepository
+org/myddd/domain/internal/criterion/BasicCriterion.java
+ org.myddd.domain.internal.criterion.BasicCriterion
 org/myddd/domain/KeyValue.java
  org.myddd.domain.KeyValue
-org/myddd/domain/internal/criterion/ContainsTextCriterion.java
- org.myddd.domain.internal.criterion.ContainsTextCriterion
 org/myddd/domain/DataType.java
  org.myddd.domain.DataType
  org.myddd.domain.DataType$1
@@ -121,38 +119,40 @@ org/myddd/domain/DataType.java
  org.myddd.domain.DataType$7
  org.myddd.domain.DataType$8
  org.myddd.domain.DataType$9
+org/myddd/domain/internal/criterion/ContainsTextCriterion.java
+ org.myddd.domain.internal.criterion.ContainsTextCriterion
 org/myddd/domain/internal/criterion/PropertyCompareCriterion.java
  org.myddd.domain.internal.criterion.PropertyCompareCriterion
-org/myddd/domain/internal/criterion/EqPropCriterion.java
- org.myddd.domain.internal.criterion.EqPropCriterion
 org/myddd/domain/ExampleSettings.java
  org.myddd.domain.ExampleSettings
+org/myddd/domain/internal/criterion/EqPropCriterion.java
+ org.myddd.domain.internal.criterion.EqPropCriterion
 org/myddd/domain/internal/criterion/AbstractCriterion.java
  org.myddd.domain.internal.criterion.AbstractCriterion
 org/myddd/domain/NamedQuery.java
  org.myddd.domain.NamedQuery
 org/myddd/domain/InstanceFactory.java
  org.myddd.domain.InstanceFactory
-org/myddd/domain/specification/OrSpecification.java
- org.myddd.domain.specification.OrSpecification
 org/myddd/domain/AbstractRepository.java
  org.myddd.domain.AbstractRepository
+org/myddd/domain/specification/OrSpecification.java
+ org.myddd.domain.specification.OrSpecification
 org/myddd/domain/AbstractRepositoryJPA.java
  org.myddd.domain.AbstractRepositoryJPA
-org/myddd/domain/InstanceProvider.java
- org.myddd.domain.InstanceProvider
-org/myddd/domain/Specification.java
- org.myddd.domain.Specification
 org/myddd/domain/OrSpecification.java
  org.myddd.domain.OrSpecification
+org/myddd/domain/Specification.java
+ org.myddd.domain.Specification
+org/myddd/domain/InstanceProvider.java
+ org.myddd.domain.InstanceProvider
 org/myddd/domain/internal/criterion/NotNullCriterion.java
  org.myddd.domain.internal.criterion.NotNullCriterion
-org/myddd/domain/internal/criterion/SizeLeCriterion.java
- org.myddd.domain.internal.criterion.SizeLeCriterion
-org/myddd/domain/internal/criterion/ValueCompareCriterion.java
- org.myddd.domain.internal.criterion.ValueCompareCriterion
 org/myddd/domain/specification/package-info.java
  org.myddd.domain.specification.package-info
+org/myddd/domain/internal/criterion/ValueCompareCriterion.java
+ org.myddd.domain.internal.criterion.ValueCompareCriterion
+org/myddd/domain/internal/criterion/SizeLeCriterion.java
+ org.myddd.domain.internal.criterion.SizeLeCriterion
 org/myddd/domain/internal/criterion/EmptyCriterion.java
  org.myddd.domain.internal.criterion.EmptyCriterion
 org/myddd/domain/internal/criterion/EqCriterion.java
@@ -161,15 +161,15 @@ org/myddd/domain/DomainEvent.java
  org.myddd.domain.DomainEvent
 org/myddd/domain/internal/criterion/OrCriterion.java
  org.myddd.domain.internal.criterion.OrCriterion
-org/myddd/domain/specification/Specification.java
- org.myddd.domain.specification.Specification
 org/myddd/domain/internal/package-info.java
  org.myddd.domain.internal.package-info
-org/myddd/domain/specification/AbstractSpecification.java
- org.myddd.domain.specification.AbstractSpecification
-org/myddd/domain/internal/criterion/NotEmptyCriterion.java
- org.myddd.domain.internal.criterion.NotEmptyCriterion
+org/myddd/domain/specification/Specification.java
+ org.myddd.domain.specification.Specification
 org/myddd/domain/internal/criterion/BetweenCriterion.java
  org.myddd.domain.internal.criterion.BetweenCriterion
+org/myddd/domain/internal/criterion/NotEmptyCriterion.java
+ org.myddd.domain.internal.criterion.NotEmptyCriterion
+org/myddd/domain/specification/AbstractSpecification.java
+ org.myddd.domain.specification.AbstractSpecification
 org/myddd/domain/internal/criterion/NotEqPropCriterion.java
  org.myddd.domain.internal.criterion.NotEqPropCriterion

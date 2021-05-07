@@ -1,24 +1,24 @@
-# myddd-backend
+# myddd-java
 
-myddd-backend是**myddd**全栈式领域驱动实践的java部分，用于支持基于java及spring boot的后端开发。
+myddd-java**myddd**全栈式领域驱动实践的java部分，用于支持基于java及spring boot的后端开发。
 
 ## 致敬
 
-向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-backend**(java版)来源于[dddlib](https://github.com/dayatang/dddlib). 
+向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-java**来源于[dddlib](https://github.com/dayatang/dddlib). 
 
 数年前，我有幸与dddlib开发者杨宇老师一同工作，使用dddlib，讨论DDD，参与dddlib的开发。一晃数年已过。
 
 我与杨宇老师仍保持密切交流。
 
-**myddd-backend**来源于dddlib，无论何时，我都会明白无误的说明这一点。
+**myddd-java**来源于dddlib，无论何时，我都会明白无误的说明这一点。
 
 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD
 
 
 
-## myddd-backend的原则与宗旨
+## myddd-java的原则与宗旨
 
-myddd-backend始终坚持以下两个原则：
+myddd-java始终坚持以下两个原则：
 
 1. 最大化的倡导ddd编码风格与模式
 
@@ -59,11 +59,11 @@ ddd领域驱动的理念较为复杂，概念较多。包含实体，值对象�
 
 # 官网
 
-个人官网：https://lingenliu.cc
+个人官网：https://taoofcode.cc
 
-Github官网:   https://github.com/mydddOrg
+Github官网: https://github.com/mydddOrg
 
-Gitee官网：   https://gitee.com/mydddOrg
+Gitee官网：  https://gitee.com/mydddOrg
 
 
 
@@ -71,7 +71,4 @@ Gitee官网：   https://gitee.com/mydddOrg
 
 如果你想尽快了解如何使用，请参照示例项目
 
-
-
 示例项目位于：example目录， 是一个完整按照TDD及myddd开发的项目
-

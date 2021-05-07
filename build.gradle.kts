@@ -68,8 +68,8 @@ subprojects {
                     url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
 
                     credentials {
-                        username = System.getProperty("user")
-                        password = System.getProperty("password")
+                        username = if(project.hasProperty("username")) project.property("username") as String? else ""
+                        password = if(project.hasProperty("password")) project.property("password") as String? else ""
                     }
 
                 }
