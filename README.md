@@ -2,6 +2,14 @@
 
 myddd-java**myddd**全栈式领域驱动实践的java部分，用于支持基于java及spring boot的后端开发。
 
+
+
+## 快速开始
+
+myddd starter已经开放使用，现在开始，你可以从https://starter.myddd.org以快速开始生成一个myddd项目。
+
+
+
 ## 致敬
 
 向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-java**来源于[dddlib](https://github.com/dayatang/dddlib). 
