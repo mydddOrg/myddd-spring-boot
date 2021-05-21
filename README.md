@@ -6,7 +6,7 @@ myddd-java**myddd**全栈式领域驱动实践的java部分，用于支持基于
 
 ## 快速开始
 
-myddd starter已经开放使用，现在开始，你可以从https://starter.myddd.org以快速开始生成一个myddd项目。
+myddd starter已经开放使用，现在开始，你可以访问[myddd starter](https://starter.myddd.org)以快速开始生成一个myddd项目。
 
 
 
