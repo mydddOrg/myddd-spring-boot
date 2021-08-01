@@ -9,23 +9,25 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "document")
+@Table(name = "document",
+        indexes = {@Index(name = "index_media_id", columnList = "media_id")}
+)
 public class Document extends BaseIDEntity {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="space_id")
     private DocumentSpace space;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 36)
     private String name;
 
-    @Column(name = "media_id")
+    @Column(name = "media_id",nullable = false,length = 36)
     private String mediaId;
 
     private String md5;
 
     @Column(name = "parent_id")
-    private Long parentId;
+    private Long parentId = -1l;
 
     @Column(nullable = false)
     private DocumentType type = DocumentType.FILE;
@@ -163,11 +165,6 @@ public class Document extends BaseIDEntity {
         Assert.notNull(this.name,"文件名不能为空");
         this.type = DocumentType.FILE;
 
-        if(Objects.nonNull(this.getParentId())){
-            Document parentDir = Document.getDocumentRepository().get(Document.class,this.getParentId());
-            Assert.notNull(parentDir,"指定的父目录不存在");
-            Assert.isTrue(parentDir.getType() == DocumentType.DIR,"指定的父目录不能为文件");
-        }
         return getDocumentRepository().createDocument(this);
     }
 
@@ -191,6 +188,9 @@ public class Document extends BaseIDEntity {
         return getDocumentRepository().save(document);
     }
 
+    public static Document queryDocumentById(Long id){
+        return getDocumentRepository().queryDocumentByID(id);
+    }
     public static void deleteDocument(Long documentId){
         Assert.notNull(documentId,"文档ID不能为空");
 

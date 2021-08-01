@@ -32,8 +32,13 @@ public class DocumentController {
     }
 
     @PostMapping(value = "/documents")
-    public ResponseEntity<BaseResponse<DocumentDTO>> createDocument(@RequestBody DocumentDTO documentDTO){
-        return ResponseEntity.ok(BaseResponse.ok(documentApplication.createDocument(documentDTO)));
+    public ResponseEntity<DocumentDTO> createDocument(@RequestBody DocumentDTO documentDTO){
+        return ResponseEntity.ok(documentApplication.createDocument(documentDTO));
+    }
+
+    @GetMapping(value = "/documents/{documentId}")
+    public ResponseEntity<BaseResponse<DocumentDTO>> queryDocument(@PathVariable Long documentId){
+        return ResponseEntity.ok(BaseResponse.ok(documentApplication.queryDocumentById(documentId)));
     }
 
     @PostMapping(value = "/documents/batch")

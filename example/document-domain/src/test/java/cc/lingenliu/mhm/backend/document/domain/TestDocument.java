@@ -32,6 +32,21 @@ class TestDocument extends AbstractDocumentTest {
         });
     }
 
+    @Test
+    @Transactional
+    void testQueryDocumentById(){
+        Document document = createDocument();
+        Document createdDocument = document.createDocument();
+        Assertions.assertTrue(createdDocument.getId() > 0);
+        Assertions.assertThrows(RuntimeException.class,() -> {
+            createdDocument.createDocument();
+        });
+
+
+        Document queryDocument = Document.queryDocumentById(createdDocument.getId());
+        Assertions.assertNotNull(queryDocument);
+    }
+
     @Transactional
     @Test
     void testDeleteDocument(){

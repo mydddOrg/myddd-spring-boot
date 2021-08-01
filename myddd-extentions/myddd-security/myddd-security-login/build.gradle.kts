@@ -16,7 +16,7 @@ tasks.withType<Test>().configureEach {
 }
 
 tasks.bootJar {
-    enabled = true
+    enabled = false
 }
 
 tasks.jar {
