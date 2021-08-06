@@ -10,6 +10,8 @@ apply(plugin = "io.spring.dependency-management")
 group = "org.myddd"
 version = rootProject.extra["projectVersion"]!!
 
+extra["publishJar"] = true
+
 tasks.bootJar {
     enabled = false
 }

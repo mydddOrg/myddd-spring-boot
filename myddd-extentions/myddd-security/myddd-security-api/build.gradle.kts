@@ -5,6 +5,7 @@ plugins {
 group = "org.myddd"
 version = rootProject.extra["projectVersion"]!!
 
+extra["publishJar"] = true
 
 dependencies {
     implementation(project(":myddd-utils"))

@@ -5,6 +5,9 @@ plugins {
 group = "org.myddd"
 version = rootProject.extra["projectVersion"]!!
 
+extra["publishJar"] = true
+
+
 dependencies {
     api("org.apache.commons:commons-lang3:3.10")
     api("com.google.code.gson:gson:2.8.6")

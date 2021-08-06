@@ -5,6 +5,8 @@ plugins {
 group = "org.myddd"
 version = rootProject.extra["projectVersion"]!!
 
+extra["publishJar"] = true
+
 dependencies {
     api(project(":myddd-utils"))
     api("javax.inject:javax.inject:1")

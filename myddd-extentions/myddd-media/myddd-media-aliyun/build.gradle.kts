@@ -8,6 +8,9 @@ version = rootProject.extra["projectVersion"]!!
 
 extra["aliyun.sdk.version"] = "3.8.0"
 
+extra["publishJar"] = true
+
+
 dependencies {
     implementation(project(":myddd-extentions:myddd-media:myddd-media-api"))
     implementation("com.aliyun.oss:aliyun-sdk-oss:${project.extra["aliyun.sdk.version"]}")
