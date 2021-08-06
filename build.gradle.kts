@@ -4,14 +4,14 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.4.5"
+    id("org.springframework.boot") version "2.5.3"
 }
 
-val projectVersion = "1.2.0-SNAPSHOT"
+val projectVersion = "1.3.0-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.30"
-extra["spring.boot"] = "2.4.5"
+extra["spring.boot"] = "2.5.3"
 
 allprojects {
     repositories {

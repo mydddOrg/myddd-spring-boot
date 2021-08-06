@@ -21,7 +21,7 @@ public class Document extends BaseIDEntity {
     @Column(nullable = false,length = 36)
     private String name;
 
-    @Column(name = "media_id",nullable = false,length = 36)
+    @Column(name = "media_id",length = 36)
     private String mediaId;
 
     private String md5;

@@ -53,24 +53,23 @@ class TestDocumentController extends AbstractDocumentControllerTest {
     @Test
     void testCreateDocument(){
         String json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\"}";
-        ResponseEntity<BaseResponse<DocumentDTO>> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
+        ResponseEntity<DocumentDTO> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),DocumentDTO.class);
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getResult().getId() > 0);
+        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getId() > 0);
 
         json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\",\"parentId\":-1}";
         responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertFalse(Objects.requireNonNull(responseEntity.getBody()).isResultSuccess());
     }
 
     @Test
     void testQueryDocument(){
         String json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\"}";
-        ResponseEntity<BaseResponse<DocumentDTO>> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
+        ResponseEntity<DocumentDTO> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),DocumentDTO.class);
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getResult().getId() > 0);
+        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getId() > 0);
 
-        ResponseEntity<BaseResponse<DocumentDTO>> queryEntity = restTemplate.exchange(baseUrl()+"/v1/documents/"+responseEntity.getBody().getResult().getId(),HttpMethod.GET,createEmptyHttpEntity(),new ParameterizedTypeReference<>() {});
+        ResponseEntity<BaseResponse<DocumentDTO>> queryEntity = restTemplate.exchange(baseUrl()+"/v1/documents/"+responseEntity.getBody().getId(),HttpMethod.GET,createEmptyHttpEntity(),new ParameterizedTypeReference<>() {});
         Assertions.assertTrue(queryEntity.getStatusCode().is2xxSuccessful());
 
     }
@@ -79,22 +78,13 @@ class TestDocumentController extends AbstractDocumentControllerTest {
     @Transactional
     void testCreateDocumentHistories(){
         String json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\"}";
-        ResponseEntity<BaseResponse<DocumentDTO>> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
+        ResponseEntity<DocumentDTO> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),DocumentDTO.class);
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getResult().getId() > 0);
+        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getId() > 0);
 
-        ResponseEntity<BaseResponse<List<DocumentHistoryDTO>>> listDocumentHistories = restTemplate.exchange(baseUrl() + "/v1/documents/" + responseEntity.getBody().getResult().getId() + "/histories", HttpMethod.GET, createEmptyHttpEntity(),new ParameterizedTypeReference<>() {});
+        ResponseEntity<BaseResponse<List<DocumentHistoryDTO>>> listDocumentHistories = restTemplate.exchange(baseUrl() + "/v1/documents/" + responseEntity.getBody().getId() + "/histories", HttpMethod.GET, createEmptyHttpEntity(),new ParameterizedTypeReference<>() {});
         Assertions.assertTrue(listDocumentHistories.getStatusCode().is2xxSuccessful());
         Assertions.assertTrue(listDocumentHistories.getBody().getResult().isEmpty());
-
-        String updateJson = "{\"name\":\"BBB.mp3\",\"mediaId\":\"BBB\"}";
-        responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents/" + responseEntity.getBody().getResult().getId() + "/version" ,HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
-        Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getResult().getId() > 0);
-
-        listDocumentHistories = restTemplate.exchange(baseUrl() + "/v1/documents/" + responseEntity.getBody().getResult().getId() + "/histories", HttpMethod.GET, createEmptyHttpEntity(),new ParameterizedTypeReference<>() {});
-        Assertions.assertTrue(listDocumentHistories.getStatusCode().is2xxSuccessful());
-        Assertions.assertFalse(listDocumentHistories.getBody().getResult().isEmpty());
 
     }
 
@@ -104,9 +94,9 @@ class TestDocumentController extends AbstractDocumentControllerTest {
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 
         String json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\"}";
-        ResponseEntity<BaseResponse<DocumentDTO>> createResponseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
+        ResponseEntity<DocumentDTO> createResponseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),DocumentDTO.class);
         Assertions.assertTrue(createResponseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(createResponseEntity.getBody()).getResult().getId() > 0);
+        Assertions.assertTrue(Objects.requireNonNull(createResponseEntity.getBody()).getId() > 0);
 
         responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents", HttpMethod.GET, createEmptyHttpEntity(), new ParameterizedTypeReference<>() {});
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
@@ -116,12 +106,12 @@ class TestDocumentController extends AbstractDocumentControllerTest {
     @Test
     void testDisableDocument(){
         String json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\"}";
-        ResponseEntity<BaseResponse<DocumentDTO>> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
+        ResponseEntity<DocumentDTO> responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),DocumentDTO.class);
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getResult().getId() > 0);
+        Assertions.assertTrue(Objects.requireNonNull(responseEntity.getBody()).getId() > 0);
 
 
-        ResponseEntity<BaseResponse> deleteResponseEntity = restTemplate.exchange(baseUrl() + "/v1/documents/" + responseEntity.getBody().getResult().getId(), HttpMethod.DELETE, createEmptyHttpEntity(), new ParameterizedTypeReference<>() {});
+        ResponseEntity<BaseResponse> deleteResponseEntity = restTemplate.exchange(baseUrl() + "/v1/documents/" + responseEntity.getBody().getId(), HttpMethod.DELETE, createEmptyHttpEntity(), new ParameterizedTypeReference<>() {});
         Assertions.assertTrue(deleteResponseEntity.getStatusCode().is2xxSuccessful());
         Assertions.assertTrue(Objects.requireNonNull(deleteResponseEntity.getBody()).isResultSuccess());
     }
@@ -132,9 +122,9 @@ class TestDocumentController extends AbstractDocumentControllerTest {
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
 
         String json = "{\"name\":\"AAA.mp3\",\"mediaId\":\"AAA\"}";
-        ResponseEntity<BaseResponse<DocumentDTO>> createResponseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),new ParameterizedTypeReference<>() {});
+        ResponseEntity<DocumentDTO> createResponseEntity = restTemplate.exchange(baseUrl() + "/v1/documents",HttpMethod.POST,createHttpEntityFromString(json),DocumentDTO.class);
         Assertions.assertTrue(createResponseEntity.getStatusCode().is2xxSuccessful());
-        Assertions.assertTrue(Objects.requireNonNull(createResponseEntity.getBody()).getResult().getId() > 0);
+        Assertions.assertTrue(Objects.requireNonNull(createResponseEntity.getBody())/**/.getId() > 0);
 
         responseEntity = restTemplate.exchange(baseUrl() + "/v1/documents/search?text=AAA", HttpMethod.GET, createEmptyHttpEntity(), new ParameterizedTypeReference<>() {});
         Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
