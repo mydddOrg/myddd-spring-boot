@@ -56,7 +56,7 @@ subprojects {
                 publications {
 
                     create<MavenPublication>("mavenJava"){
-                        groupId = "org.myddd.vertx"
+                        groupId = "org.myddd"
                         afterEvaluate {
                             artifactId = tasks.jar.get().archiveBaseName.get()
                         }
