@@ -12,6 +12,7 @@ val projectVersion = "1.3.0-SNAPSHOT"
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.30"
 extra["spring.boot"] = "2.5.3"
+extra["junit.version"] = "5.7.2"
 
 allprojects {
     repositories {
