@@ -3,6 +3,7 @@ package org.myddd.domain;
 import javax.persistence.*;
 import java.util.Objects;
 
+@MappedSuperclass
 public class BaseDistributedEntity implements Entity{
 
     @Id
@@ -20,6 +21,10 @@ public class BaseDistributedEntity implements Entity{
     @Override
     public Long getId() {
         return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     private static EntityRepository repository;
@@ -48,5 +53,13 @@ public class BaseDistributedEntity implements Entity{
     @Override
     public boolean notExisted() {
         return false;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 }
