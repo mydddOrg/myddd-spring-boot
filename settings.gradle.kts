@@ -25,6 +25,8 @@ include("myddd-extentions:myddd-security:myddd-security-api")
 include("myddd-extentions:myddd-security:myddd-security-login")
 include("myddd-extentions:myddd-security:myddd-security-oauth2")
 
+//plugin
+include(":plugin:dubbo-grpc-gradle-plugin")
 
 //document示例项目
 include(":example:document-domain")
