@@ -1,6 +1,0 @@
-org/myddd/security/api/LoginDTO.java
- org.myddd.security.api.LoginDTO
-org/myddd/security/api/PasswordEncrypt.java
- org.myddd.security.api.PasswordEncrypt
-org/myddd/security/api/LoginApplication.java
- org.myddd.security.api.LoginApplication
