@@ -9,6 +9,7 @@ public class BusinessException extends RuntimeException{
     private String[] data = new String[]{};
 
     public BusinessException(ErrorCode errorCode){
+        super(errorCode.errorCode());
         this.errorCode = errorCode;
     }
 

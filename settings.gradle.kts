@@ -32,6 +32,8 @@ include("myddd-extensions:myddd-security:myddd-security-oauth2")
 include(":plugin:dubbo-protobuf-gradle-plugin")
 
 include(":myddd-libs:myddd-distributed-id")
+include(":myddd-libs:myddd-rest-advice")
+
 
 //document示例项目
 include(":example:document-domain")

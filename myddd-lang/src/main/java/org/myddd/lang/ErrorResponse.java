@@ -15,6 +15,14 @@ public class ErrorResponse {
         return errorResponse;
     }
 
+    public static ErrorResponse badRequest(Exception e){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.errorStatus = -1;
+        errorResponse.errorCode = "BAD REQUEST";
+        errorResponse.errorMsg = e.getMessage();
+        return errorResponse;
+    }
+
     public int getErrorStatus() {
         return errorStatus;
     }
