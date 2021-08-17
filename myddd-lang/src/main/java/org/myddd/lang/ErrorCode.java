@@ -14,4 +14,5 @@ public interface ErrorCode {
     default String errorCode(){
         return this.toString();
     }
+
 }

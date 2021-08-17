@@ -2,6 +2,7 @@ package org.myddd.rest.advice;
 
 import org.myddd.lang.BusinessException;
 import org.myddd.lang.ErrorResponse;
+import org.myddd.lang.BadParameterException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice()
 public class ExceptionAdvice {
+
+    @ExceptionHandler(value = BadParameterException.class)
+    public ResponseEntity<ErrorResponse> businessExceptionHandler(BadParameterException exception){
+        exception.printStackTrace();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return ResponseEntity.status(401).body(ErrorResponse.buildFromException(exception));
+    }
+
 
     @ExceptionHandler(value = BusinessException.class)
     public ResponseEntity<ErrorResponse> businessExceptionHandler(BusinessException exception){
@@ -25,6 +35,6 @@ public class ExceptionAdvice {
         exception.printStackTrace();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        return ResponseEntity.badRequest().body(ErrorResponse.badRequest(exception));
+        return ResponseEntity.status(500).body(ErrorResponse.badRequest(exception));
     }
 }

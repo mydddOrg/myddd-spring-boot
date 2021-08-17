@@ -1,5 +1,9 @@
 package org.myddd.lang;
 
+import java.io.InputStream;
+import java.util.Objects;
+import java.util.Properties;
+
 public class ErrorResponse {
 
     private int errorStatus;
@@ -8,10 +12,48 @@ public class ErrorResponse {
 
     private String errorMsg;
 
+    private static Properties configProperties;
+
+    private static final String ERROR_MSG_PROPERTIES = "error_msg.properties";
+
+    private static Properties getProperties(){
+        if(Objects.isNull(configProperties)){
+            loadProperties();
+        }
+        return configProperties;
+    }
+
+    private static void loadProperties(){
+        configProperties = new Properties();
+        try {
+            InputStream inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES);
+            configProperties.load(inputStream);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
     public static ErrorResponse buildFromException(BusinessException exception){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.errorCode = exception.getErrorCode().errorCode();
         errorResponse.errorStatus = exception.getErrorCode().errorStatus();
+        if(getProperties().containsKey(errorResponse.errorCode)){
+            String msgString = getProperties().getProperty(errorResponse.errorCode);
+            errorResponse.errorMsg = String.format(msgString, (Object[]) exception.getData());
+        }
+
+        return errorResponse;
+    }
+
+    public static ErrorResponse buildFromException(BadParameterException exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.errorCode = exception.getErrorCode().errorCode();
+        errorResponse.errorStatus = exception.getErrorCode().errorStatus();
+        if(getProperties().containsKey(errorResponse.errorCode)){
+            String msgString = getProperties().getProperty(errorResponse.errorCode);
+            errorResponse.errorMsg = String.format(msgString, (Object[]) exception.getData());
+        }
         return errorResponse;
     }
 
