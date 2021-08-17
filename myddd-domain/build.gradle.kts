@@ -17,6 +17,8 @@ dependencies {
     api("javax.inject:javax.inject:1")
     api("org.eclipse.persistence:javax.persistence:2.2.1")
 
+    api(project(":myddd-lang"))
+
     testImplementation(project(":myddd-utils"))
     testImplementation("org.mockito:mockito-core:3.11.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")

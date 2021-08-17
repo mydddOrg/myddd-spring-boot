@@ -1,5 +1,8 @@
 rootProject.name = "myddd-java"
 
+//基础依赖层
+include("myddd-lang")
+
 //一些基础类库
 include("myddd-utils")
 
