@@ -73,12 +73,12 @@ public class EntityRepositoryJpa implements EntityRepository {
     public <T extends Entity> T save(T entity) {
         if (entity.notExisted()) {
             getEntityManager().persist(entity);
-            LOGGER.info("create a entity: " + entity.getClass() + "/"
+            LOGGER.debug("create a entity: " + entity.getClass() + "/"
                     + entity.getId() + ".");
             return entity;
         }
         T result = getEntityManager().merge(entity);
-        LOGGER.info("update a entity: " + entity.getClass() + "/"
+        LOGGER.debug("update a entity: " + entity.getClass() + "/"
                 + entity.getId() + ".");
         return result;
     }
@@ -92,7 +92,7 @@ public class EntityRepositoryJpa implements EntityRepository {
     @Override
     public void remove(Entity entity) {
         getEntityManager().remove(get(entity.getClass(), entity.getId()));
-        LOGGER.info("remove a entity: " + entity.getClass() + "/"
+        LOGGER.debug("remove a entity: " + entity.getClass() + "/"
                 + entity.getId() + ".");
     }
 
