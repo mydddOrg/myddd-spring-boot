@@ -47,7 +47,7 @@ public class BaseDistributedEntity implements Entity{
 
     @Override
     public boolean existed() {
-        return false;
+        return getRepository().exists(this.getClass(),getId());
     }
 
     @Override
