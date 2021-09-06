@@ -12,6 +12,7 @@ import java.util.Map;
  * *
  */
 @MappedSuperclass
+@Deprecated(since = "1.3.0")
 public abstract class AbstractEntity extends BaseEntity {
 
     private static final long serialVersionUID = 8882145540383345037L;

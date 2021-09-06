@@ -16,7 +16,7 @@ extra["publishJar"] = true
 dependencies {
     implementation(project(":myddd-domain"))
 
-    implementation("org.springframework.security.oauth:spring-security-oauth2:2.4.1.RELEASE")
+    implementation("org.springframework.security.oauth:spring-security-oauth2:2.5.1.RELEASE")
     implementation("org.apache.tomcat.embed:tomcat-embed-core")
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.security:spring-security-core")
