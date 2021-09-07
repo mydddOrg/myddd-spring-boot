@@ -1,6 +1,7 @@
 package org.myddd.domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.domain.distributed.SnowflakeDistributeId;
 
 import static org.mockito.Mockito.*;
 
@@ -13,7 +14,7 @@ class TestBaseDistributedEntity {
         InstanceFactory.setInstanceProvider(instanceProvider);
 
         Assertions.assertThrows(Exception.class, BaseDistributedEntity::new);
-        when(instanceProvider.getInstance(any())).thenReturn(new SnowflakeDistributeId(0,0));
+        when(instanceProvider.getInstance(any())).thenReturn(new SnowflakeDistributeId());
         BaseDistributedEntity entity = new BaseDistributedEntity();
         Assertions.assertNotNull(entity.getId());
     }

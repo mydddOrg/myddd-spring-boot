@@ -10,6 +10,7 @@ include("myddd-utils")
 include("myddd-domain")
 
 //ioc依赖注入的spring实现
+include("myddd-ioc:myddd-ioc-api")
 include("myddd-ioc:myddd-ioc-spring")
 
 //仓储的JPA实现

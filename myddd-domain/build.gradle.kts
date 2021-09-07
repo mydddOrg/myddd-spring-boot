@@ -19,8 +19,11 @@ dependencies {
 
     api(project(":myddd-lang"))
     api(project(":myddd-utils"))
+    api(project(":myddd-ioc:myddd-ioc-api"))
 
     testImplementation("org.mockito:mockito-core:${rootProject.extra["mockito.version"]}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
     testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
+    testImplementation(project(":myddd-libs:myddd-distributed-id"))
+
 }
