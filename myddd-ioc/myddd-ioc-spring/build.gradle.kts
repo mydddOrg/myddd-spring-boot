@@ -23,6 +23,6 @@ tasks.jar {
 
 
 dependencies {
-    implementation(project(":myddd-ioc:myddd-ioc-spring"))
+    implementation(project(":myddd-ioc:myddd-ioc-api"))
     implementation("org.springframework:spring-context")
 }
