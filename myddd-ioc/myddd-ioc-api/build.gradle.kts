@@ -24,4 +24,5 @@ tasks.jar {
 
 dependencies {
     implementation(project(":myddd-utils"))
+    api("javax.inject:javax.inject:1")
 }
