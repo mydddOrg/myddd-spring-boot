@@ -1,6 +1,7 @@
 package org.myddd.lang;
 
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -33,8 +34,18 @@ public class ErrorResponse {
         }
     }
 
+    public static ErrorResponse buildFromRpcMessage(String message){
+        ErrorResponse errorResponse = new ErrorResponse();
+        String params[] = message.split(",");
+        errorResponse.errorCode = params[0];
+        if(getProperties().containsKey(errorResponse.errorCode)){
+            String msgString = getProperties().getProperty(errorResponse.errorCode);
+            errorResponse.errorMsg = String.format(msgString, (Object[]) Arrays.copyOfRange(params,1,params.length - 1));
+        }
+        return errorResponse;
+    }
 
-    public static ErrorResponse buildFromException(BusinessException exception){
+    public static ErrorResponse buildFromException(IBusinessError exception){
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.errorCode = exception.getErrorCode().errorCode();
         errorResponse.errorStatus = exception.getErrorCode().errorStatus();

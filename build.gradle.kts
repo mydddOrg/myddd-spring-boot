@@ -15,6 +15,7 @@ extra["spring.boot"] = "2.5.3"
 extra["junit.version"] = "5.7.2"
 extra["guava.version"] = "30.1.1-jre"
 extra["mockito.version"] = "3.12.0"
+extra["dubbo_version"] = "3.0.1"
 
 allprojects {
     repositories {

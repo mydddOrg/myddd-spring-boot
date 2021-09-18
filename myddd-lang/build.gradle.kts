@@ -13,4 +13,6 @@ tasks.withType<Test>().configureEach {
 
 
 dependencies {
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
+
 }

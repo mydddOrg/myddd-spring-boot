@@ -1,0 +1,1 @@
+mydddExceptionFilter=org.myddd.dubbo.filter.MydddDubboExceptionFilter
