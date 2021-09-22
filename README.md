@@ -44,39 +44,8 @@ ddd领域驱动的理念较为复杂，概念较多。包含实体，值对象�
 
 
 
-# ddd书本推荐
-
-我对ddd的理解与实践来源于以下两本书
-
-> 书本1：领域驱动设计-软件核心复杂性应对之道
-
-![book_1](https://i.loli.net/2020/12/08/pRh8UasoVv3JizL.png)
-
-> 书本2： 实现领域驱动设计
-
-![book_2](https://i.loli.net/2020/12/08/O67nUtTkM4R5sLY.png)
-
-
-
-
-## 教程与文档
-
-[准备中，请随时访问https://lingenliu.cc以查阅最新进度]
-
-
-
 # 官网
 
-个人官网：https://taoofcode.cc
+【myddd官网】: https://myddd.org
 
-Github官网: https://github.com/mydddOrg
-
-Gitee官网：  https://gitee.com/mydddOrg
-
-
-
-## 示例
-
-如果你想尽快了解如何使用，请参照示例项目
-
-示例项目位于：example目录， 是一个完整按照TDD及myddd开发的项目
+【微言码道】官网：https://taoofcoding.tech
