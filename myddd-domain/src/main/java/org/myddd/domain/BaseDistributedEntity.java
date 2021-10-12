@@ -52,7 +52,7 @@ public class BaseDistributedEntity implements Entity{
 
     @Override
     public boolean notExisted() {
-        return false;
+        return !existed();
     }
 
     public int getVersion() {
