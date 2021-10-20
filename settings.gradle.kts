@@ -37,12 +37,5 @@ include(":myddd-libs:myddd-rest-advice")
 include(":myddd-libs:myddd-dubbo-filter")
 
 
-//document示例项目
-include(":example:document-domain")
-include(":example:document-infra")
-include(":example:document-api")
-include(":example:document-application")
-include(":example:document-starter")
-
 
 
