@@ -14,8 +14,13 @@ public class BaseDistributedEntity implements Entity{
     @Column(name = "version")
     private int version;
 
+    protected long created;
+
+    protected long updated;
+
     public BaseDistributedEntity(){
         this.id = getIdGenerate().nextId();
+        this.created = System.currentTimeMillis();
     }
 
     @Override
@@ -61,5 +66,17 @@ public class BaseDistributedEntity implements Entity{
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    public long getCreated() {
+        return created;
+    }
+
+    public long getUpdated() {
+        return updated;
+    }
+
+    public void setUpdated(long updated) {
+        this.updated = updated;
     }
 }
