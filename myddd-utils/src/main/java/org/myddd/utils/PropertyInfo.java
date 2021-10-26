@@ -5,6 +5,7 @@ import java.util.Objects;
 /**
  * Bean的属性信息，包括属性名、属性类型和属性值。
  */
+@Deprecated
 public class PropertyInfo {
     private String propName;
     private Class<?> propType;

@@ -11,6 +11,7 @@ import java.util.Map;
  *
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  * */
+@Deprecated
 public class CollectionUtils {
 
     private CollectionUtils() {

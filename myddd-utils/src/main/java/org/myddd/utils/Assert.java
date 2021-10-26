@@ -15,6 +15,7 @@ import java.util.Map;
  * 2011-5-25
  */
 @SuppressWarnings("rawtypes")
+@Deprecated
 public class Assert {
 
     //私有构造函数，防止客户代码实例化Assert。

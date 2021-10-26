@@ -16,6 +16,7 @@ import java.util.Set;
  *
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
+@Deprecated
 public class BeanUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BeanUtils.class);

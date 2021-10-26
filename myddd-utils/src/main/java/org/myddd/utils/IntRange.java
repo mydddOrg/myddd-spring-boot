@@ -10,6 +10,7 @@ import java.io.Serializable;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  *
  */
+@Deprecated
 public class IntRange implements Serializable{
 	
 	/**

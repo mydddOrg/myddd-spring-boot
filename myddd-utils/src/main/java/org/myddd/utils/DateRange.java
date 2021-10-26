@@ -13,6 +13,7 @@ import java.util.Date;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  *
  */
+@Deprecated
 public class DateRange implements Serializable {
 
     /**

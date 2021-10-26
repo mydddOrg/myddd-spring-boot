@@ -4,7 +4,7 @@ import java.security.InvalidParameterException;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
-
+@Deprecated
 public class DateUtils {
 
     /**
