@@ -1,5 +1,7 @@
 package org.myddd.domain;
 
+import com.google.common.base.Preconditions;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -29,6 +31,7 @@ public class BaseDistributedEntity implements Entity{
     }
 
     public void setId(Long id) {
+        Preconditions.checkArgument(id > 0,"分布式ID主键值必须大于0，不能为0或为负数");
         this.id = id;
     }
 
