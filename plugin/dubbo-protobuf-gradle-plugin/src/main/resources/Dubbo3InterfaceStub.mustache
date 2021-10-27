@@ -20,8 +20,6 @@ static final String SERVICE_NAME = "{{commonPackageName}}.{{serviceName}}";
 {{#methods}}
     {{outputType}} {{methodName}}({{inputType}} request);
 
-    CompletableFuture<{{outputType}}> {{methodName}}Async({{inputType}} request);
-
 {{/methods}}
 
 }
