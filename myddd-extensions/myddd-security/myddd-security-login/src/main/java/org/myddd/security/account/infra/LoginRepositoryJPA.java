@@ -14,33 +14,34 @@ public class LoginRepositoryJPA extends AbstractRepositoryJPA implements LoginRe
     @Override
     public LoginEntity createLoginUser(LoginEntity loginEntity) {
         Assert.isNull(loginEntity.getId());
-        return getEntityRepository().save(loginEntity);
+        return save(loginEntity);
     }
 
     @Override
     public LoginEntity updateUser(LoginEntity loginEntity) {
         Assert.notNull(loginEntity.getId());
         loginEntity.setUpdateDate(System.currentTimeMillis());
-        return getEntityRepository().save(loginEntity);
+        return save(loginEntity);
     }
 
     @Override
     public LoginEntity findByUsername(String username) {
-        return getEntityRepository().createCriteriaQuery(LoginEntity.class)
-                .eq("username",username)
-                .singleResult();
+        return getEntityManager().createQuery("from LoginEntity where username = :username",LoginEntity.class)
+                .setParameter("username",username)
+                .getSingleResult();
     }
 
     @Override
     public boolean isEmpty() {
-        long count = getEntityRepository().createJpqlQuery("select count(*) as count from LoginEntity").singleResult();
+        long count = getEntityManager().createQuery("select count(*) as count from LoginEntity",Long.class).getSingleResult();
         return count == 0;
     }
 
     @Override
     public boolean userExists(String username) {
-        long count = getEntityRepository().createJpqlQuery("select count(*) as count from LoginEntity where username = ?1")
-                .setParameters(username).singleResult();
+        long count = getEntityManager().createQuery("select count(*) as count from LoginEntity where username = :username",Long.class)
+                .setParameter("username",username)
+                .getSingleResult();
         return count > 0;
     }
 
@@ -49,7 +50,7 @@ public class LoginRepositoryJPA extends AbstractRepositoryJPA implements LoginRe
         LoginEntity loginEntity = findByUsername(username);
         if(Objects.nonNull(loginEntity)){
             Assert.isTrue(!loginEntity.isSuperUser(),"不允许删除超级用户");
-            getEntityRepository().remove(loginEntity);
+            getEntityManager().remove(loginEntity);
         }
         return true;
     }
@@ -57,13 +58,13 @@ public class LoginRepositoryJPA extends AbstractRepositoryJPA implements LoginRe
     @Override
     public void enable(LoginEntity loginEntity) {
         loginEntity.setDisabled(false);
-        getEntityRepository().save(loginEntity);
+        save(loginEntity);
     }
 
     @Override
     public void disable(LoginEntity loginEntity) {
         loginEntity.setDisabled(true);
-        getEntityRepository().save(loginEntity);
+        save(loginEntity);
     }
 
 

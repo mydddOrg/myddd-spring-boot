@@ -1,5 +1,6 @@
 package org.myddd.domain;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,11 +11,15 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository{
 
     private static EntityRepository entityRepository;
 
-    protected static EntityRepository getEntityRepository() {
+    private static EntityRepository getEntityRepository() {
         if(Objects.isNull(entityRepository)){
             entityRepository = InstanceFactory.getInstance(EntityRepository.class);
         }
         return entityRepository;
+    }
+
+    public EntityManager getEntityManager(){
+        return getEntityRepository().getEntityManager();
     }
 
     public <T extends Entity> T save(T entity){
@@ -27,6 +32,10 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository{
 
     public <T extends Entity> boolean exists(Class<T> clazz, Serializable id){
         return getEntityRepository().exists(clazz,id);
+    }
+
+    public void remove(Entity entity){
+        getEntityManager().remove(entity);
     }
 
 }

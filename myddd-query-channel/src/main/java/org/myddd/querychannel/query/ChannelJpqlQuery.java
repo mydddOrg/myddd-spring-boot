@@ -1,11 +1,12 @@
 package org.myddd.querychannel.query;
 
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.domain.BaseQuery;
 import org.myddd.domain.EntityRepository;
 import org.myddd.domain.JpqlQuery;
 import org.myddd.querychannel.ChannelQuery;
-import org.myddd.utils.Assert;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
 
     public ChannelJpqlQuery(EntityRepository repository, String jpql) {
         super(repository);
-        Assert.notBlank(jpql, "JPQL must be set!");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(jpql),"JPQL must be set!");
         query = new JpqlQuery(repository, jpql);
         setQuery(query);
     }
@@ -38,7 +39,6 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
     /**
      * 返回查询结果数据页。
      *
-     * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
     public List<T> list() {
@@ -48,7 +48,6 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
     /**
      * 返回查询结果数据页。
      *
-     * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
     public Page<T> pagedList() {
@@ -59,7 +58,6 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
     /**
      * 返回单条查询结果。
      *
-     * @param <T> 查询结果的类型
      * @return 查询结果。
      */
     public T singleResult() {

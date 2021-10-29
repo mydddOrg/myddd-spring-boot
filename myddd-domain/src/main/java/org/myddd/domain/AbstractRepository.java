@@ -10,4 +10,6 @@ public interface AbstractRepository {
 
     <T extends Entity> boolean exists(Class<T> clazz, Serializable id);
 
+    void remove(Entity entity);
+
 }

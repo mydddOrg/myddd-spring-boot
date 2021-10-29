@@ -1,5 +1,6 @@
 package org.myddd.domain;
 
+import javax.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.List;
 
@@ -56,6 +57,8 @@ public interface EntityRepository {
      * @return 一个实体实例。
      */
     <T extends Entity> T load(Class<T> clazz, Serializable id);
+
+    EntityManager getEntityManager();
 
     /**
      * 从仓储中获取entity参数所代表的未修改的实体

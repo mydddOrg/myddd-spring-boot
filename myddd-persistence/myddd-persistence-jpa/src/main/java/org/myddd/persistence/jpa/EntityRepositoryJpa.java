@@ -1,7 +1,6 @@
 package org.myddd.persistence.jpa;
 
 import org.myddd.domain.*;
-import org.myddd.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,7 +64,8 @@ public class EntityRepositoryJpa implements EntityRepository {
 		this.namedQueryParser = namedQueryParser;
 	}
 
-	EntityManager getEntityManager() {
+    @Override
+	public EntityManager getEntityManager() {
         return getEntityManagerProvider().getEntityManager();
     }
 
