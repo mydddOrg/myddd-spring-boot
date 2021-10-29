@@ -14,14 +14,14 @@ import java.util.Map;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 public class NamedParameters implements QueryParameters {
-    private Map<String, Object> params = new HashMap<String, Object>();
+    private Map<String, Object> params = new HashMap<>();
     
     /**
      * 创建一个空查询参数集
      * @return 一个基于Map的查询参数集
      */
     public static NamedParameters create() {
-        return new NamedParameters(new HashMap<String, Object>());
+        return new NamedParameters(new HashMap<>());
     }
     
     /**
@@ -35,7 +35,7 @@ public class NamedParameters implements QueryParameters {
 
     private NamedParameters(Map<String, Object> params) {
         Assert.notNull(params, "Parameters cannot be null");
-        this.params = new HashMap<String, Object>(params);
+        this.params = new HashMap<>(params);
     }
     
     /**
