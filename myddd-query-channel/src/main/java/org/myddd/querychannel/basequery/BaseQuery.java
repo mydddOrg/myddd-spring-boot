@@ -1,9 +1,12 @@
-package org.myddd.domain;
+package org.myddd.querychannel.basequery;
 
+import org.myddd.domain.InstanceFactory;
+import org.myddd.querychannel.QueryRepository;
 import org.myddd.utils.Assert;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * 查询基类，为NamedQuery、JpqlQuery和SqlQuery提供共同行为。
@@ -11,15 +14,17 @@ import java.util.Map;
  * @param <E> 查询的类型
  */
 public abstract class BaseQuery<E extends BaseQuery> {
-    private final EntityRepository repository;
+    private static QueryRepository repository;
     private QueryParameters parameters = PositionalParameters.create();
     private final NamedParameters mapParameters = NamedParameters.create();
     private int firstResult;
     private int maxResults;
 
-    public BaseQuery(EntityRepository repository) {
-        Assert.notNull(repository);
-        this.repository = repository;
+    private static QueryRepository getQueryRepository(){
+        if(Objects.isNull(repository)){
+            repository = InstanceFactory.getInstance(QueryRepository.class);
+        }
+        return repository;
     }
 
     /**
@@ -139,17 +144,11 @@ public abstract class BaseQuery<E extends BaseQuery> {
     public abstract <T> T singleResult();
 
     /**
-     * 执行更新仓储的操作。
-     * @return 被更新或删除的实体的数量
-     */
-    public abstract int executeUpdate();
-
-    /**
      * 获得仓储对象。
      * @return 仓储对象
      */
-    protected EntityRepository getRepository() {
-        return repository;
+    protected QueryRepository getRepository() {
+        return getQueryRepository();
     }
     
     

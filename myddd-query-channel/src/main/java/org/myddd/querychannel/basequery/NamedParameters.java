@@ -1,4 +1,4 @@
-package org.myddd.domain;
+package org.myddd.querychannel.basequery;
 
 
 import org.myddd.utils.Assert;

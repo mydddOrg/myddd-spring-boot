@@ -44,7 +44,5 @@ dependencies {
     implementation(project(":myddd-extensions:myddd-security:myddd-security-api"))
     implementation(project(":myddd-persistence:myddd-persistence-jpa"))
 
-
-
     implementation("org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final")
 }

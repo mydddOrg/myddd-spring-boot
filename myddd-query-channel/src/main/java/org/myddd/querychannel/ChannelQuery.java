@@ -2,10 +2,8 @@ package org.myddd.querychannel;
 
 
 import com.google.common.base.Preconditions;
-import org.myddd.domain.BaseQuery;
-import org.myddd.domain.EntityRepository;
-import org.myddd.domain.QueryParameters;
-import org.myddd.utils.Assert;
+import org.myddd.querychannel.basequery.BaseQuery;
+import org.myddd.querychannel.basequery.QueryParameters;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -18,11 +16,11 @@ import java.util.Map;
  */
 public abstract class ChannelQuery<T> {
 
-    protected EntityRepository repository;
+    protected QueryRepository repository;
     private BaseQuery query;
     private int pageIndex;
 
-    public ChannelQuery(EntityRepository repository) {
+    public ChannelQuery(QueryRepository repository) {
         this.repository = repository;
     }
 

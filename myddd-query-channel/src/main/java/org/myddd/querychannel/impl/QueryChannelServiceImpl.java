@@ -2,8 +2,8 @@ package org.myddd.querychannel.impl;
 
 
 import com.google.common.base.Preconditions;
-import org.myddd.domain.EntityRepository;
 import org.myddd.domain.InstanceFactory;
+import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.QueryChannelService;
 import org.myddd.querychannel.query.ChannelJpqlQuery;
@@ -17,16 +17,16 @@ import javax.inject.Named;
 @Named
 public class QueryChannelServiceImpl implements QueryChannelService {
     
-    private EntityRepository repository;
+    private QueryRepository repository;
 
-    public QueryChannelServiceImpl(EntityRepository repository) {
+    public QueryChannelServiceImpl(QueryRepository repository) {
         Preconditions.checkNotNull(repository, "Repository must set!");
         this.repository = repository;
     }
 
-    public EntityRepository getRepository() {
+    public QueryRepository getRepository() {
         if(repository == null){
-            repository = InstanceFactory.getInstance(EntityRepository.class);
+            repository = InstanceFactory.getInstance(QueryRepository.class);
         }
         return repository;
     }
@@ -43,7 +43,7 @@ public class QueryChannelServiceImpl implements QueryChannelService {
 
     @Override
     public <T> ChannelQuery<T> createSqlQuery(String sql, Class<T> tClass) {
-        return new ChannelSqlQuery<>(getRepository(), sql);
+        return new ChannelSqlQuery<T>(getRepository(), sql);
     }
     
 }

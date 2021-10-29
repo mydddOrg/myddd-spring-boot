@@ -1,11 +1,11 @@
 package org.myddd.querychannel.query;
 
 
-import org.myddd.domain.BaseQuery;
-import org.myddd.domain.Entity;
-import org.myddd.domain.EntityRepository;
-import org.myddd.domain.SqlQuery;
+import org.myddd.domain.*;
 import org.myddd.querychannel.ChannelQuery;
+import org.myddd.querychannel.QueryRepository;
+import org.myddd.querychannel.basequery.BaseQuery;
+import org.myddd.querychannel.basequery.SqlQuery;
 import org.myddd.utils.Assert;
 import org.myddd.utils.Page;
 
@@ -19,10 +19,10 @@ public class ChannelSqlQuery<T> extends ChannelQuery<T> {
     
     private final SqlQuery query;
 
-    public ChannelSqlQuery(EntityRepository repository, String sql) {
+    public ChannelSqlQuery(QueryRepository repository, String sql) {
         super(repository);
         Assert.notBlank(sql, "SQL must be set!");
-        query = new SqlQuery(repository, sql);
+        query = new SqlQuery(sql);
         setQuery(query);
     }
 
@@ -60,7 +60,7 @@ public class ChannelSqlQuery<T> extends ChannelQuery<T> {
 
     @Override
     protected BaseQuery createBaseQuery(String queryString) {
-        return repository.createSqlQuery(queryString);
+        return new SqlQuery(queryString);
     }
 
 

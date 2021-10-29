@@ -1,8 +1,7 @@
-package org.myddd.domain;
+package org.myddd.querychannel.basequery;
 
 
 import org.myddd.utils.Assert;
-
 import java.util.List;
 
 /**
@@ -10,15 +9,14 @@ import java.util.List;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 public class JpqlQuery extends BaseQuery<JpqlQuery> {
+
     private final String jpql;
 
     /**
      * 使用仓储和JPQL语句创建JPQL查询。
-     * @param repository 仓储
      * @param jpql JPQL查询语句
      */
-    public JpqlQuery(EntityRepository repository, String jpql) {
-        super(repository);
+    public JpqlQuery(String jpql) {
         Assert.notBlank(jpql);
         this.jpql = jpql;
     }
@@ -49,14 +47,5 @@ public class JpqlQuery extends BaseQuery<JpqlQuery> {
     @Override
     public <T> T singleResult() {
         return getRepository().getSingleResult(this);
-    }
-
-    /**
-     * 执行更新仓储的操作。
-     * @return 被更新或删除的实体的数量
-     */
-    @Override
-    public int executeUpdate() {
-        return getRepository().executeUpdate(this);
     }
 }

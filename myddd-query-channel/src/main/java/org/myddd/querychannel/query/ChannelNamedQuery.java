@@ -2,10 +2,10 @@ package org.myddd.querychannel.query;
 
 
 
-import org.myddd.domain.BaseQuery;
-import org.myddd.domain.EntityRepository;
-import org.myddd.domain.NamedQuery;
+import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
+import org.myddd.querychannel.basequery.BaseQuery;
+import org.myddd.querychannel.basequery.NamedQuery;
 import org.myddd.utils.Assert;
 import org.myddd.utils.Page;
 
@@ -19,10 +19,10 @@ public class ChannelNamedQuery<T> extends ChannelQuery<T> {
     
     private NamedQuery query;
 
-    public ChannelNamedQuery(EntityRepository repository, String queryName) {
+    public ChannelNamedQuery(QueryRepository repository, String queryName) {
         super(repository);
         Assert.notBlank(queryName, "Query name must be set!");
-        query = new NamedQuery(repository, queryName);
+        query = new NamedQuery(queryName);
         setQuery(query);
     }
 
@@ -49,7 +49,7 @@ public class ChannelNamedQuery<T> extends ChannelQuery<T> {
 
     @Override
     protected BaseQuery createBaseQuery(String queryString) {
-        return repository.createJpqlQuery(queryString);
+        return new NamedQuery(queryString);
     }
 
 }

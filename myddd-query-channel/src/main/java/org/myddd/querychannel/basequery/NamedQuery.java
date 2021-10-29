@@ -1,5 +1,4 @@
-package org.myddd.domain;
-
+package org.myddd.querychannel.basequery;
 
 import org.myddd.utils.Assert;
 
@@ -15,11 +14,9 @@ public class NamedQuery extends BaseQuery<NamedQuery> {
 
     /**
      * 使用仓储和命名查询名字创建命名查询
-     * @param repository 仓储
      * @param queryName 命名查询的名称
      */
-    public NamedQuery(EntityRepository repository, String queryName) {
-        super(repository);
+    public NamedQuery(String queryName) {
         Assert.notBlank(queryName);
         this.queryName = queryName;
     }
@@ -50,15 +47,6 @@ public class NamedQuery extends BaseQuery<NamedQuery> {
     @Override
     public <T> T singleResult() {
         return getRepository().getSingleResult(this);
-    }
-
-    /**
-     * 执行更新仓储的操作。
-     * @return 被更新或删除的实体的数量
-     */
-    @Override
-    public int executeUpdate() {
-        return getRepository().executeUpdate(this);
     }
 
 }

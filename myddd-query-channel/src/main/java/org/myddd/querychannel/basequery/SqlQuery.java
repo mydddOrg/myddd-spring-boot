@@ -1,6 +1,8 @@
-package org.myddd.domain;
+package org.myddd.querychannel.basequery;
 
 
+import org.myddd.domain.Entity;
+import org.myddd.querychannel.QueryRepository;
 import org.myddd.utils.Assert;
 
 import java.util.List;
@@ -16,11 +18,9 @@ public class SqlQuery extends BaseQuery<SqlQuery> {
 
     /**
      * 使用仓储和SQL语句创建SQL查询。
-     * @param repository 仓储
      * @param sql SQL查询语句
      */
-    public SqlQuery(EntityRepository repository, String sql) {
-        super(repository);
+    public SqlQuery(String sql) {
         Assert.notBlank(sql);
         this.sql = sql;
     }
@@ -70,14 +70,5 @@ public class SqlQuery extends BaseQuery<SqlQuery> {
     @Override
     public <T> T singleResult() {
         return getRepository().getSingleResult(this);
-    }
-
-    /**
-     * 执行更新仓储的操作。
-     * @return 被更新或删除的实体的数量
-     */
-    @Override
-    public int executeUpdate() {
-        return getRepository().executeUpdate(this);
     }
 }

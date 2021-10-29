@@ -24,6 +24,8 @@ tasks.jar {
 
 dependencies {
     api(project(":myddd-domain"))
+
+
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${rootProject.extra["spring.boot"]}")
     api("org.eclipse.persistence:javax.persistence:2.2.1")
     api("javax.inject:javax.inject:1")

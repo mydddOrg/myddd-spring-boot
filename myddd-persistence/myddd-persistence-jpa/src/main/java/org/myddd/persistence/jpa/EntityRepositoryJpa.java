@@ -1,13 +1,13 @@
 package org.myddd.persistence.jpa;
 
 import org.myddd.domain.*;
-import org.myddd.domain.*;
+import org.myddd.querychannel.QueryRepository;
+import org.myddd.querychannel.basequery.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.io.Serializable;
@@ -19,7 +19,7 @@ import java.util.Map;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 @Named
-public class EntityRepositoryJpa implements EntityRepository {
+public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryJpa.class);
 
@@ -28,28 +28,11 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     private EntityManagerProvider entityManagerProvider;
 
-    public EntityRepositoryJpa() {
-
-    }
-
     public EntityManagerProvider getEntityManagerProvider() {
         if(entityManagerProvider == null){
             entityManagerProvider = InstanceFactory.getInstance(EntityManagerProvider.class);
         }
         return entityManagerProvider;
-    }
-
-    public EntityRepositoryJpa(EntityManager entityManager) {
-        entityManagerProvider = new EntityManagerProvider(entityManager);
-    }
-
-    public EntityRepositoryJpa(EntityManagerFactory entityManagerFactory) {
-        entityManagerProvider = new EntityManagerProvider(entityManagerFactory);
-    }
-
-    public EntityRepositoryJpa(NamedQueryParser namedQueryParser, EntityManagerFactory entityManagerFactory) {
-        this(entityManagerFactory);
-        setNamedQueryParser(namedQueryParser);
     }
 
     private NamedQueryParser getNamedQueryParser() {
@@ -138,12 +121,7 @@ public class EntityRepositoryJpa implements EntityRepository {
     @Override
     public <T extends Entity> List<T> findAll(final Class<T> clazz) {
         String queryString = "select o from " + clazz.getName() + " as o";
-        return getEntityManager().createQuery(queryString).getResultList();
-    }
-
-    @Override
-    public JpqlQuery createJpqlQuery(String jpql) {
-        return new JpqlQuery(this, jpql);
+        return getEntityManager().createQuery(queryString,clazz).getResultList();
     }
 
     @Override
@@ -160,21 +138,10 @@ public class EntityRepositoryJpa implements EntityRepository {
         }
     }
 
-    @Override
-    public int executeUpdate(JpqlQuery jpqlQuery) {
-        return getQuery(jpqlQuery).executeUpdate();
-
-    }
-
     private Query getQuery(JpqlQuery jpqlQuery) {
         Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
         processQuery(query, jpqlQuery);
         return query;
-    }
-
-    @Override
-    public NamedQuery createNamedQuery(String queryName) {
-        return new NamedQuery(this, queryName);
     }
 
     @Override
@@ -191,20 +158,10 @@ public class EntityRepositoryJpa implements EntityRepository {
         }
     }
 
-    @Override
-    public int executeUpdate(NamedQuery namedQuery) {
-        return getQuery(namedQuery).executeUpdate();
-    }
-
     private Query getQuery(NamedQuery namedQuery) {
         Query query = getEntityManager().createNamedQuery(namedQuery.getQueryName());
         processQuery(query, namedQuery);
         return query;
-    }
-
-    @Override
-    public SqlQuery createSqlQuery(String sql) {
-        return new SqlQuery(this, sql);
     }
 
     @Override
@@ -219,11 +176,6 @@ public class EntityRepositoryJpa implements EntityRepository {
         } catch (NoResultException e) {
             return null;
         }
-    }
-
-    @Override
-    public int executeUpdate(SqlQuery sqlQuery) {
-        return getQuery(sqlQuery).executeUpdate();
     }
 
 	private Query getQuery(SqlQuery sqlQuery) {

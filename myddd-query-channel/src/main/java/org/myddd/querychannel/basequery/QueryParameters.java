@@ -1,4 +1,4 @@
-package org.myddd.domain;
+package org.myddd.querychannel.basequery;
 
 /**
  * 查询参数集接口。有两种形式的查询参数集：定位参数集和命名参数集，分别由ArrayParameters

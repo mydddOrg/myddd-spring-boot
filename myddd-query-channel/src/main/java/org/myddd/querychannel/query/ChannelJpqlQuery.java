@@ -3,10 +3,10 @@ package org.myddd.querychannel.query;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import org.myddd.domain.BaseQuery;
-import org.myddd.domain.EntityRepository;
-import org.myddd.domain.JpqlQuery;
+import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
+import org.myddd.querychannel.basequery.BaseQuery;
+import org.myddd.querychannel.basequery.JpqlQuery;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -19,10 +19,10 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
     
     private final JpqlQuery query;
 
-    public ChannelJpqlQuery(EntityRepository repository, String jpql) {
+    public ChannelJpqlQuery(QueryRepository repository, String jpql) {
         super(repository);
         Preconditions.checkArgument(!Strings.isNullOrEmpty(jpql),"JPQL must be set!");
-        query = new JpqlQuery(repository, jpql);
+        query = new JpqlQuery(jpql);
         setQuery(query);
     }
 
@@ -33,7 +33,7 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
 
     @Override
     protected BaseQuery createBaseQuery(String queryString) {
-        return repository.createJpqlQuery(queryString);
+        return new JpqlQuery(queryString);
     }
 
     /**
