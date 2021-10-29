@@ -15,7 +15,6 @@ import javax.inject.Named;
 import java.util.List;
 
 /**
- *
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 @Named

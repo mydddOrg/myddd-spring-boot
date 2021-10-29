@@ -28,7 +28,7 @@ public class LoginRepositoryJPA extends AbstractRepositoryJPA implements LoginRe
     public LoginEntity findByUsername(String username) {
         return getEntityManager().createQuery("from LoginEntity where username = :username",LoginEntity.class)
                 .setParameter("username",username)
-                .getSingleResult();
+                .getResultList().stream().findFirst().orElse(null);
     }
 
     @Override

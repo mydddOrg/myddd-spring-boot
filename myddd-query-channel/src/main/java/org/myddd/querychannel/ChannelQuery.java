@@ -154,7 +154,6 @@ public abstract class ChannelQuery<T> {
     /**
      * 返回查询结果数据页。
      *
-     * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
     public List<T> list() {
@@ -164,7 +163,6 @@ public abstract class ChannelQuery<T> {
     /**
      * 返回查询结果数据页。
      *
-     * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
     public Page<T> pagedList() {
@@ -175,7 +173,6 @@ public abstract class ChannelQuery<T> {
     /**
      * 返回单条查询结果。
      *
-     * @param <T> 查询结果的类型
      * @return 查询结果。
      */
     public T singleResult() {

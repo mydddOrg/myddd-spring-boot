@@ -109,36 +109,4 @@ public abstract class AbstractEntity extends BaseEntity {
         return getRepository().load(clazz, id);
     }
 
-    /**
-     * 查找指定类型的所有实体
-     * @param <T> 实体所属的类型
-     * @param clazz 实体所属的类
-     * @return 符合条件的实体列表
-     */
-    public static <T extends Entity> List<T> findAll(Class<T> clazz) {
-        return getRepository().createCriteriaQuery(clazz).list();
-    }
-
-    /**
-     * 根据单个属性值以“属性=属性值”的方式查找实体
-     * @param <T> 实体所属的类型
-     * @param clazz 实体所属的类
-     * @param propName 属性名
-     * @param value 匹配的属性值
-     * @return 符合条件的实体列表
-     */
-    public static <T extends Entity> List<T> findByProperty(Class<T> clazz, String propName, Object value) {
-        return getRepository().findByProperty(clazz, propName, value);
-    }
-
-    /**
-     * 根据多个属性值以“属性=属性值”的方式查找实体，例如查找name="张三", age=35的员工。
-     * @param <T> 实体所属的类型
-     * @param clazz 实体所属的类
-     * @param propValues 属性值匹配条件
-     * @return 符合条件的实体列表
-     */
-    public static <T extends Entity> List<T> findByProperties(Class<T> clazz, Map<String, Object> propValues) {
-        return getRepository().findByProperties(clazz, NamedParameters.create(propValues));
-    }
 }

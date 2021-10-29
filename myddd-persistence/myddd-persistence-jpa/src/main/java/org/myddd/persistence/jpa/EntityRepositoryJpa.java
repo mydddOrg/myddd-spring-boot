@@ -1,6 +1,7 @@
 package org.myddd.persistence.jpa;
 
 import org.myddd.domain.*;
+import org.myddd.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +25,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     //命名查询解析器，它是可选的
     private NamedQueryParser namedQueryParser;
-    
+
     private EntityManagerProvider entityManagerProvider;
 
     public EntityRepositoryJpa() {
@@ -64,7 +65,6 @@ public class EntityRepositoryJpa implements EntityRepository {
 		this.namedQueryParser = namedQueryParser;
 	}
 
-    @Override
 	public EntityManager getEntityManager() {
         return getEntityManagerProvider().getEntityManager();
     }
@@ -85,7 +85,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see
      * org.myddd.domain.EntityRepository#remove(org.myddd.domain.Entity)
      */
@@ -98,7 +98,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.myddd.domain.EntityRepository#exists(java.io.Serializable)
      */
     @Override
@@ -110,7 +110,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.myddd.domain.EntityRepository#get(java.io.Serializable)
      */
     @Override
@@ -120,7 +120,7 @@ public class EntityRepositoryJpa implements EntityRepository {
 
     /*
      * (non-Javadoc)
-     * 
+     *
      * @see org.myddd.domain.EntityRepository#load(java.io.Serializable)
      */
     @Override
@@ -136,44 +136,9 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T extends Entity> T getByBusinessKeys(Class<T> clazz, NamedParameters keyValues) {
-        List<T> results = findByProperties(clazz, keyValues);
-        return results.isEmpty() ? null : results.get(0);
-    }
-
-    @Override
     public <T extends Entity> List<T> findAll(final Class<T> clazz) {
         String queryString = "select o from " + clazz.getName() + " as o";
         return getEntityManager().createQuery(queryString).getResultList();
-    }
-
-    @Override
-    public <T extends Entity> CriteriaQuery createCriteriaQuery(Class<T> entityClass) {
-        return new CriteriaQuery(this, entityClass);
-    }
-
-    @Override
-    public <T> List<T> find(CriteriaQuery criteriaQuery) {
-        Query query = getEntityManager().createQuery(criteriaQuery.getQueryString());
-        processQuery(query, criteriaQuery.getParameters(), 
-                criteriaQuery.getFirstResult(), criteriaQuery.getMaxResults());
-        return query.getResultList();
-    }
-
-    @Override
-    public <T> T getSingleResult(CriteriaQuery criteriaQuery) {
-        List<T> results = find(criteriaQuery);
-        return results.isEmpty() ? null : results.get(0);
-    }
-
-    @Override
-    public <T extends Entity> List<T> find(Class<T> entityClass, QueryCriterion criterion) {
-        return find(createCriteriaQuery(entityClass).and(criterion));
-    }
-
-    @Override
-    public <T extends Entity> T getSingleResult(Class<T> entityClass, QueryCriterion criterion) {
-        return getSingleResult(createCriteriaQuery(entityClass).and(criterion));
     }
 
     @Override
@@ -274,26 +239,6 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     @Override
-    public <T extends Entity, E extends T> List<T> findByExample(
-            final E example, final ExampleSettings<T> settings) {
-        throw new RuntimeException("not implemented yet!");
-    }
-
-    @Override
-    public <T extends Entity> List<T> findByProperty(Class<T> clazz, String propertyName, Object propertyValue) {
-        return find(new CriteriaQuery(this, clazz).eq(propertyName, propertyValue));
-    }
-
-    @Override
-    public <T extends Entity> List<T> findByProperties(Class<T> clazz, NamedParameters properties) {
-        CriteriaQuery criteriaQuery = new CriteriaQuery(this, clazz);
-        for (Map.Entry<String, Object> each : properties.getParams().entrySet()) {
-            criteriaQuery = criteriaQuery.eq(each.getKey(), each.getValue());
-        }
-        return find(criteriaQuery);
-    }
-
-    @Override
     public String getQueryStringOfNamedQuery(String queryName) {
         return getNamedQueryParser().getQueryStringOfNamedQuery(queryName);
     }
@@ -314,7 +259,7 @@ public class EntityRepositoryJpa implements EntityRepository {
     }
 
     private void processQuery(Query query, BaseQuery<?> originQuery) {
-        processQuery(query, originQuery.getParameters(), 
+        processQuery(query, originQuery.getParameters(),
                 originQuery.getFirstResult(), originQuery.getMaxResults());
     }
 
