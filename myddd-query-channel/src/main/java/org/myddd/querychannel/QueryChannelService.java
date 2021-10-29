@@ -1,7 +1,6 @@
 package org.myddd.querychannel;
 
 
-
 import org.myddd.utils.Page;
 
 import java.io.Serializable;
@@ -18,7 +17,11 @@ public interface QueryChannelService extends Serializable {
      * @param jpql JPQL语句
      * @return 一个JPQL查询
      */
+    @Deprecated
     ChannelQuery createJpqlQuery(String jpql);
+
+
+    <T> ChannelQuery<T> createJpqlQuery(String jpql,Class<T> tClass);
 
     /**
      * 创建命名查询
@@ -26,7 +29,10 @@ public interface QueryChannelService extends Serializable {
      * @param queryName 命名查询的名字
      * @return 一个命名查询
      */
+    @Deprecated
     ChannelQuery createNamedQuery(String queryName);
+
+    <T> ChannelQuery createNamedQuery(String queryName,Class<T> tClass);
 
     /**
      * 创建原生SQL查询
@@ -34,7 +40,11 @@ public interface QueryChannelService extends Serializable {
      * @param sql SQL语句
      * @return 一个原生SQL查询
      */
+    @Deprecated
     ChannelQuery createSqlQuery(String sql);
+
+
+    <T> ChannelQuery createSqlQuery(String sql,Class<T> tClass);
 
     /**
      * 执行查询，返回符合条件的结果列表

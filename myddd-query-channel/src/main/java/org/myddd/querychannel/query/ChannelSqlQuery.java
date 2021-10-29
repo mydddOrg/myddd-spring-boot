@@ -15,7 +15,7 @@ import java.util.List;
  * 通道查询的SQL实现
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
-public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
+public class ChannelSqlQuery<T> extends ChannelQuery<T> {
     
     private final SqlQuery query;
 
@@ -38,18 +38,18 @@ public class ChannelSqlQuery extends ChannelQuery<ChannelSqlQuery> {
     }
 
     @Override
-    public <T> List<T> list() {
+    public  List<T> list() {
         return query.list();
     }
 
     @Override
-    public <T> Page<T> pagedList() {
+    public  Page<T> pagedList() {
         return new Page<T>(query.getFirstResult(), queryResultCount(), 
-                query.getMaxResults(), (List<T>) query.list());
+                query.getMaxResults(), query.list());
     }
 
     @Override
-    public <T> T singleResult() {
+    public  T singleResult() {
         return (T) query.singleResult();
     }
 

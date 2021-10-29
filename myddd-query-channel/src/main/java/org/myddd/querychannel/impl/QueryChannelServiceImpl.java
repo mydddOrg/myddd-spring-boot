@@ -41,13 +41,29 @@ public class QueryChannelServiceImpl implements QueryChannelService {
     }
 
     @Override
+    public <T> ChannelQuery<T> createJpqlQuery(String jpql, Class<T> tClass) {
+        return new ChannelJpqlQuery<T>(getRepository(), jpql);
+    }
+
+    @Override
     public ChannelNamedQuery createNamedQuery(String queryName) {
         return new ChannelNamedQuery(getRepository(), queryName);
     }
 
     @Override
+    public <T> ChannelQuery<T> createNamedQuery(String queryName, Class<T> tClass) {
+        return new ChannelNamedQuery<>(getRepository(), queryName);
+    }
+
+    @Override
+    @Deprecated
     public ChannelSqlQuery createSqlQuery(String sql) {
         return new ChannelSqlQuery(getRepository(), sql);
+    }
+
+    @Override
+    public <T> ChannelQuery<T> createSqlQuery(String sql, Class<T> tClass) {
+        return new ChannelSqlQuery<>(getRepository(), sql);
     }
 
     @Override

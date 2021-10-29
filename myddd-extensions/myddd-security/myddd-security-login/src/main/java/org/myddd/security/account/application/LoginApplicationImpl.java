@@ -145,7 +145,7 @@ public class LoginApplicationImpl implements LoginApplication {
             params.add("%" + search + "%");
         }
         Page<LoginEntity> inventoryItemDTOPage = this.queryChannelService
-                .createJpqlQuery(querySQL)
+                .createJpqlQuery(querySQL,LoginEntity.class)
                 .setParameters(params)
                 .setPage(page, pageSize)
                 .pagedList();

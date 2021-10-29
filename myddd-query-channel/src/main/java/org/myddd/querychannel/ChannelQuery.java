@@ -1,6 +1,7 @@
 package org.myddd.querychannel;
 
 
+import com.google.common.base.Preconditions;
 import org.myddd.domain.BaseQuery;
 import org.myddd.domain.EntityRepository;
 import org.myddd.domain.QueryParameters;
@@ -14,15 +15,12 @@ import java.util.Map;
  * 查询通道查询
  *
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
- * @param <E> 查询类型
  */
-public abstract class ChannelQuery<E extends ChannelQuery> {
+public abstract class ChannelQuery<T> {
 
     protected EntityRepository repository;
     private BaseQuery query;
     private int pageIndex;
-    //private int pageSize = Page.DEFAULT_PAGE_SIZE;
-
 
     public ChannelQuery(EntityRepository repository) {
         this.repository = repository;
@@ -47,9 +45,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(Object... parameters) {
+    public ChannelQuery<T> setParameters(Object... parameters) {
         query.setParameters(parameters);
-        return (E) this;
+        return  this;
     }
 
     /**
@@ -58,9 +56,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(List<Object> parameters) {
+    public ChannelQuery<T> setParameters(List<Object> parameters) {
         query.setParameters(parameters);
-        return (E) this;
+        return this;
     }
 
     /**
@@ -69,9 +67,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(Map<String, Object> parameters) {
+    public ChannelQuery<T> setParameters(Map<String, Object> parameters) {
         query.setParameters(parameters);
-        return (E) this;
+        return this;
     }
 
     /**
@@ -81,9 +79,9 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param value 参数值
      * @return 该对象本身
      */
-    public E addParameter(String key, Object value) {
+    public ChannelQuery<T> addParameter(String key, Object value) {
         query.addParameter(key, value);
-        return (E) this;
+        return  this;
     }
 
     /**
@@ -101,10 +99,10 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param firstResult 要设置的firstResult值。
      * @return 该对象本身
      */
-    public E setFirstResult(int firstResult) {
-        Assert.isTrue(firstResult >= 0, "First result must be greater than 0!");
+    public ChannelQuery<T> setFirstResult(int firstResult) {
+        Preconditions.checkArgument(firstResult >= 0, "First result must be greater than 0!");
         query.setFirstResult(firstResult);
-        return (E) this;
+        return  this;
     }
 
     /**
@@ -131,10 +129,10 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param pageSize 每页记录数
      * @return 该对象本身
      */
-    public E setPageSize(int pageSize) {
-        Assert.isTrue(pageSize > 0, "Page size must be greater than 0!");
+    public ChannelQuery<T> setPageSize(int pageSize) {
+        Preconditions.checkArgument(pageSize > 0, "Page size must be greater than 0!");
         query.setMaxResults(pageSize);
-        return (E) this;
+        return this;
     }
 
     /**
@@ -144,13 +142,13 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param pageSize 要设置的页大小
      * @return 该对象本身
      */
-    public E setPage(int pageIndex, int pageSize) {
-        Assert.isTrue(pageIndex >= 0, "Page index must be greater than or equals to 0!");
-        Assert.isTrue(pageSize > 0, "Page index must be greater than 0!");
+    public ChannelQuery<T> setPage(int pageIndex, int pageSize) {
+        Preconditions.checkArgument(pageIndex >= 0, "Page index must be greater than or equals to 0!");
+        Preconditions.checkArgument(pageSize > 0, "Page index must be greater than 0!");
         this.pageIndex = pageIndex;
         query.setMaxResults(pageSize);
         query.setFirstResult(Page.getStartOfPage(pageIndex, pageSize));
-        return (E) this;
+        return this;
     }
 
     /**
@@ -159,7 +157,7 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
-    public <T> List<T> list() {
+    public List<T> list() {
         return query.list();
     }
 
@@ -169,18 +167,18 @@ public abstract class ChannelQuery<E extends ChannelQuery> {
      * @param <T> 查询结果的列表元素类型
      * @return 查询结果。
      */
-    public <T> Page<T> pagedList() {
-        return new Page<T>(query.getFirstResult(), queryResultCount(), 
+    public Page<T> pagedList() {
+        return new Page<T>(query.getFirstResult(), queryResultCount(),
                 query.getMaxResults(), query.list());
     }
-     
+
     /**
      * 返回单条查询结果。
      *
      * @param <T> 查询结果的类型
      * @return 查询结果。
      */
-    public <T> T singleResult() {
+    public T singleResult() {
         return (T) query.singleResult();
     }
 
