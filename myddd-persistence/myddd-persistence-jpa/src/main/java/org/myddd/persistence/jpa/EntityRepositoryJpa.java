@@ -1,6 +1,7 @@
 package org.myddd.persistence.jpa;
 
 import org.myddd.domain.*;
+import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.basequery.*;
 import org.slf4j.Logger;
@@ -8,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import java.io.Serializable;
 import java.util.List;
@@ -125,68 +125,37 @@ public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
     }
 
     @Override
-    public <T> List<T> find(JpqlQuery jpqlQuery) {
-        return getQuery(jpqlQuery).getResultList();
+    public <T> List<T> find(BaseQuery<T> baseQuery) {
+        Query query = getQuery(baseQuery);
+        processQuery(query,baseQuery);
+        return query.getResultList();
     }
 
     @Override
-    public <T> T getSingleResult(JpqlQuery jpqlQuery) {
-        try {
-            return (T) getQuery(jpqlQuery).getSingleResult();
-        } catch (NoResultException e) {
-            return null;
+    public <T> T getSingleResult(BaseQuery<T> baseQuery) {
+        return find(baseQuery).stream().findFirst().orElse(null);
+    }
+
+
+    private <T> Query getQuery(BaseQuery<T> baseQuery){
+        Query query = null;
+        switch (baseQuery.queryType()){
+            case JPQL_QUERY: {
+                query = getEntityManager().createQuery(baseQuery.queryName());
+                break;
+            }
+            case NAMED_QUERY: {
+                query = getEntityManager().createNamedQuery(baseQuery.queryName());
+                break;
+            }
+            case SQL_QUERY: {
+                query = getEntityManager().createNativeQuery(baseQuery.queryName());
+                break;
+            }
+            default: {
+                break;
+            }
         }
-    }
-
-    private Query getQuery(JpqlQuery jpqlQuery) {
-        Query query = getEntityManager().createQuery(jpqlQuery.getJpql());
-        processQuery(query, jpqlQuery);
-        return query;
-    }
-
-    @Override
-    public <T> List<T> find(NamedQuery namedQuery) {
-        return getQuery(namedQuery).getResultList();
-    }
-
-    @Override
-    public <T> T getSingleResult(NamedQuery namedQuery) {
-        try {
-            return (T) getQuery(namedQuery).getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-    private Query getQuery(NamedQuery namedQuery) {
-        Query query = getEntityManager().createNamedQuery(namedQuery.getQueryName());
-        processQuery(query, namedQuery);
-        return query;
-    }
-
-    @Override
-    public <T> List<T> find(SqlQuery sqlQuery) {
-        return getQuery(sqlQuery).getResultList();
-    }
-
-    @Override
-    public <T> T getSingleResult(SqlQuery sqlQuery) {
-        try {
-            return (T) getQuery(sqlQuery).getSingleResult();
-        } catch (NoResultException e) {
-            return null;
-        }
-    }
-
-	private Query getQuery(SqlQuery sqlQuery) {
-        Query query;
-        if (sqlQuery.getResultEntityClass() == null) {
-            query = getEntityManager().createNativeQuery(sqlQuery.getSql());
-        } else {
-            query = getEntityManager().createNativeQuery(sqlQuery.getSql(),
-                    sqlQuery.getResultEntityClass());
-        }
-        processQuery(query, sqlQuery);
         return query;
     }
 

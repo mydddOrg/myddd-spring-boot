@@ -7,7 +7,7 @@ import org.myddd.domain.mock.*;
 import javax.transaction.Transactional;
 
 @Transactional
-public class TestUser extends AbstractIntegrationTest {
+public class TestUser extends AbstractTest {
 
     @Test
     void testCreateUser(){

@@ -1,14 +1,15 @@
 package org.myddd.querychannel.basequery;
 
 
-import org.myddd.utils.Assert;
-import java.util.List;
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
+import org.myddd.querychannel.BaseQuery;
 
 /**
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
-public class JpqlQuery extends BaseQuery<JpqlQuery> {
+public class JpqlQuery<T> extends BaseQuery<T> {
 
     private final String jpql;
 
@@ -17,7 +18,7 @@ public class JpqlQuery extends BaseQuery<JpqlQuery> {
      * @param jpql JPQL查询语句
      */
     public JpqlQuery(String jpql) {
-        Assert.notBlank(jpql);
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(jpql));
         this.jpql = jpql;
     }
 
@@ -29,23 +30,13 @@ public class JpqlQuery extends BaseQuery<JpqlQuery> {
         return jpql;
     }
 
-    /**
-     * 返回查询结果列表。
-     * @param <T> 查询结果的列表元素类型
-     * @return 查询结果。
-     */
     @Override
-    public <T> List<T> list() {
-        return getRepository().find(this);
+    public String queryName() {
+        return jpql;
     }
 
-    /**
-     * 返回单条查询结果。
-     * @param <T> 查询结果的类型
-     * @return 查询结果。
-     */
     @Override
-    public <T> T singleResult() {
-        return getRepository().getSingleResult(this);
+    public QueryType queryType() {
+        return QueryType.JPQL_QUERY;
     }
 }

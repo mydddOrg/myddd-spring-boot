@@ -1,14 +1,13 @@
 package org.myddd.querychannel.basequery;
 
+import org.myddd.querychannel.BaseQuery;
 import org.myddd.utils.Assert;
-
-import java.util.List;
 
 /**
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
-public class NamedQuery extends BaseQuery<NamedQuery> {
+public class NamedQuery<T> extends BaseQuery<T> {
 
     private final String queryName;
 
@@ -29,24 +28,14 @@ public class NamedQuery extends BaseQuery<NamedQuery> {
         return queryName;
     }
 
-    /**
-     * 返回查询结果列表。
-     * @param <T> 查询结果的列表元素类型
-     * @return 查询结果。
-     */
     @Override
-    public <T> List<T> list() {
-        return getRepository().find(this);
+    public String queryName() {
+        return queryName;
     }
 
-    /**
-     * 返回单条查询结果。
-     * @param <T> 查询结果的类型
-     * @return 查询结果。
-     */
     @Override
-    public <T> T singleResult() {
-        return getRepository().getSingleResult(this);
+    public QueryType queryType() {
+        return QueryType.NAMED_QUERY;
     }
 
 }

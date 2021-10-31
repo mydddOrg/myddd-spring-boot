@@ -1,8 +1,11 @@
-package org.myddd.querychannel.basequery;
+package org.myddd.querychannel;
 
+import com.google.common.base.Preconditions;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.querychannel.QueryRepository;
-import org.myddd.utils.Assert;
+import org.myddd.querychannel.basequery.NamedParameters;
+import org.myddd.querychannel.basequery.PositionalParameters;
+import org.myddd.querychannel.basequery.QueryParameters;
+import org.myddd.querychannel.basequery.QueryType;
 
 import java.util.List;
 import java.util.Map;
@@ -11,9 +14,8 @@ import java.util.Objects;
 /**
  * 查询基类，为NamedQuery、JpqlQuery和SqlQuery提供共同行为。
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
- * @param <E> 查询的类型
  */
-public abstract class BaseQuery<E extends BaseQuery> {
+public abstract class BaseQuery<T> {
     private static QueryRepository repository;
     private QueryParameters parameters = PositionalParameters.create();
     private final NamedParameters mapParameters = NamedParameters.create();
@@ -40,9 +42,9 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(Object... parameters) {
+    public BaseQuery<T> setParameters(Object... parameters) {
         this.parameters = PositionalParameters.create(parameters);
-        return (E)this;
+        return this;
     }
 
     /**
@@ -50,9 +52,9 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(List<Object> parameters) {
+    public BaseQuery<T> setParameters(List<Object> parameters) {
         this.parameters = PositionalParameters.create(parameters);
-        return (E) this;
+        return this;
     }
 
     /**
@@ -60,9 +62,9 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(Map<String, Object> parameters) {
+    public BaseQuery<T> setParameters(Map<String, Object> parameters) {
         this.parameters = NamedParameters.create(parameters);
-        return (E) this;
+        return this;
     }
 
     /**
@@ -71,10 +73,10 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param value 参数值
      * @return 该对象本身
      */
-    public E addParameter(String key, Object value) {
+    public BaseQuery<T> addParameter(String key, Object value) {
         mapParameters.add(key, value);
         this.parameters = mapParameters;
-        return (E) this;
+        return this;
     }
 
     /**
@@ -82,9 +84,9 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param parameters 要设置的参数
      * @return 该对象本身
      */
-    public E setParameters(QueryParameters parameters) {
+    public BaseQuery<T> setParameters(QueryParameters parameters) {
         this.parameters = parameters;
-        return (E) this;
+        return this;
     }
 
     /**
@@ -102,10 +104,10 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param firstResult 要设置的firstResult值。
      * @return 该对象本身
      */
-    public E setFirstResult(int firstResult) {
-        Assert.isTrue(firstResult >= 0);
+    public BaseQuery<T> setFirstResult(int firstResult) {
+        Preconditions.checkArgument(firstResult >= 0);
         this.firstResult = firstResult;
-        return (E) this;
+        return this;
     }
 
     /**
@@ -123,25 +125,23 @@ public abstract class BaseQuery<E extends BaseQuery> {
      * @param maxResults 要设置的maxResults值
      * @return 该对象本身
      */
-    public E setMaxResults(int maxResults) {
-        Assert.isTrue(maxResults > 0);
+    public BaseQuery<T> setMaxResults(int maxResults) {
+        Preconditions.checkArgument(maxResults > 0);
         this.maxResults = maxResults;
-        return (E) this;
+        return this;
     }
 
-    /**
-     * 返回查询结果列表。
-     * @param <T> 查询结果的列表元素类型
-     * @return 查询结果。
-     */
-    public abstract <T> List<T> list();
+    public List<T> list() {
+        return getRepository().find(this);
+    }
 
-    /**
-     * 返回单条查询结果。
-     * @param <T> 查询结果的类型
-     * @return 查询结果。
-     */
-    public abstract <T> T singleResult();
+    public T singleResult() {
+        return getRepository().getSingleResult(this);
+    }
+
+    public abstract String queryName();
+
+    public abstract QueryType queryType();
 
     /**
      * 获得仓储对象。

@@ -4,7 +4,7 @@ package org.myddd.querychannel.query;
 import org.myddd.domain.*;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.QueryRepository;
-import org.myddd.querychannel.basequery.BaseQuery;
+import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.basequery.SqlQuery;
 import org.myddd.utils.Assert;
 import org.myddd.utils.Page;

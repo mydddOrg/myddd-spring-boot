@@ -5,7 +5,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
-import org.myddd.querychannel.basequery.BaseQuery;
+import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.basequery.JpqlQuery;
 import org.myddd.utils.Page;
 

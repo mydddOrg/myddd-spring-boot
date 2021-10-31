@@ -21,11 +21,10 @@ public abstract class BaseIDEntity implements Entity{
 
     @Override
     public boolean existed() {
-        Object id = getId();
         if (id == null) {
             return false;
         }
-        if (id instanceof Number && ((Number)id).intValue() == 0) {
+        if (id == 0L) {
             return false;
         }
         return getRepository().exists(getClass(), getId());

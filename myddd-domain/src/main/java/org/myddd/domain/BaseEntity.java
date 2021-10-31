@@ -1,8 +1,5 @@
 package org.myddd.domain;
 
-import org.myddd.utils.BeanUtils;
-import org.apache.commons.lang3.builder.EqualsBuilder;
-
 import javax.persistence.MappedSuperclass;
 
 /**

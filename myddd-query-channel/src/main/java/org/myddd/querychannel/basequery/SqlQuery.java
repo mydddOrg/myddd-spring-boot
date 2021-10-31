@@ -2,18 +2,17 @@ package org.myddd.querychannel.basequery;
 
 
 import org.myddd.domain.Entity;
-import org.myddd.querychannel.QueryRepository;
+import org.myddd.querychannel.BaseQuery;
 import org.myddd.utils.Assert;
-
-import java.util.List;
 
 /**
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
-public class SqlQuery extends BaseQuery<SqlQuery> {
+public class SqlQuery<T> extends BaseQuery<T> {
 
     private final String sql;
+
     private Class<? extends Entity> resultEntityClass;
 
     /**
@@ -52,23 +51,13 @@ public class SqlQuery extends BaseQuery<SqlQuery> {
         return this;
     }
 
-    /**
-     * 返回查询结果列表。
-     * @param <T> 查询结果的列表元素类型
-     * @return 查询结果。
-     */
     @Override
-    public <T> List<T> list() {
-        return getRepository().find(this);
+    public String queryName() {
+        return sql;
     }
 
-    /**
-     * 返回单条查询结果。
-     * @param <T> 查询结果的类型
-     * @return 查询结果。
-     */
     @Override
-    public <T> T singleResult() {
-        return getRepository().getSingleResult(this);
+    public QueryType queryType() {
+        return QueryType.SQL_QUERY;
     }
 }
