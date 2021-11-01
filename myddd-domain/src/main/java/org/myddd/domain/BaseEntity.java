@@ -23,9 +23,6 @@ public abstract class BaseEntity implements Entity {
         if (id == null) {
             return false;
         }
-        if (id instanceof Number && ((Number)id).intValue() == 0) {
-            return false;
-        }
         return getRepository().exists(getClass(), getId());
     }
 

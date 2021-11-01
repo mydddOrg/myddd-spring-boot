@@ -10,16 +10,34 @@ import javax.transaction.Transactional;
 class TestBaseIDEntity extends AbstractTest{
 
     @Test
-    void testBaseIDEntity(){
+    void testExists(){
         Employee randomEmployee = randomEmployee();
         Assertions.assertNull(randomEmployee.getId());
         Assertions.assertFalse(randomEmployee.existed());
+
+        Employee created = randomEmployee().createEmployee();
+        Assertions.assertNotNull(created);
+        Assertions.assertTrue(created.existed());
+    }
+
+    @Test
+    void testNotExists(){
+        Employee randomEmployee = randomEmployee();
         Assertions.assertTrue(randomEmployee.notExisted());
 
-        Employee created = randomEmployee.createEmployee();
-        Assertions.assertNotNull(created);
-        Assertions.assertNotNull(created.getId());
-        Assertions.assertTrue(created.existed());
+        Employee created = randomEmployee().createEmployee();
         Assertions.assertFalse(created.notExisted());
     }
+
+    @Test
+    void testSetId(){
+        Employee randomEmployee = randomEmployee();
+
+        randomEmployee.setId(1L);
+
+        Assertions.assertEquals(1L,randomEmployee.getId());
+
+        Assertions.assertThrows(RuntimeException.class, randomEmployee::createEmployee);
+    }
+
 }

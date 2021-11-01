@@ -1,4 +1,9 @@
-package org.myddd.domain;
+package org.myddd.persistence.jpa;
+
+import org.myddd.domain.AbstractRepository;
+import org.myddd.domain.Entity;
+import org.myddd.domain.EntityRepository;
+import org.myddd.domain.InstanceFactory;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
@@ -7,7 +12,7 @@ import java.util.Objects;
 /**
  * JAP仓储实现的抽象父类
  */
-public abstract class AbstractRepositoryJPA implements AbstractRepository{
+public abstract class AbstractRepositoryJPA implements AbstractRepository {
 
     private static EntityRepository entityRepository;
 

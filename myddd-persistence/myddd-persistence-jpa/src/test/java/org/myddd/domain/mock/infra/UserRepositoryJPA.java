@@ -1,6 +1,5 @@
 package org.myddd.domain.mock.infra;
 
-import org.myddd.domain.AbstractRepositoryJPA;
 import org.myddd.domain.mock.User;
 import org.myddd.domain.mock.UserRepository;
 

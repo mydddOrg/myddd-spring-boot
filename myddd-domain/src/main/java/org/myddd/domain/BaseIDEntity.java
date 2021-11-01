@@ -24,9 +24,6 @@ public abstract class BaseIDEntity implements Entity{
         if (id == null) {
             return false;
         }
-        if (id == 0L) {
-            return false;
-        }
         return getRepository().exists(getClass(), getId());
     }
 

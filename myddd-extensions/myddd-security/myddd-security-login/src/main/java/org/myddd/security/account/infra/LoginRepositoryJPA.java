@@ -1,6 +1,5 @@
 package org.myddd.security.account.infra;
 
-import org.myddd.domain.AbstractRepositoryJPA;
 import org.myddd.security.account.domain.LoginEntity;
 import org.myddd.security.account.domain.LoginRepository;
 import org.myddd.utils.Assert;
