@@ -12,7 +12,7 @@ tasks.withType<Test>().configureEach {
 }
 
 dependencies {
-    implementation(project(":myddd-domain"))
+    api(project(":myddd-domain"))
     implementation(project(":myddd-query-channel"))
 
     api("org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final")
