@@ -41,7 +41,7 @@ public abstract class BaseEntity implements Entity {
      * 获取仓储对象实例。如果尚未拥有仓储实例则通过InstanceFactory向IoC容器获取一个。
      * @return 仓储对象实例
      */
-    protected static EntityRepository getRepository() {
+    private static EntityRepository getRepository() {
         if (repository == null) {
             repository = InstanceFactory.getInstance(EntityRepository.class);
         }

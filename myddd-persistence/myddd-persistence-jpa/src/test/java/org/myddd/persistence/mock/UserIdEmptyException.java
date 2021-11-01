@@ -1,4 +1,4 @@
-package org.myddd.domain.mock;
+package org.myddd.persistence.mock;
 
 import org.myddd.lang.BusinessException;
 

@@ -1,8 +1,9 @@
-package org.myddd.domain;
+package org.myddd.persistence;
 
 
 import org.junit.jupiter.api.BeforeEach;
-import org.myddd.domain.mock.User;
+import org.myddd.domain.InstanceFactory;
+import org.myddd.persistence.mock.User;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,12 +11,6 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.UUID;
 
-/**
- * 集成测试基类。
- * 
- * 
- * 
- */
 @SpringBootTest(classes = TestApplication.class)
 public abstract class AbstractTest extends TestApplication {
 

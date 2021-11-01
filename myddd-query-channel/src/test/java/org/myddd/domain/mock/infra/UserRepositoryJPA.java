@@ -2,6 +2,7 @@ package org.myddd.domain.mock.infra;
 
 import org.myddd.domain.mock.User;
 import org.myddd.domain.mock.UserRepository;
+import org.myddd.persistence.jpa.AbstractRepositoryJPA;
 
 import javax.inject.Named;
 

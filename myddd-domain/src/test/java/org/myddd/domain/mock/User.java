@@ -1,6 +1,9 @@
 package org.myddd.domain.mock;
 
 import org.myddd.domain.BaseDistributedEntity;
+import org.myddd.domain.EntityRepository;
+import org.myddd.domain.InstanceFactory;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import java.util.Objects;
@@ -28,6 +31,15 @@ public class User extends BaseDistributedEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    private static EntityRepository repository;
+
+    private static EntityRepository getRepository() {
+        if (repository == null) {
+            repository = InstanceFactory.getInstance(EntityRepository.class);
+        }
+        return repository;
     }
 
     public User createUser(){

@@ -1,5 +1,6 @@
-package org.myddd.domain;
+package org.myddd.persistence;
 
+import org.myddd.domain.InstanceFactory;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

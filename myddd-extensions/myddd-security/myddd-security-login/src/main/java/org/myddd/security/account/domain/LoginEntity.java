@@ -98,7 +98,7 @@ public class LoginEntity extends BaseIDEntity {
 
     private static LoginRepository repository;
 
-    private static LoginRepository getRepository(){
+    private static LoginRepository getLoginRepository(){
         if(Objects.isNull(repository)){
             repository = InstanceFactory.getInstance(LoginRepository.class);
         }
@@ -106,46 +106,46 @@ public class LoginEntity extends BaseIDEntity {
     }
 
     public static boolean isEmpty(){
-        return getRepository().isEmpty();
+        return getLoginRepository().isEmpty();
     }
 
     public LoginEntity createUser(){
         this.superUser = false;
-        return getRepository().createLoginUser(this);
+        return getLoginRepository().createLoginUser(this);
     }
 
     public LoginEntity createSuperUser(){
         this.superUser = true;
-        return getRepository().createLoginUser(this);
+        return getLoginRepository().createLoginUser(this);
     }
 
     public LoginEntity updateUser(){
-        LoginEntity queryLogin = getRepository().findByUsername(this.username);
+        LoginEntity queryLogin = getLoginRepository().findByUsername(this.username);
         Assert.notNull(queryLogin,"找不到当前用户");
 
         queryLogin.setDisplayName(this.displayName);
-        return getRepository().updateUser(queryLogin);
+        return getLoginRepository().updateUser(queryLogin);
     }
 
     public static LoginEntity findByUsername(String username){
-        return getRepository().findByUsername(username);
+        return getLoginRepository().findByUsername(username);
     }
 
     public static boolean exists(String username){
-        return getRepository().userExists(username);
+        return getLoginRepository().userExists(username);
     }
 
     public void enabled(){
-        getRepository().enable(this);
+        getLoginRepository().enable(this);
     }
 
     public void disabled(){
-        getRepository().disable(this);
+        getLoginRepository().disable(this);
     }
 
 
     public static void delete(String username){
-        getRepository().deleteUser(username);
+        getLoginRepository().deleteUser(username);
     }
 
     public static boolean updatePassword(String username,String password,String newPassword){
@@ -156,7 +156,7 @@ public class LoginEntity extends BaseIDEntity {
         Assert.isTrue(check,"原密码错误");
         loginEntity.setPassword(newPassword);
 
-        getRepository().updateUser(loginEntity);
+        getLoginRepository().updateUser(loginEntity);
         return true;
     }
 
@@ -164,7 +164,7 @@ public class LoginEntity extends BaseIDEntity {
         LoginEntity loginEntity = LoginEntity.findByUsername(username);
         Assert.notNull(loginEntity,"找不到用户");
         loginEntity.setPassword(newPassword);
-        getRepository().updateUser(loginEntity);
+        getLoginRepository().updateUser(loginEntity);
         return true;
     }
 

@@ -1,11 +1,11 @@
-package org.myddd.domain.mock;
+package org.myddd.persistence.mock;
 
 import com.google.common.base.Strings;
 import org.myddd.domain.BaseDistributedEntity;
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.*;
 import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -13,9 +13,12 @@ import java.util.Objects;
         indexes = {
                 @Index(name = "index_user_id", columnList = "user_id")
         })
+@NamedQueries(
+        value = {@NamedQuery(name = "User.queryByUserId", query = "from User where userId = :userId")}
+)
 public class User extends BaseDistributedEntity {
 
-    @Column(name = "user_id",nullable = false)
+    @Column(name = "user_id", nullable = false)
     private String userId;
 
     @Column(name = "user_type")
@@ -24,7 +27,7 @@ public class User extends BaseDistributedEntity {
     @Transient
     private String password;
 
-    @Column(name = "encode_password",nullable = false)
+    @Column(name = "encode_password", nullable = false)
     private String encodePassword;
 
     @Column(nullable = false)
@@ -102,42 +105,42 @@ public class User extends BaseDistributedEntity {
 
     private static UserRepository userRepository;
 
-    private static UserRepository getUserRepository(){
-        if(Objects.isNull(userRepository)){
+    private static UserRepository getUserRepository() {
+        if (Objects.isNull(userRepository)) {
             userRepository = InstanceFactory.getInstance(UserRepository.class);
         }
         return userRepository;
     }
 
-    public User createLocalUser(){
-        if(Strings.isNullOrEmpty(name))throw new UserNameEmptyException();
-        if(Strings.isNullOrEmpty(password))throw new PasswordEmptyException();
-        if(Strings.isNullOrEmpty(userId))throw new UserIdEmptyException();
+    public User createLocalUser() {
+        if (Strings.isNullOrEmpty(name)) throw new UserNameEmptyException();
+        if (Strings.isNullOrEmpty(password)) throw new PasswordEmptyException();
+        if (Strings.isNullOrEmpty(userId)) throw new UserIdEmptyException();
 
         this.created = System.currentTimeMillis();
         this.encodePassword = password;
         return getUserRepository().save(this);
     }
 
-    public static User queryUserByUserId(String userId){
+    public static User queryUserByUserId(String userId) {
         return getUserRepository().queryUserByUserId(userId);
     }
 
 
-    public void enable(){
+    public void enable() {
         enableOrDisable(false);
     }
 
-    public void disable(){
+    public void disable() {
         enableOrDisable(true);
     }
 
-    private void enableOrDisable(boolean disabled){
-        if(Strings.isNullOrEmpty(userId)){
+    private void enableOrDisable(boolean disabled) {
+        if (Strings.isNullOrEmpty(userId)) {
             throw new UserIdEmptyException();
         }
         User exists = queryUserByUserId(userId);
-        if(Objects.isNull(exists)){
+        if (Objects.isNull(exists)) {
             throw new UserNotFoundException(userId);
         }
 

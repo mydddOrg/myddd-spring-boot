@@ -1,6 +1,8 @@
 package org.myddd.domain.mock;
 
 import org.myddd.domain.BaseEntity;
+import org.myddd.domain.EntityRepository;
+import org.myddd.domain.InstanceFactory;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -28,6 +30,15 @@ public class Organization extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    private static EntityRepository repository;
+
+    private static EntityRepository getRepository() {
+        if (repository == null) {
+            repository = InstanceFactory.getInstance(EntityRepository.class);
+        }
+        return repository;
     }
 
     public Organization createOrg(){

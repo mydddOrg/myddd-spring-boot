@@ -1,7 +1,5 @@
 package org.myddd.persistence.jpa.namedqueryparser;
 
-
-import org.myddd.persistence.jpa.EntityManagerProvider;
 import org.myddd.persistence.jpa.NamedQueryParser;
 import org.hibernate.Session;
 
@@ -13,13 +11,6 @@ import javax.inject.Named;
  */
 @Named
 public class NamedQueryParserHibernate extends NamedQueryParser {
-
-    public NamedQueryParserHibernate() {
-    }
-
-    public NamedQueryParserHibernate(EntityManagerProvider entityManagerProvider) {
-        super(entityManagerProvider);
-    }
     
     @Override
     public String getQueryStringOfNamedQuery(String queryName) {

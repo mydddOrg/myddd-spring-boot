@@ -17,36 +17,7 @@ import java.util.Map;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 @Named
-public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
-
-    //命名查询解析器，它是可选的
-    private NamedQueryParser namedQueryParser;
-
-    private EntityManagerProvider entityManagerProvider;
-
-    public EntityManagerProvider getEntityManagerProvider() {
-        if(entityManagerProvider == null){
-            entityManagerProvider = InstanceFactory.getInstance(EntityManagerProvider.class);
-        }
-        return entityManagerProvider;
-    }
-
-    private NamedQueryParser getNamedQueryParser() {
-        if (namedQueryParser == null) {
-            namedQueryParser = InstanceFactory.getInstance(NamedQueryParser.class);
-        }
-        namedQueryParser.setEntityManagerProvider(getEntityManagerProvider());
-        return namedQueryParser;
-    }
-
-    public final void setNamedQueryParser(NamedQueryParser namedQueryParser) {
-        namedQueryParser.setEntityManagerProvider(entityManagerProvider);
-		this.namedQueryParser = namedQueryParser;
-	}
-
-	public EntityManager getEntityManager() {
-        return getEntityManagerProvider().getEntityManager();
-    }
+public class EntityRepositoryJpa extends BaseRepository implements EntityRepository {
 
     @Override
     public <T extends Entity> T save(T entity) {
@@ -100,84 +71,4 @@ public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
         return getEntityManager().getReference(clazz, id);
     }
 
-
-    @Override
-    public <T> List<T> find(BaseQuery<T> baseQuery) {
-        Query query = getQuery(baseQuery);
-        processQuery(query,baseQuery);
-        return query.getResultList();
-    }
-
-    @Override
-    public <T> T getSingleResult(BaseQuery<T> baseQuery) {
-        return find(baseQuery).stream().findFirst().orElse(null);
-    }
-
-
-    private <T> Query getQuery(BaseQuery<T> baseQuery){
-        Query query = null;
-        switch (baseQuery.queryType()){
-            case JPQL_QUERY: {
-                query = getEntityManager().createQuery(baseQuery.queryName());
-                break;
-            }
-            case NAMED_QUERY: {
-                query = getEntityManager().createNamedQuery(baseQuery.queryName());
-                break;
-            }
-            case SQL_QUERY: {
-                query = getEntityManager().createNativeQuery(baseQuery.queryName());
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-        return query;
-    }
-
-    @Override
-    public String getQueryStringOfNamedQuery(String queryName) {
-        return getNamedQueryParser().getQueryStringOfNamedQuery(queryName);
-    }
-
-    private void processQuery(Query query, BaseQuery<?> originQuery) {
-        processQuery(query, originQuery.getParameters(),
-                originQuery.getFirstResult(), originQuery.getMaxResults());
-    }
-
-    private void processQuery(Query query, QueryParameters parameters,
-            int firstResult, int maxResults) {
-        fillParameters(query, parameters);
-        query.setFirstResult(firstResult);
-        if (maxResults > 0) {
-            query.setMaxResults(maxResults);
-        }
-    }
-
-    private void fillParameters(Query query, QueryParameters params) {
-        if (params == null) {
-            return;
-        }
-        if (params instanceof PositionalParameters) {
-            fillParameters(query, (PositionalParameters) params);
-        } else if (params instanceof NamedParameters) {
-            fillParameters(query, (NamedParameters) params);
-        } else {
-            throw new UnsupportedOperationException("不支持的参数形式");
-        }
-    }
-
-    private void fillParameters(Query query, PositionalParameters params) {
-        Object[] paramArray = params.getParams();
-        for (int i = 0; i < paramArray.length; i++) {
-            query = query.setParameter(i + 1, paramArray[i]);
-        }
-    }
-
-    private void fillParameters(Query query, NamedParameters params) {
-        for (Map.Entry<String, Object> each : params.getParams().entrySet()) {
-            query = query.setParameter(each.getKey(), each.getValue());
-        }
-    }
 }

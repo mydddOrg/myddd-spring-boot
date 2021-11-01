@@ -1,6 +1,9 @@
 package org.myddd.persistence.jpa;
 
+import org.myddd.domain.InstanceFactory;
+
 import javax.persistence.EntityManager;
+import java.util.Objects;
 
 /**
  * 用于获取命名查询的查询字符串。由于JPA规范不直接支持这一功能，所以要由使用JPA实现的本地API
@@ -11,18 +14,10 @@ public abstract class NamedQueryParser {
     
     private EntityManagerProvider entityManagerProvider;
 
-    public NamedQueryParser() {
-    }
-
-    public NamedQueryParser(EntityManagerProvider entityManagerProvider) {
-        this.entityManagerProvider = entityManagerProvider;
-    }
-
-    public void setEntityManagerProvider(EntityManagerProvider entityManagerProvider) {
-		this.entityManagerProvider = entityManagerProvider;
-	}
-
 	protected EntityManager getEntityManager() {
+        if(Objects.isNull(this.entityManagerProvider)){
+            this.entityManagerProvider = InstanceFactory.getInstance(EntityManagerProvider.class);
+        }
         return entityManagerProvider.getEntityManager();
     }
     

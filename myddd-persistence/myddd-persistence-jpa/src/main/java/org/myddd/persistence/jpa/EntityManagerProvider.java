@@ -21,24 +21,13 @@ public class EntityManagerProvider {
 
     private EntityManagerFactory entityManagerFactory;
 
-    private final ThreadLocal<EntityManager> entityManagerHolder = new ThreadLocal<EntityManager>();
-
-    public EntityManagerProvider() {
-    }
+    private final ThreadLocal<EntityManager> entityManagerHolder = new ThreadLocal<>();
 
     public EntityManagerFactory getEntityManagerFactory() {
         if(entityManagerFactory == null){
             entityManagerFactory = InstanceFactory.getInstance(EntityManagerFactory.class);
         }
         return entityManagerFactory;
-    }
-
-    public EntityManagerProvider(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
-
-    public EntityManagerProvider(EntityManager entityManager) {
-        entityManagerHolder.set(entityManager);
     }
 
     public EntityManager getEntityManager() {

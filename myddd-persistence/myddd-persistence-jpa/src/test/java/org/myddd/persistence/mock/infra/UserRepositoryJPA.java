@@ -1,7 +1,8 @@
-package org.myddd.domain.mock.infra;
+package org.myddd.persistence.mock.infra;
 
-import org.myddd.domain.mock.User;
-import org.myddd.domain.mock.UserRepository;
+import org.myddd.persistence.jpa.AbstractRepositoryJPA;
+import org.myddd.persistence.mock.User;
+import org.myddd.persistence.mock.UserRepository;
 
 import javax.inject.Named;
 
@@ -10,7 +11,7 @@ public class UserRepositoryJPA extends AbstractRepositoryJPA implements UserRepo
 
     @Override
     public User queryUserByUserId(String userId) {
-        return getEntityManager().createQuery("from User where userId = :userId",User.class)
+        return getEntityManager().createQuery("from User where userId = :userId", User.class)
                 .setParameter("userId",userId)
                 .getResultList().stream().findFirst().orElse(null);
     }

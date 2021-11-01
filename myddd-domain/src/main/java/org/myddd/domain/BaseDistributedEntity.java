@@ -36,7 +36,7 @@ public class BaseDistributedEntity implements Entity{
 
     private static EntityRepository repository;
 
-    protected static EntityRepository getRepository() {
+    private static EntityRepository getRepository() {
         if (repository == null) {
             repository = InstanceFactory.getInstance(EntityRepository.class);
         }
