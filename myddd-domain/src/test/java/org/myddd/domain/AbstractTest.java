@@ -12,12 +12,6 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.UUID;
 
-/**
- * 集成测试基类。
- * 
- * 
- * 
- */
 @SpringBootTest(classes = TestApplication.class)
 public abstract class AbstractTest extends TestApplication {
 
