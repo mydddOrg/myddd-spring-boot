@@ -3,6 +3,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("org.springframework.boot") version "2.5.5"
+    jacoco
 }
 
 val projectVersion = "1.3.0-SNAPSHOT"
@@ -48,6 +49,19 @@ repositories {
 subprojects {
 
     apply(plugin = "java")
+    apply(plugin = "jacoco")
+
+    jacoco {
+        toolVersion = "0.8.7"
+    }
+
+    tasks.jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            csv.required.set(false)
+            html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+        }
+    }
 
     afterEvaluate {
         val publishJar = this.extra.has("publishJar")
