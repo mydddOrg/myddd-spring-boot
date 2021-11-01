@@ -4,8 +4,6 @@ import org.myddd.domain.*;
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.basequery.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -20,8 +18,6 @@ import java.util.Map;
  */
 @Named
 public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EntityRepositoryJpa.class);
 
     //命名查询解析器，它是可选的
     private NamedQueryParser namedQueryParser;
@@ -56,14 +52,9 @@ public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
     public <T extends Entity> T save(T entity) {
         if (entity.notExisted()) {
             getEntityManager().persist(entity);
-            LOGGER.debug("create a entity: " + entity.getClass() + "/"
-                    + entity.getId() + ".");
             return entity;
         }
-        T result = getEntityManager().merge(entity);
-        LOGGER.debug("update a entity: " + entity.getClass() + "/"
-                + entity.getId() + ".");
-        return result;
+        return getEntityManager().merge(entity);
     }
 
     /*
@@ -75,8 +66,6 @@ public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
     @Override
     public void remove(Entity entity) {
         getEntityManager().remove(get(entity.getClass(), entity.getId()));
-        LOGGER.debug("remove a entity: " + entity.getClass() + "/"
-                + entity.getId() + ".");
     }
 
     /*
@@ -111,18 +100,6 @@ public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
         return getEntityManager().getReference(clazz, id);
     }
 
-    @Override
-    public <T extends Entity> T getUnmodified(final Class<T> clazz,
-                                              final T entity) {
-        getEntityManager().detach(entity);
-        return get(clazz, entity.getId());
-    }
-
-    @Override
-    public <T extends Entity> List<T> findAll(final Class<T> clazz) {
-        String queryString = "select o from " + clazz.getName() + " as o";
-        return getEntityManager().createQuery(queryString,clazz).getResultList();
-    }
 
     @Override
     public <T> List<T> find(BaseQuery<T> baseQuery) {
@@ -162,21 +139,6 @@ public class EntityRepositoryJpa implements EntityRepository, QueryRepository {
     @Override
     public String getQueryStringOfNamedQuery(String queryName) {
         return getNamedQueryParser().getQueryStringOfNamedQuery(queryName);
-    }
-
-    @Override
-    public void flush() {
-        getEntityManager().flush();
-    }
-
-    @Override
-    public void refresh(Entity entity) {
-        getEntityManager().refresh(entity);
-    }
-
-    @Override
-    public void clear() {
-        getEntityManager().clear();
     }
 
     private void processQuery(Query query, BaseQuery<?> originQuery) {

@@ -2,6 +2,7 @@ package org.myddd.domain;
 
 
 import org.junit.jupiter.api.BeforeEach;
+import org.myddd.domain.mock.Employee;
 import org.myddd.domain.mock.User;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public abstract class AbstractTest extends TestApplication {
         user.setName(randomId());
         user.setEncodePassword(randomId());
         return user;
+    }
+
+    protected Employee randomEmployee(){
+        Employee employee = new Employee();
+        employee.setName(randomId());
+        return employee;
     }
 
 }

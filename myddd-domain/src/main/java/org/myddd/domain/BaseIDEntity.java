@@ -37,7 +37,7 @@ public abstract class BaseIDEntity implements Entity{
 
     private static EntityRepository repository;
 
-    private static EntityRepository getRepository() {
+    protected static EntityRepository getRepository() {
         if (repository == null) {
             repository = InstanceFactory.getInstance(EntityRepository.class);
         }

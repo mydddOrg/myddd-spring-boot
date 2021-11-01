@@ -7,11 +7,13 @@ import org.myddd.domain.mock.*;
 import javax.transaction.Transactional;
 
 @Transactional
-public class TestUser extends AbstractTest {
+class TestUser extends AbstractTest {
 
     @Test
     void testCreateUser(){
-        Assertions.assertThrows(UserNameEmptyException.class,()-> new User().createLocalUser());
+        User user = new User();
+        Assertions.assertThrows(UserNameEmptyException.class,user::createLocalUser);
+
 
         User noPasswordUser = new User();
         noPasswordUser.setUserId(randomId());
@@ -19,14 +21,21 @@ public class TestUser extends AbstractTest {
 
         Assertions.assertThrows(PasswordEmptyException.class, noPasswordUser::createLocalUser);
 
-
         User noUserIdUser = new User();
         noUserIdUser.setName(randomId());
         noUserIdUser.setPassword(randomId());
         Assertions.assertThrows(UserIdEmptyException.class, noUserIdUser::createLocalUser);
 
-        User createdUser = randomUser().createLocalUser();
+        User randomUser = randomUser();
+        Assertions.assertTrue(randomUser.notExisted());
+
+        User createdUser = randomUser.createLocalUser();
         Assertions.assertNotNull(createdUser);
+        Assertions.assertTrue(createdUser.existed());
+        Assertions.assertTrue(createdUser.getCreated() > 0);
+        Assertions.assertTrue(createdUser.getUpdated() > 0);
+
+        Assertions.assertThrows(IllegalArgumentException.class,()->createdUser.setId(-1L));
     }
 
 
@@ -45,7 +54,8 @@ public class TestUser extends AbstractTest {
 
     @Test
     void testEnableUser(){
-        Assertions.assertThrows(UserNotFoundException.class,() -> randomUser().enable());
+        User randomUser = randomUser();
+        Assertions.assertThrows(UserNotFoundException.class, randomUser::enable);
 
         User createdUser = randomUser().createLocalUser();
         createdUser.disable();

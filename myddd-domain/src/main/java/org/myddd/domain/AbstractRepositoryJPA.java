@@ -18,7 +18,7 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository{
         return entityRepository;
     }
 
-    public EntityManager getEntityManager(){
+    protected EntityManager getEntityManager(){
         return getEntityRepository().getEntityManager();
     }
 
