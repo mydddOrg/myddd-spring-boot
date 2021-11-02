@@ -7,9 +7,6 @@ version = rootProject.extra["projectVersion"]!!
 
 extra["publishJar"] = true
 
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
-}
 
 dependencies {
     api("com.google.guava:guava:${rootProject.extra["guava.version"]}")

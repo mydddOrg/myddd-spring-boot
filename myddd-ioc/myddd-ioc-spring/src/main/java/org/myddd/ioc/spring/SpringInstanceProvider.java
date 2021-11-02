@@ -33,7 +33,7 @@ public class SpringInstanceProvider implements InstanceProvider {
     @Override
     public <T> T getInstance(Class<T> beanType, String beanName) {
         try {
-            return (T) applicationContext.getBean(beanName, beanType);
+            return applicationContext.getBean(beanName, beanType);
         } catch (NoUniqueBeanDefinitionException e) {
             throw new IocInstanceNotUniqueException(e);
         } catch (NoSuchBeanDefinitionException e) {
@@ -46,7 +46,7 @@ public class SpringInstanceProvider implements InstanceProvider {
             return getInstance(beanType);
         }
         Map<String, T> results = applicationContext.getBeansOfType(beanType);
-        List<T> resultsWithAnnotation = new ArrayList<T>();
+        List<T> resultsWithAnnotation = new ArrayList<>();
         for (Map.Entry<String, T> entry : results.entrySet()) {
             if (applicationContext.findAnnotationOnBean(entry.getKey(), annotationType) != null) {
                 resultsWithAnnotation.add(entry.getValue());
@@ -63,6 +63,6 @@ public class SpringInstanceProvider implements InstanceProvider {
 
     @Override
     public <T> Set<T> getInstances(Class<T> beanType) {
-        return new HashSet<T>(applicationContext.getBeansOfType(beanType).values());
+        return new HashSet<>(applicationContext.getBeansOfType(beanType).values());
     }
 }

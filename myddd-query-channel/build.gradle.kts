@@ -9,9 +9,6 @@ version = rootProject.extra["projectVersion"]!!
 
 extra["publishJar"] = true
 
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
-}
 
 dependencies {
     api(project(":myddd-domain"))

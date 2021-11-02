@@ -65,6 +65,10 @@ subprojects {
         }
     }
 
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
+
     afterEvaluate {
         val publishJar = this.extra.has("publishJar")
         if(publishJar){
@@ -100,6 +104,11 @@ subprojects {
                 }
 
             }
+        }
+
+        val enableJunit = this.extra.has("enableJunit")
+        if(enableJunit){
+
         }
     }
 }

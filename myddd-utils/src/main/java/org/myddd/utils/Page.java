@@ -25,9 +25,29 @@ public class Page<T> {
 
     private long resultCount; // 总记录数
 
+
     private Page(){
 
     }
+
+    public Page(long start, long totalSize, List<T> data) {
+        Preconditions.checkArgument(start >= 0, "Start must not be negative!");
+        Preconditions.checkArgument(totalSize >= 0, "Total size must not be negative!");
+        this.start = start;
+        this.resultCount = totalSize;
+        this.data = data;
+        if (this.data == null) {
+            this.data = new ArrayList<T>();
+        }
+    }
+
+
+    public Page(long start, long totalSize, int pageSize, List<T> data) {
+        this(start, totalSize, data);
+        Preconditions.checkArgument(pageSize > 0, "Page size must be greater than 0!");
+        this.pageSize = pageSize;
+    }
+
 
     public static <T> Page<T> builder(Class<T> tClass){
         Preconditions.checkNotNull(tClass);

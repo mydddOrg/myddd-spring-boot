@@ -6,10 +6,7 @@ group = "org.myddd"
 version = rootProject.extra["projectVersion"]!!
 
 extra["publishJar"] = true
-
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
-}
+extra["enableJunit"] = true
 
 
 dependencies {
