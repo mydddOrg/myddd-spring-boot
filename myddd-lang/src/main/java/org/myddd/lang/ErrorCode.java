@@ -5,8 +5,6 @@ package org.myddd.lang;
  */
 public interface ErrorCode {
 
-    String UNKNOWN_ERROR = "Unknown Error";
-
     default int errorStatus() {
         return -1;
     }

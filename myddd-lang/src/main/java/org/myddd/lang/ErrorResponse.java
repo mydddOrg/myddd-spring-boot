@@ -1,7 +1,6 @@
 package org.myddd.lang;
 
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -69,7 +68,7 @@ public class ErrorResponse {
             errorResponse.errorMsg = errorMsg;
             if(getProperties().containsKey(errorResponse.errorCode)){
                 String msgString = getProperties().getProperty(errorResponse.errorCode);
-                errorResponse.errorMsg = String.format(msgString, params);
+                errorResponse.errorMsg = String.format(msgString, (Object[])params);
             }
             return errorResponse;
         }
@@ -83,8 +82,7 @@ public class ErrorResponse {
 
         private static void loadProperties(){
             configProperties = new Properties();
-            try {
-                InputStream inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES);
+            try(InputStream inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES)) {
                 configProperties.load(inputStream);
             }catch (Exception e){
                 e.printStackTrace();
@@ -100,7 +98,7 @@ public class ErrorResponse {
         return errorMsg;
     }
 
-    public int getErrorStatus() {
+    public Integer getErrorStatus() {
         return errorStatus;
     }
 }
