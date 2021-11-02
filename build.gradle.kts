@@ -8,6 +8,8 @@ plugins {
 
 val projectVersion = "1.3.0-SNAPSHOT"
 
+
+
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.32"
 extra["spring.boot"] = "2.5.5"
@@ -111,6 +113,17 @@ subprojects {
 
         }
     }
+
+    //默认测试依赖
+    dependencies {
+        testImplementation("org.mockito:mockito-core:${rootProject.extra["mockito.version"]}")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
+        testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
+        testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
+
+        testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
+        testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
+    }
 }
 
 
@@ -124,5 +137,3 @@ tasks.jar {
 
 group = "org.myddd"
 version = extra["projectVersion"]!!
-
-

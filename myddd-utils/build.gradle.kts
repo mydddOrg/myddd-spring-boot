@@ -18,7 +18,4 @@ dependencies {
 
 
     testImplementation("org.slf4j:slf4j-log4j12:${rootProject.extra["slf4jVersion"]}")
-    testImplementation("org.mockito:mockito-core:${rootProject.extra["mockito.version"]}")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
 }
