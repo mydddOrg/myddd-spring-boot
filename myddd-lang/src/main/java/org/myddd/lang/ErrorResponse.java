@@ -7,7 +7,9 @@ import java.util.Properties;
 
 public class ErrorResponse {
 
-    private int errorStatus;
+    private static final String BAD_REQUEST = "BAD REQUEST";
+
+    private Integer errorStatus;
 
     private String errorCode;
 
@@ -17,86 +19,88 @@ public class ErrorResponse {
 
     private static final String ERROR_MSG_PROPERTIES = "error_msg.properties";
 
-    private static Properties getProperties(){
-        if(Objects.isNull(configProperties)){
-            loadProperties();
-        }
-        return configProperties;
+
+    public static Builder newBuilder(){
+        return new Builder();
     }
 
-    private static void loadProperties(){
-        configProperties = new Properties();
-        try {
-            InputStream inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES);
-            configProperties.load(inputStream);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+    public static Builder badRequest(String errorMsg){
+        return new Builder()
+                .setErrorMsg(errorMsg)
+                .setErrorCode(BAD_REQUEST);
     }
 
-    public static ErrorResponse buildFromRpcMessage(String message){
-        ErrorResponse errorResponse = new ErrorResponse();
-        String params[] = message.split(",");
-        errorResponse.errorCode = params[0];
-        if(getProperties().containsKey(errorResponse.errorCode)){
-            String msgString = getProperties().getProperty(errorResponse.errorCode);
-            errorResponse.errorMsg = String.format(msgString, (Object[]) Arrays.copyOfRange(params,1,params.length - 1));
-        }
-        return errorResponse;
-    }
+    public static class Builder {
 
-    public static ErrorResponse buildFromException(IBusinessError exception){
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.errorCode = exception.getErrorCode().errorCode();
-        errorResponse.errorStatus = exception.getErrorCode().errorStatus();
-        if(getProperties().containsKey(errorResponse.errorCode)){
-            String msgString = getProperties().getProperty(errorResponse.errorCode);
-            errorResponse.errorMsg = String.format(msgString, (Object[]) exception.getData());
+        private Integer errorStatus;
+
+        private String errorCode;
+
+        private String errorMsg;
+
+        private String[] params;
+
+        private Builder setErrorMsg(String errorMsg){
+            this.errorMsg = errorMsg;
+            return this;
         }
 
-        return errorResponse;
-    }
-
-    public static ErrorResponse buildFromException(BadParameterException exception){
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.errorCode = exception.getErrorCode().errorCode();
-        errorResponse.errorStatus = exception.getErrorCode().errorStatus();
-        if(getProperties().containsKey(errorResponse.errorCode)){
-            String msgString = getProperties().getProperty(errorResponse.errorCode);
-            errorResponse.errorMsg = String.format(msgString, (Object[]) exception.getData());
+        public Builder setParams(String[] params){
+            this.params = params;
+            return this;
         }
-        return errorResponse;
-    }
 
-    public static ErrorResponse badRequest(Exception e){
-        ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.errorStatus = -1;
-        errorResponse.errorCode = "BAD REQUEST";
-        errorResponse.errorMsg = e.getMessage();
-        return errorResponse;
-    }
+        public Builder setErrorStatus(Integer status){
+            if(Objects.nonNull(status)){
+                this.errorStatus = status;
+            }
+            return this;
+        }
 
-    public int getErrorStatus() {
-        return errorStatus;
-    }
+        public Builder setErrorCode(String errorCode){
+            this.errorCode = errorCode;
+            return this;
+        }
 
-    public void setErrorStatus(int errorStatus) {
-        this.errorStatus = errorStatus;
+        public ErrorResponse build(){
+            ErrorResponse errorResponse = new ErrorResponse();
+            errorResponse.errorCode = errorCode;
+            errorResponse.errorStatus = errorStatus;
+            errorResponse.errorMsg = errorMsg;
+            if(getProperties().containsKey(errorResponse.errorCode)){
+                String msgString = getProperties().getProperty(errorResponse.errorCode);
+                errorResponse.errorMsg = String.format(msgString, params);
+            }
+            return errorResponse;
+        }
+
+        private static Properties getProperties(){
+            if(Objects.isNull(configProperties)){
+                loadProperties();
+            }
+            return configProperties;
+        }
+
+        private static void loadProperties(){
+            configProperties = new Properties();
+            try {
+                InputStream inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES);
+                configProperties.load(inputStream);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
     }
 
     public String getErrorCode() {
         return errorCode;
     }
 
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
     public String getErrorMsg() {
         return errorMsg;
     }
 
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
+    public int getErrorStatus() {
+        return errorStatus;
     }
 }

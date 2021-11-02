@@ -1,6 +1,6 @@
 package org.myddd.lang;
 
-public interface IBusinessError {
+public interface BusinessError {
 
      ErrorCode getErrorCode();
 

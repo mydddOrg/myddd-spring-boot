@@ -4,12 +4,11 @@ import org.apache.dubbo.common.serialize.protobuf.support.ProtobufWrappedExcepti
 import org.myddd.lang.BusinessException;
 import org.myddd.lang.ErrorResponse;
 import org.myddd.lang.BadParameterException;
-import org.myddd.lang.RPCWrapperException;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import java.util.Arrays;
 
 
 @ControllerAdvice()
@@ -17,23 +16,39 @@ public class ExceptionAdvice {
 
     private static final String MYDDD_BUSINESS_EXCEPTION = "org.myddd.lang.BusinessException";
 
+    private static final String SPLIT = ",";
+
     @ExceptionHandler(value = BadParameterException.class)
     public ResponseEntity<ErrorResponse> businessExceptionHandler(BadParameterException exception){
         exception.printStackTrace();
-        return ResponseEntity.status(401).body(ErrorResponse.buildFromException(exception));
+        return ResponseEntity.status(401).body(
+                ErrorResponse
+                        .newBuilder()
+                        .setErrorCode(exception.getErrorCode().errorCode())
+                        .setErrorStatus(exception.getErrorCode().errorStatus())
+                        .setParams(exception.getData())
+                        .build()
+        );
     }
 
 
     @ExceptionHandler(value = BusinessException.class)
     public ResponseEntity<ErrorResponse> businessExceptionHandler(BusinessException exception){
         exception.printStackTrace();
-        return ResponseEntity.badRequest().body(ErrorResponse.buildFromException(exception));
+        return ResponseEntity.badRequest().body(
+                ErrorResponse
+                        .newBuilder()
+                        .setErrorCode(exception.getErrorCode().errorCode())
+                        .setErrorStatus(exception.getErrorCode().errorStatus())
+                        .setParams(exception.getData())
+                        .build()
+        );
     }
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErrorResponse> exceptionHandler(Exception exception){
         exception.printStackTrace();
-        return ResponseEntity.status(500).body(ErrorResponse.badRequest(exception));
+        return ResponseEntity.status(500).body(ErrorResponse.badRequest(exception.getMessage()).build());
     }
 
     @ExceptionHandler(value = ProtobufWrappedException.class)
@@ -41,8 +56,15 @@ public class ExceptionAdvice {
         String exceptionOriginalClassName = exception.getOriginalClassName();
         if(MYDDD_BUSINESS_EXCEPTION.equals(exceptionOriginalClassName)){
             String message = exception.getOriginalMessage();
-            return ResponseEntity.badRequest().body(ErrorResponse.buildFromRpcMessage(message));
+            String[] params = message.split(SPLIT);
+            return ResponseEntity.badRequest().body(
+                    ErrorResponse
+                            .newBuilder()
+                            .setErrorCode(params[0])
+                            .setParams(Arrays.copyOfRange(params,1,params.length - 1))
+                            .build()
+            );
         }
-        return ResponseEntity.status(500).body(ErrorResponse.badRequest(exception));
+        return ResponseEntity.status(500).body(ErrorResponse.badRequest(exception.getMessage()).build());
     }
 }

@@ -2,7 +2,7 @@ package org.myddd.lang;
 
 import java.util.Arrays;
 
-public class BusinessException extends RuntimeException implements IBusinessError{
+public class BusinessException extends RuntimeException implements BusinessError {
 
     private ErrorCode errorCode;
 

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Objects;
 
-public class TestMockController extends AbstractControllerTest {
+class TestMockController extends AbstractControllerTest {
 
     @Test
     void testBusinessOneError(){

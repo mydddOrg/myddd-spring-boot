@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class BadParameterException extends RuntimeException{
 
-    private ErrorCode errorCode;
+    private final ErrorCode errorCode;
 
-    private String[] data = new String[]{};
+    private final String[] data;
 
     private static final String ILLEGAL_ARGUMENT = "BAD PARAMETER";
 
@@ -17,11 +17,13 @@ public class BadParameterException extends RuntimeException{
                 return ILLEGAL_ARGUMENT;
             }
         };
+        this.data = new String[]{};
     }
 
     public BadParameterException(ErrorCode errorCode){
         super(errorCode.errorCode());
         this.errorCode = errorCode;
+        this.data = new String[]{};
     }
 
     public BadParameterException(ErrorCode errorCode, String... data){
