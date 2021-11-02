@@ -3,9 +3,6 @@ package org.myddd.domain;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.annotation.Annotation;
-import java.util.*;
-
 /**
  * <p>
  * 实例工厂类，充当IoC容器的门面，通过它可以获得部署在IoC容器中的Bean的实例。 InstanceFactory向客户代码隐藏了IoC
@@ -16,16 +13,12 @@ public class InstanceFactory {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(InstanceFactory.class);
 
-    /**
-     * 以下部分仅用于提供代码测试功能，产品代码不要用
-     */
-    private static final Map<Object, Object> instances = new HashMap<Object, Object>();
-
 
     //实例提供者，代表真正的IoC容器
     private static InstanceProvider instanceProvider;
 
     private InstanceFactory() {
+
     }
 
     /**
@@ -44,7 +37,6 @@ public class InstanceFactory {
      * @param beanType 对象所属的类型
      * @return 类型为T的对象实例
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanType) {
         T result = instanceProvider.getInstance(beanType);
         if (result != null) {
@@ -55,8 +47,6 @@ public class InstanceFactory {
 
     /**
      * 检测是否有实例
-     * @param beanType
-     * @return
      */
     public static <T> T getInstanceWithDefault(Class<T> beanType,T defaultBean){
         T result = instanceProvider.getInstance(beanType);
@@ -75,7 +65,6 @@ public class InstanceFactory {
      * @param beanType 实例的类型
      * @return 指定类型的实例。
      */
-    @SuppressWarnings("unchecked")
     public static <T> T getInstance(Class<T> beanType, String beanName) {
         T result = instanceProvider.getInstance(beanType, beanName);
         if (result != null) {
