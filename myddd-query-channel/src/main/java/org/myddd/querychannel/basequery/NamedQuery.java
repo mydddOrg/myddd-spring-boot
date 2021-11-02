@@ -1,7 +1,8 @@
 package org.myddd.querychannel.basequery;
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.querychannel.BaseQuery;
-import org.myddd.utils.Assert;
 
 /**
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
@@ -16,7 +17,7 @@ public class NamedQuery<T> extends BaseQuery<T> {
      * @param queryName 命名查询的名称
      */
     public NamedQuery(String queryName) {
-        Assert.notBlank(queryName);
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(queryName));
         this.queryName = queryName;
     }
 

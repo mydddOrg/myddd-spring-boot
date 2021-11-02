@@ -1,10 +1,9 @@
 package org.myddd.security.account.infra;
 
+import com.google.common.base.Preconditions;
 import org.myddd.persistence.jpa.AbstractRepositoryJPA;
 import org.myddd.security.account.domain.LoginEntity;
 import org.myddd.security.account.domain.LoginRepository;
-import org.myddd.utils.Assert;
-
 import javax.inject.Named;
 import java.util.Objects;
 
@@ -13,13 +12,13 @@ public class LoginRepositoryJPA extends AbstractRepositoryJPA implements LoginRe
 
     @Override
     public LoginEntity createLoginUser(LoginEntity loginEntity) {
-        Assert.isNull(loginEntity.getId());
+        Preconditions.checkArgument(Objects.isNull(loginEntity.getId()));
         return save(loginEntity);
     }
 
     @Override
     public LoginEntity updateUser(LoginEntity loginEntity) {
-        Assert.notNull(loginEntity.getId());
+        Preconditions.checkNotNull(loginEntity.getId());
         loginEntity.setUpdateDate(System.currentTimeMillis());
         return save(loginEntity);
     }
@@ -49,7 +48,7 @@ public class LoginRepositoryJPA extends AbstractRepositoryJPA implements LoginRe
     public boolean deleteUser(String username) {
         LoginEntity loginEntity = findByUsername(username);
         if(Objects.nonNull(loginEntity)){
-            Assert.isTrue(!loginEntity.isSuperUser(),"不允许删除超级用户");
+            Preconditions.checkState(!loginEntity.isSuperUser(),"不允许删除超级用户");
             getEntityManager().remove(loginEntity);
         }
         return true;

@@ -1,9 +1,9 @@
 package org.myddd.security.oauth2;
 
 
+import com.google.common.base.Preconditions;
 import org.myddd.security.api.LoginApplication;
 import org.myddd.security.api.LoginDTO;
-import org.myddd.utils.Assert;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -55,9 +55,9 @@ public class DefaultUserDetailsService implements UserDetailsService {
         LoginDTO loginDTO = loginApplication.queryLogin(username);
 
 
-        Assert.notNull(loginDTO,"找不到此用户");
+        Preconditions.checkNotNull(loginDTO,"找不到此用户");
 
-        Assert.isFalse(loginDTO.isDisabled(),"帐号已被禁用");
+        Preconditions.checkState(!loginDTO.isDisabled(),"帐号已被禁用");
 
         return User
                 .withUsername(loginDTO.getUsername())

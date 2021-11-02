@@ -1,9 +1,9 @@
 package org.myddd.security.account.domain;
 
 
+import com.google.common.base.Preconditions;
 import org.myddd.domain.BaseIDEntity;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.utils.Assert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -121,8 +121,8 @@ public class LoginEntity extends BaseIDEntity {
 
     public LoginEntity updateUser(){
         LoginEntity queryLogin = getLoginRepository().findByUsername(this.username);
-        Assert.notNull(queryLogin,"找不到当前用户");
 
+        Preconditions.checkNotNull(queryLogin,"找不到当前用户");
         queryLogin.setDisplayName(this.displayName);
         return getLoginRepository().updateUser(queryLogin);
     }
@@ -150,10 +150,11 @@ public class LoginEntity extends BaseIDEntity {
 
     public static boolean updatePassword(String username,String password,String newPassword){
         LoginEntity loginEntity = LoginEntity.findByUsername(username);
-        Assert.notNull(loginEntity,"找不到用户");
+        Preconditions.checkNotNull(loginEntity,"找不到用户");
 
         boolean check =  password.equals(loginEntity.password);
-        Assert.isTrue(check,"原密码错误");
+        Preconditions.checkState(check,"原密码错误");
+
         loginEntity.setPassword(newPassword);
 
         getLoginRepository().updateUser(loginEntity);
@@ -162,7 +163,7 @@ public class LoginEntity extends BaseIDEntity {
 
     public static boolean updatePasswordByAdmin(String username,String newPassword){
         LoginEntity loginEntity = LoginEntity.findByUsername(username);
-        Assert.notNull(loginEntity,"找不到用户");
+        Preconditions.checkNotNull(loginEntity,"找不到用户");
         loginEntity.setPassword(newPassword);
         getLoginRepository().updateUser(loginEntity);
         return true;

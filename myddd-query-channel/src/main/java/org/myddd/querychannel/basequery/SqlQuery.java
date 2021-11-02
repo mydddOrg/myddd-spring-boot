@@ -1,9 +1,10 @@
 package org.myddd.querychannel.basequery;
 
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.domain.Entity;
 import org.myddd.querychannel.BaseQuery;
-import org.myddd.utils.Assert;
 
 /**
  * 可以指定定位查询参数或命名查询参数，也可以针对查询结果取子集。
@@ -20,7 +21,7 @@ public class SqlQuery<T> extends BaseQuery<T> {
      * @param sql SQL查询语句
      */
     public SqlQuery(String sql) {
-        Assert.notBlank(sql);
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(sql));
         this.sql = sql;
     }
 

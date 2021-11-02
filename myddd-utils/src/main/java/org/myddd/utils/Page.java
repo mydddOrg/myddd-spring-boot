@@ -1,5 +1,6 @@
 package org.myddd.utils;
 
+import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -26,7 +27,7 @@ public class Page<T> implements Serializable {
 
     private long start; // 当前页第一条数据在List中的位置,从0开始
 
-    private List<T> data = new ArrayList<T>(); // 当前页中存放的记录,类型一般为List
+    private List<T> data = new ArrayList<>(); // 当前页中存放的记录,类型一般为List
 
     private long resultCount; // 总记录数
 
@@ -34,7 +35,7 @@ public class Page<T> implements Serializable {
 
     }
 
-    public static Page builder(){
+    public static <T>  Page<T> builder(Class<T> tClass){
         return new Page<>();
     }
 
@@ -68,8 +69,8 @@ public class Page<T> implements Serializable {
      * @param data 本页包含的数据
      */
     public Page(long start, long totalSize, List<T> data) {
-        Assert.isTrue(start >= 0, "Start must not be negative!");
-        Assert.isTrue(totalSize >= 0, "Total size must not be negative!");
+        Preconditions.checkArgument(start >= 0, "Start must not be negative!");
+        Preconditions.checkArgument(totalSize >= 0, "Total size must not be negative!");
         this.start = start;
         this.resultCount = totalSize;
         this.data = data;
@@ -96,7 +97,7 @@ public class Page<T> implements Serializable {
      */
     public Page(long start, long totalSize, int pageSize, List<T> data) {
         this(start, totalSize, data);
-        Assert.isTrue(pageSize > 0, "Page size must be greater than 0!");
+        Preconditions.checkArgument(pageSize > 0, "Page size must be greater than 0!");
         this.pageSize = pageSize;
     }
 

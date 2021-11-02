@@ -1,12 +1,13 @@
 package org.myddd.querychannel.query;
 
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.domain.*;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.basequery.SqlQuery;
-import org.myddd.utils.Assert;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ChannelSqlQuery<T> extends ChannelQuery<T> {
 
     public ChannelSqlQuery(QueryRepository repository, String sql) {
         super(repository);
-        Assert.notBlank(sql, "SQL must be set!");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(sql),"SQL must be set!");
         query = new SqlQuery(sql);
         setQuery(query);
     }

@@ -2,11 +2,12 @@ package org.myddd.querychannel.query;
 
 
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.basequery.NamedQuery;
-import org.myddd.utils.Assert;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class ChannelNamedQuery<T> extends ChannelQuery<T> {
 
     public ChannelNamedQuery(QueryRepository repository, String queryName) {
         super(repository);
-        Assert.notBlank(queryName, "Query name must be set!");
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(queryName),"Query name must be set!");
         query = new NamedQuery(queryName);
         setQuery(query);
     }

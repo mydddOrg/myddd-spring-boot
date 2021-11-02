@@ -1,5 +1,6 @@
 package org.myddd.security.account.application;
 
+import com.google.common.base.Preconditions;
 import org.apache.logging.log4j.util.Strings;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.querychannel.QueryChannelService;
@@ -9,7 +10,6 @@ import org.myddd.security.account.application.assembler.LoginAssembler;
 import org.myddd.security.api.LoginApplication;
 import org.myddd.security.api.LoginDTO;
 import org.myddd.security.api.PasswordEncrypt;
-import org.myddd.utils.Assert;
 import org.myddd.utils.Page;
 
 import javax.inject.Inject;
@@ -40,9 +40,9 @@ public class LoginApplicationImpl implements LoginApplication {
 
     @Transactional
     public LoginDTO createUser(LoginDTO loginDTO) {
-        Assert.notNull(loginDTO.getUsername(),"用户名不能为空");
-        Assert.notNull(loginDTO.getPassword(),"密码不能为空");
-        Assert.isFalse(LoginEntity.exists(loginDTO.getUsername()),"用户已存在");
+        Preconditions.checkNotNull(loginDTO.getUsername(), "用户名不能为空");
+        Preconditions.checkNotNull(loginDTO.getPassword(),"密码不能为空");
+        Preconditions.checkArgument(!LoginEntity.exists(loginDTO.getUsername()),"用户已存在");
 
         loginDTO.setPassword(getPasswordEncrypt().encrypt(loginDTO.getPassword()));
 
@@ -66,9 +66,9 @@ public class LoginApplicationImpl implements LoginApplication {
     @Override
     @Transactional
     public LoginDTO createSupper(LoginDTO loginDTO) {
-        Assert.notNull(loginDTO.getUsername(),"用户名不能为空");
-        Assert.notNull(loginDTO.getPassword(),"密码不能为空");
-        Assert.isFalse(LoginEntity.exists(loginDTO.getUsername()),"用户已存在");
+        Preconditions.checkNotNull(loginDTO.getUsername(),"用户名不能为空");
+        Preconditions.checkNotNull(loginDTO.getPassword(),"密码不能为空");
+        Preconditions.checkArgument(!LoginEntity.exists(loginDTO.getUsername()),"用户已存在");
 
         loginDTO.setPassword(getPasswordEncrypt().encrypt(loginDTO.getPassword()));
 
@@ -115,9 +115,10 @@ public class LoginApplicationImpl implements LoginApplication {
     @Override
     @Transactional
     public boolean enableUser(String username) {
-        Assert.notNull(username,"用户名不能为空");
+        Preconditions.checkNotNull(username,"用户名不能为空");
+
         LoginEntity loginEntity = LoginEntity.findByUsername(username);
-        Assert.notNull(loginEntity,"找不到指定用户:"+username);
+        Preconditions.checkNotNull(loginEntity,"找不到指定用户:"+username);
 
         loginEntity.enabled();
         return true;
@@ -126,9 +127,10 @@ public class LoginApplicationImpl implements LoginApplication {
     @Override
     @Transactional
     public boolean disableUser(String username) {
-        Assert.notNull(username,"用户名不能为空");
+        Preconditions.checkNotNull(username,"用户名不能为空");
+
         LoginEntity loginEntity = LoginEntity.findByUsername(username);
-        Assert.notNull(loginEntity,"找不到指定用户:"+username);
+        Preconditions.checkNotNull(loginEntity,"找不到指定用户:"+username);
 
         loginEntity.disabled();
         return true;
@@ -150,7 +152,7 @@ public class LoginApplicationImpl implements LoginApplication {
                 .setPage(page, pageSize)
                 .pagedList();
 
-        return Page.builder()
+        return Page.builder(LoginDTO.class)
                 .stat(inventoryItemDTOPage.getStart())
                 .totalSize(inventoryItemDTOPage.getResultCount())
                 .pageSize(inventoryItemDTOPage.getPageSize())
