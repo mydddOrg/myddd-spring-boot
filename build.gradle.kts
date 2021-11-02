@@ -16,6 +16,8 @@ extra["guava.version"] = "31.0.1-jre"
 extra["mockito.version"] = "4.0.0"
 extra["dubbo_version"] = "3.0.1"
 extra["h2_version"] = "1.4.200"
+extra["gson.version"] = "2.8.8"
+extra["commons-lang3.version"] = "3.12.0"
 
 allprojects {
     repositories {

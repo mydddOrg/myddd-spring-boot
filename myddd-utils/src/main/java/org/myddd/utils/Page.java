@@ -4,7 +4,6 @@ import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,12 +13,7 @@ import java.util.List;
  * @author yshzhong
  *
  */
-public class Page<T> implements Serializable {
-
-    /**
-     *
-     */
-    private static final long serialVersionUID = 5859907455479273251L;
+public class Page<T> {
 
     public static final int DEFAULT_PAGE_SIZE = 10;
 
@@ -31,11 +25,12 @@ public class Page<T> implements Serializable {
 
     private long resultCount; // 总记录数
 
-    public Page(){
+    private Page(){
 
     }
 
-    public static <T>  Page<T> builder(Class<T> tClass){
+    public static <T> Page<T> builder(Class<T> tClass){
+        Preconditions.checkNotNull(tClass);
         return new Page<>();
     }
 
@@ -62,43 +57,11 @@ public class Page<T> implements Serializable {
 
 
     /**
-     * 默认构造方法.
-     *
-     * @param start 本页数据在数据库中的起始位置
-     * @param totalSize 数据库中总记录条数
-     * @param data 本页包含的数据
-     */
-    public Page(long start, long totalSize, List<T> data) {
-        Preconditions.checkArgument(start >= 0, "Start must not be negative!");
-        Preconditions.checkArgument(totalSize >= 0, "Total size must not be negative!");
-        this.start = start;
-        this.resultCount = totalSize;
-        this.data = data;
-        if (this.data == null) {
-            this.data = new ArrayList<T>();
-        }
-    }
-
-    /**
      * 获得第一条记录的截取位置
      * @return 第一条记录的截取位置
      */
     public long getStart() {
         return start;
-    }
-
-    /**
-     * 默认构造方法.
-     *
-     * @param start 本页数据在数据库中的起始位置
-     * @param totalSize 数据库中总记录条数
-     * @param pageSize 本页容量
-     * @param data 本页包含的数据
-     */
-    public Page(long start, long totalSize, int pageSize, List<T> data) {
-        this(start, totalSize, data);
-        Preconditions.checkArgument(pageSize > 0, "Page size must be greater than 0!");
-        this.pageSize = pageSize;
     }
 
     /**
