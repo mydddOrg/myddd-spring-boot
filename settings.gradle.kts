@@ -19,6 +19,16 @@ include("myddd-persistence:myddd-persistence-jpa")
 //一个查询通道的实现
 include("myddd-query-channel")
 
+//扩展功能模块 -- 媒体模块API用于上传下载
+include("myddd-extensions:myddd-media:myddd-media-api")
+//扩展功能模块 -- 媒体模块实现,基于阿里云OSS
+include("myddd-extensions:myddd-media:myddd-media-aliyun")
+
+//扩展功能模块 -- 基于Spring Security的一个OAuth2实现
+include("myddd-extensions:myddd-security:myddd-security-api")
+include("myddd-extensions:myddd-security:myddd-security-login")
+include("myddd-extensions:myddd-security:myddd-security-oauth2")
+
 //plugin
 include(":plugin:dubbo-protobuf-gradle-plugin")
 
