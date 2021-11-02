@@ -15,4 +15,5 @@ dependencies {
     implementation("org.apache.dubbo:dubbo-serialization-protobuf:${project.extra["dubbo_serialization_version"]}")
 
     testImplementation(project(":myddd-domain"))
+    testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
 }

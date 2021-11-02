@@ -20,4 +20,5 @@ dependencies {
 
     testImplementation(project(":myddd-libs:myddd-distributed-id"))
     testImplementation(project(":myddd-persistence:myddd-persistence-jpa"))
+    testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
 }
