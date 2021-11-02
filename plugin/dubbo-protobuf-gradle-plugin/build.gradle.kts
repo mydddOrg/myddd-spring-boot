@@ -12,3 +12,7 @@ dependencies {
     implementation("com.salesforce.servicelibs:jprotoc:1.2.0")
 
 }
+
+sonarqube {
+    isSkipProject = true
+}

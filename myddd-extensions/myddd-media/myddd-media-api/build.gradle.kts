@@ -9,3 +9,7 @@ extra["publishJar"] = true
 
 dependencies {
 }
+
+sonarqube {
+    isSkipProject = true
+}

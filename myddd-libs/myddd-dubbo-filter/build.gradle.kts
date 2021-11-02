@@ -12,3 +12,7 @@ dependencies {
     implementation(project(":myddd-lang"))
     implementation("org.apache.dubbo:dubbo-rpc-api:${rootProject.extra["dubbo_version"]}")
 }
+
+sonarqube {
+    isSkipProject = true
+}

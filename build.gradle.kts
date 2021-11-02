@@ -4,6 +4,7 @@ plugins {
     `maven-publish`
     id("org.springframework.boot") version "2.5.5"
     jacoco
+    id("org.sonarqube") version "3.0"
 }
 
 val projectVersion = "1.3.0-SNAPSHOT"
@@ -54,6 +55,7 @@ subprojects {
 
     apply(plugin = "java")
     apply(plugin = "jacoco")
+    apply(plugin = "org.sonarqube")
 
     jacoco {
         toolVersion = "0.8.7"

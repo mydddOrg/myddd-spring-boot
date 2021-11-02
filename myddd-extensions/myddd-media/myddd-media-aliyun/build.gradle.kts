@@ -19,3 +19,7 @@ dependencies {
     implementation("commons-io:commons-io:2.7")
 
 }
+
+sonarqube {
+    isSkipProject = true
+}

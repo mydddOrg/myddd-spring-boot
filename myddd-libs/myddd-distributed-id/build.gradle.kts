@@ -13,3 +13,7 @@ dependencies {
 
     testImplementation(project(":myddd-utils"))
 }
+
+sonarqube {
+    isSkipProject = true
+}
