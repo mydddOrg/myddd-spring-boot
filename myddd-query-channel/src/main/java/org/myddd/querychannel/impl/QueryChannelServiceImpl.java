@@ -33,7 +33,7 @@ public class QueryChannelServiceImpl implements QueryChannelService {
 
     @Override
     public <T> ChannelQuery<T> createJpqlQuery(String jpql, Class<T> tClass) {
-        return new ChannelJpqlQuery<T>(getRepository(), jpql);
+        return new ChannelJpqlQuery<>(getRepository(), jpql);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class QueryChannelServiceImpl implements QueryChannelService {
 
     @Override
     public <T> ChannelQuery<T> createSqlQuery(String sql, Class<T> tClass) {
-        return new ChannelSqlQuery<T>(getRepository(), sql);
+        return new ChannelSqlQuery<>(getRepository(), sql);
     }
     
 }

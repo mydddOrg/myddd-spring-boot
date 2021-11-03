@@ -1,7 +1,5 @@
 package org.myddd.domain;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <p>
@@ -10,8 +8,6 @@ import org.slf4j.LoggerFactory;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 public class InstanceFactory {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(InstanceFactory.class);
 
 
     //实例提供者，代表真正的IoC容器
@@ -38,7 +34,7 @@ public class InstanceFactory {
      * @return 类型为T的对象实例
      */
     public static <T> T getInstance(Class<T> beanType) {
-        T result = instanceProvider.getInstance(beanType);
+        var result = instanceProvider.getInstance(beanType);
         if (result != null) {
             return result;
         }
@@ -49,7 +45,7 @@ public class InstanceFactory {
      * 检测是否有实例
      */
     public static <T> T getInstanceWithDefault(Class<T> beanType,T defaultBean){
-        T result = instanceProvider.getInstance(beanType);
+        var result = instanceProvider.getInstance(beanType);
         if (result != null) {
             return result;
         }
@@ -66,7 +62,7 @@ public class InstanceFactory {
      * @return 指定类型的实例。
      */
     public static <T> T getInstance(Class<T> beanType, String beanName) {
-        T result = instanceProvider.getInstance(beanType, beanName);
+        var result = instanceProvider.getInstance(beanType, beanName);
         if (result != null) {
             return result;
         }

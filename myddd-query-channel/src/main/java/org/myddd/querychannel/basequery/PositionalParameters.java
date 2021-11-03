@@ -1,5 +1,6 @@
 package org.myddd.querychannel.basequery;
 
+import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -9,7 +10,6 @@ import java.util.List;
 /**
  * 查询语言或命名查询的定位参数集。JPA、Hibernate和SQL等都支持定位
  * 参数(如"... where e.name = ?")和命名参数(如"... where name = :name")两种形式。<br>
- * 尽可能采用命名参数的形式，定位参数是落后的形式。
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 public class PositionalParameters implements QueryParameters {
@@ -43,11 +43,8 @@ public class PositionalParameters implements QueryParameters {
     }
 
     private PositionalParameters(Object[] params) {
-        if (params == null) {
-            this.params = new Object[]{};
-        } else {
-            this.params = Arrays.copyOf(params, params.length);
-        }
+        Preconditions.checkNotNull(params,"params不能为空");
+        this.params = Arrays.copyOf(params, params.length);
     }
 
     /**
@@ -82,14 +79,5 @@ public class PositionalParameters implements QueryParameters {
         }
         PositionalParameters that = (PositionalParameters) other;
         return new EqualsBuilder().append(this.getParams(), that.getParams()).isEquals();
-    }
-
-    /**
-     * 获得参数集的字符串表示形式
-     * @return 当前对象的字符串表示形式
-     */
-    @Override
-    public String toString() {
-        return Arrays.toString(params);
     }
 }    

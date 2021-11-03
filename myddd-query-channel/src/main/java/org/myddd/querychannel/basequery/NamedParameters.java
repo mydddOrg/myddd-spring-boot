@@ -15,7 +15,8 @@ import java.util.Map;
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
  */
 public class NamedParameters implements QueryParameters {
-    private Map<String, Object> params = new HashMap<>();
+
+    private final Map<String, Object> params;
     
     /**
      * 创建一个空查询参数集
@@ -53,17 +54,6 @@ public class NamedParameters implements QueryParameters {
     }
 
     /**
-     * 将另一个NamedParameters合并进来。
-     * @param other 要合并的参数集
-     * @return 该对象本身。其参数集是原有的参数集与另一个参数集合并后的结果
-     */
-    public NamedParameters add(NamedParameters other) {
-        Preconditions.checkNotNull(other);
-        params.putAll(other.getParams());
-        return this;
-    }
-
-    /**
      * 获得参数Map
      * @return 参数Map
      */
@@ -88,15 +78,6 @@ public class NamedParameters implements QueryParameters {
     @Override
     public int hashCode() {
         return getParams().hashCode();
-    }
-
-    /**
-     * 获得参数集的字符串表示形式
-     * @return 当前对象的字符串表示形式
-     */
-    @Override
-    public String toString() {
-        return params.toString();
     }
     
 }

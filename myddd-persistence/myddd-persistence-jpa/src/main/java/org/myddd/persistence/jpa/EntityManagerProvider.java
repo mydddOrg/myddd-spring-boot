@@ -31,13 +31,17 @@ public class EntityManagerProvider {
     }
 
     public EntityManager getEntityManager() {
-        EntityManager result = entityManagerHolder.get();
+        var result = entityManagerHolder.get();
         if (result != null && result.isOpen()) {
             return result;
         }
         result = getEntityManagerFromIoC();
         entityManagerHolder.set(result);
         return result;
+    }
+
+    public void cleanup() {
+        entityManagerHolder.remove();
     }
 
     public EntityManager getEntityManagerFromIoC() {

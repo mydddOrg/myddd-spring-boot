@@ -3,7 +3,6 @@ package org.myddd.querychannel.basequery;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import org.myddd.domain.Entity;
 import org.myddd.querychannel.BaseQuery;
 
 /**

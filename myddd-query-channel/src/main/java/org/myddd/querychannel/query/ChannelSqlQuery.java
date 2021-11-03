@@ -3,14 +3,10 @@ package org.myddd.querychannel.query;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import org.myddd.domain.*;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.basequery.SqlQuery;
-import org.myddd.utils.Page;
-
-import java.util.List;
 
 /**
  * 通道查询的SQL实现

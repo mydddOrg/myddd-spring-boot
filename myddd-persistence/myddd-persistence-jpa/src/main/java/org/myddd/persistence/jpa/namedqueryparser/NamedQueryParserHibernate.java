@@ -14,7 +14,7 @@ public class NamedQueryParserHibernate extends NamedQueryParser {
     
     @Override
     public String getQueryStringOfNamedQuery(String queryName) {
-        Session session = (Session) getEntityManager().getDelegate();
+        var session = (Session) getEntityManager().getDelegate();
         return session.getNamedQuery(queryName).getQueryString();
     }
     

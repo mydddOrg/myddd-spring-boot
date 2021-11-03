@@ -8,7 +8,6 @@ import org.myddd.utils.Page;
 
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -176,7 +175,7 @@ public abstract class ChannelQuery<T> {
      * @return 查询结果。
      */
     public T singleResult() {
-        return (T) query.singleResult();
+        return query.singleResult();
     }
 
     /**
@@ -185,9 +184,9 @@ public abstract class ChannelQuery<T> {
      * @return 符合查询条件的记录总数
      */
     public long queryResultCount() {
-        CountQueryStringBuilder builder = new CountQueryStringBuilder(getQueryString());
+        var builder = new CountQueryStringBuilder(getQueryString());
         if (builder.containsGroupByClause()) {
-            List rows = createBaseQuery(builder.removeOrderByClause())
+            var rows = createBaseQuery(builder.removeOrderByClause())
                     .setParameters(query.getParameters()).list();
             return rows == null ? 0 : rows.size();
         } else {
@@ -226,7 +225,7 @@ public abstract class ChannelQuery<T> {
 
             int index = StringUtils.indexOfIgnoreCase(result, " from ");
 
-            StringBuilder builder = new StringBuilder("select count(" + stringInCount(result, index) + ") ");
+            var builder = new StringBuilder("select count(" + stringInCount(result, index) + ") ");
 
             if (index != -1) {
                 builder.append(result.substring(index));
@@ -242,8 +241,8 @@ public abstract class ChannelQuery<T> {
          * @return
          */
         public String removeOrderByClause() {
-            Matcher m = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
-            StringBuffer sb = new StringBuffer();
+            var m = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
+            var sb = new StringBuffer();
             while (m.find()) {
                 m.appendReplacement(sb, "");
             }
@@ -256,7 +255,7 @@ public abstract class ChannelQuery<T> {
             if (distinctIndex == -1) {
                 return "*";
             }
-            String distinctToFrom = queryString.substring(distinctIndex, fromIndex);
+            var distinctToFrom = queryString.substring(distinctIndex, fromIndex);
 
             // 除去“,”之后的语句
             int commaIndex = distinctToFrom.indexOf(",");
@@ -279,7 +278,7 @@ public abstract class ChannelQuery<T> {
          * @return 如果查询语句中包含group by子句，返回true，否则返回false
          */
         public boolean containsGroupByClause() {
-            Matcher m = Pattern.compile("group\\s*by[\\w|\\W|\\s|\\S]*",
+            var m = Pattern.compile("group\\s*by[\\w|\\W|\\s|\\S]*",
                     Pattern.CASE_INSENSITIVE).matcher(queryString);
             return m.find();
         }

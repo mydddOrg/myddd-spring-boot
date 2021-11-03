@@ -7,9 +7,6 @@ import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.basequery.JpqlQuery;
-import org.myddd.utils.Page;
-
-import java.util.List;
 
 /**
  * 通道查询的JPQL实现

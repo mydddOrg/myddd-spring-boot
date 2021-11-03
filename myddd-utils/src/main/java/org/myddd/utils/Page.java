@@ -37,7 +37,7 @@ public class Page<T> {
         this.resultCount = totalSize;
         this.data = data;
         if (this.data == null) {
-            this.data = new ArrayList<T>();
+            this.data = new ArrayList<>();
         }
     }
 

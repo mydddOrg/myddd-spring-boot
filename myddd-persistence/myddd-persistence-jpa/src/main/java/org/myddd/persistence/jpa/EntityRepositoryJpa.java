@@ -1,16 +1,8 @@
 package org.myddd.persistence.jpa;
 
 import org.myddd.domain.*;
-import org.myddd.querychannel.BaseQuery;
-import org.myddd.querychannel.QueryRepository;
-import org.myddd.querychannel.basequery.*;
-
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 通用仓储接口的JPA实现。
@@ -47,7 +39,7 @@ public class EntityRepositoryJpa extends BaseRepository implements EntityReposit
     @Override
     public <T extends Entity> boolean exists(final Class<T> clazz,
                                              final Serializable id) {
-        T entity = getEntityManager().find(clazz, id);
+        var entity = getEntityManager().find(clazz, id);
         return entity != null;
     }
 

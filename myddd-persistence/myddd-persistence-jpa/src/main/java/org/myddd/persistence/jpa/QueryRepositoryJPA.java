@@ -1,6 +1,5 @@
 package org.myddd.persistence.jpa;
 
-import org.myddd.persistence.jpa.BaseRepository;
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.basequery.NamedParameters;
@@ -17,7 +16,7 @@ public class QueryRepositoryJPA extends BaseRepository implements QueryRepositor
 
     @Override
     public <T> List<T> find(BaseQuery<T> baseQuery) {
-        Query query = getQuery(baseQuery);
+        var query = getQuery(baseQuery);
         processQuery(query,baseQuery);
         return query.getResultList();
     }
@@ -83,7 +82,7 @@ public class QueryRepositoryJPA extends BaseRepository implements QueryRepositor
 
     private void fillParameters(Query query, PositionalParameters params) {
         Object[] paramArray = params.getParams();
-        for (int i = 0; i < paramArray.length; i++) {
+        for (var i = 0; i < paramArray.length; i++) {
             query = query.setParameter(i + 1, paramArray[i]);
         }
     }

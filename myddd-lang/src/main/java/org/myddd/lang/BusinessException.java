@@ -4,13 +4,14 @@ import java.util.Arrays;
 
 public class BusinessException extends RuntimeException implements BusinessError {
 
-    private ErrorCode errorCode;
+    private final ErrorCode errorCode;
 
-    private String[] data = new String[]{};
+    private final String[] data;
 
     public BusinessException(ErrorCode errorCode){
         super(errorCode.errorCode());
         this.errorCode = errorCode;
+        this.data = new String[]{};
     }
 
     public BusinessException(ErrorCode errorCode,String... data){

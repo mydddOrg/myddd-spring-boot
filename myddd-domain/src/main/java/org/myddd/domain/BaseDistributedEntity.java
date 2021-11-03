@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @MappedSuperclass
-public class BaseDistributedEntity implements Entity{
+public class BaseDistributedEntity extends BaseEntity{
 
     @Id
     @Column(name = "id")
@@ -34,15 +34,6 @@ public class BaseDistributedEntity implements Entity{
         this.id = id;
     }
 
-    private static EntityRepository repository;
-
-    private static EntityRepository getRepository() {
-        if (repository == null) {
-            repository = InstanceFactory.getInstance(EntityRepository.class);
-        }
-        return repository;
-    }
-
     private static IDGenerate idGenerate;
 
     private static IDGenerate getIdGenerate(){
@@ -50,16 +41,6 @@ public class BaseDistributedEntity implements Entity{
             idGenerate = InstanceFactory.getInstance(IDGenerate.class);
         }
         return idGenerate;
-    }
-
-    @Override
-    public boolean existed() {
-        return getRepository().exists(this.getClass(),getId());
-    }
-
-    @Override
-    public boolean notExisted() {
-        return !existed();
     }
 
     public int getVersion() {

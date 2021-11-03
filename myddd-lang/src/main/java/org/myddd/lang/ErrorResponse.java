@@ -1,10 +1,14 @@
 package org.myddd.lang;
 
-import java.io.InputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Objects;
 import java.util.Properties;
 
 public class ErrorResponse {
+
+    private static final Logger logger = LoggerFactory.getLogger(ErrorResponse.class);
 
     private static final String BAD_REQUEST = "BAD REQUEST";
 
@@ -62,12 +66,12 @@ public class ErrorResponse {
         }
 
         public ErrorResponse build(){
-            ErrorResponse errorResponse = new ErrorResponse();
+            var errorResponse = new ErrorResponse();
             errorResponse.errorCode = errorCode;
             errorResponse.errorStatus = errorStatus;
             errorResponse.errorMsg = errorMsg;
             if(getProperties().containsKey(errorResponse.errorCode)){
-                String msgString = getProperties().getProperty(errorResponse.errorCode);
+                var msgString = getProperties().getProperty(errorResponse.errorCode);
                 errorResponse.errorMsg = String.format(msgString, (Object[])params);
             }
             return errorResponse;
@@ -82,10 +86,10 @@ public class ErrorResponse {
 
         private static void loadProperties(){
             configProperties = new Properties();
-            try(InputStream inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES)) {
+            try(var inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream(ERROR_MSG_PROPERTIES)) {
                 configProperties.load(inputStream);
             }catch (Exception e){
-                e.printStackTrace();
+                logger.warn(e.getMessage(),e);
             }
         }
     }

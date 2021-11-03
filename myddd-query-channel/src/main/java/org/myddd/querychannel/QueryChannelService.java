@@ -1,12 +1,9 @@
 package org.myddd.querychannel;
 
-
-import java.io.Serializable;
-
 /**
  * 查询通道接口。可以针对仓储进行分页查询。
  */
-public interface QueryChannelService extends Serializable {
+public interface QueryChannelService{
 
     <T> ChannelQuery<T> createJpqlQuery(String jpql, Class<T> tClass);
 

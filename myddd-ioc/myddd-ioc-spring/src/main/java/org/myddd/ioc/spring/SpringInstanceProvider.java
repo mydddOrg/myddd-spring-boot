@@ -13,7 +13,7 @@ public class SpringInstanceProvider implements InstanceProvider {
     private ApplicationContext applicationContext = null;
 
     public static SpringInstanceProvider createInstance(ApplicationContext applicationContext){
-        SpringInstanceProvider instanceProvider = new SpringInstanceProvider();
+        var instanceProvider = new SpringInstanceProvider();
         instanceProvider.applicationContext = applicationContext;
         return instanceProvider;
     }

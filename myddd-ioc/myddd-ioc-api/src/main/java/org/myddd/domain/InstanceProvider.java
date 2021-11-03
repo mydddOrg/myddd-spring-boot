@@ -1,7 +1,6 @@
 package org.myddd.domain;
 
 
-import java.lang.annotation.Annotation;
 import java.util.Set;
 
 /**
