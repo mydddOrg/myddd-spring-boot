@@ -17,12 +17,12 @@ import java.util.List;
  */
 public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
     
-    private final JpqlQuery query;
+    private final JpqlQuery<T> query;
 
     public ChannelJpqlQuery(QueryRepository repository, String jpql) {
         super(repository);
         Preconditions.checkArgument(!Strings.isNullOrEmpty(jpql),"JPQL must be set!");
-        query = new JpqlQuery(jpql);
+        query = new JpqlQuery<>(jpql);
         setQuery(query);
     }
 
@@ -32,35 +32,7 @@ public class ChannelJpqlQuery<T> extends ChannelQuery<T> {
     }
 
     @Override
-    protected BaseQuery createBaseQuery(String queryString) {
-        return new JpqlQuery(queryString);
-    }
-
-    /**
-     * 返回查询结果数据页。
-     *
-     * @return 查询结果。
-     */
-    public List<T> list() {
-        return query.list();
-    }
-
-    /**
-     * 返回查询结果数据页。
-     *
-     * @return 查询结果。
-     */
-    public Page<T> pagedList() {
-        return new Page<T>(query.getFirstResult(), queryResultCount(),
-                query.getMaxResults(), query.list());
-    }
-
-    /**
-     * 返回单条查询结果。
-     *
-     * @return 查询结果。
-     */
-    public T singleResult() {
-        return (T) query.singleResult();
+    protected BaseQuery<T> createBaseQuery(String queryString) {
+        return new JpqlQuery<>(queryString);
     }
 }

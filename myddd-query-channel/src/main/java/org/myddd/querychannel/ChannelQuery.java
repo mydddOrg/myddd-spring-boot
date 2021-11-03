@@ -166,7 +166,7 @@ public abstract class ChannelQuery<T> {
      * @return 查询结果。
      */
     public Page<T> pagedList() {
-        return new Page<T>(query.getFirstResult(), queryResultCount(),
+        return new Page<>(query.getFirstResult(), queryResultCount(),
                 query.getMaxResults(), query.list());
     }
 

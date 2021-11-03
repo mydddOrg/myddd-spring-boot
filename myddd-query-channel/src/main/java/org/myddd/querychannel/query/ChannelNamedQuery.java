@@ -18,29 +18,13 @@ import java.util.List;
  */
 public class ChannelNamedQuery<T> extends ChannelQuery<T> {
     
-    private NamedQuery query;
+    private NamedQuery<T> query;
 
     public ChannelNamedQuery(QueryRepository repository, String queryName) {
         super(repository);
         Preconditions.checkArgument(!Strings.isNullOrEmpty(queryName),"Query name must be set!");
-        query = new NamedQuery(queryName);
+        query = new NamedQuery<>(queryName);
         setQuery(query);
-    }
-
-    @Override
-    public  List<T> list() {
-        return query.list();
-    }
-
-    @Override
-    public Page<T> pagedList() {
-        return new Page<T>(query.getFirstResult(), queryResultCount(), 
-                query.getMaxResults(), (List<T>) query.list());
-    }
-
-    @Override
-    public T singleResult() {
-        return (T) query.singleResult();
     }
 
     @Override
@@ -49,8 +33,8 @@ public class ChannelNamedQuery<T> extends ChannelQuery<T> {
     }
 
     @Override
-    protected BaseQuery createBaseQuery(String queryString) {
-        return new NamedQuery(queryString);
+    protected BaseQuery<T> createBaseQuery(String queryString) {
+        return new NamedQuery<>(queryString);
     }
 
 }
