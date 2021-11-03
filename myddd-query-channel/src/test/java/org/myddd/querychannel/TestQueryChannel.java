@@ -38,4 +38,26 @@ class TestQueryChannel extends AbstractTest{
         Assertions.assertTrue(userPage.getResultCount() > 0);
         Assertions.assertFalse(userPage.getData().isEmpty());
     }
+
+    @Test
+    void testNamedPageQuery(){
+        Page<User> userPage = queryChannelService.createNamedQuery("User.pageList",User.class)
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
+    }
+
+    @Test
+    void testNativeSQLPageQuery(){
+        Page<Object[]> userPage =  queryChannelService.createSqlQuery("select * from user_", Object[].class)
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
+    }
 }

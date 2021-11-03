@@ -19,14 +19,14 @@ import java.util.regex.Pattern;
 public abstract class ChannelQuery<T> {
 
     protected QueryRepository repository;
-    private BaseQuery query;
+    private BaseQuery<T> query;
     private int pageIndex;
 
-    public ChannelQuery(QueryRepository repository) {
+    protected ChannelQuery(QueryRepository repository) {
         this.repository = repository;
     }
 
-    public void setQuery(BaseQuery query) {
+    public void setQuery(BaseQuery<T> query) {
         this.query = query;
     }
 

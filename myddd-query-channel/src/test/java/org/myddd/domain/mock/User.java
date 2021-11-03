@@ -12,6 +12,11 @@ import java.util.Objects;
         indexes = {
                 @Index(name = "index_user_id", columnList = "user_id")
         })
+@NamedQueries(
+        value = {
+                @NamedQuery(name = "User.pageList",query = "from User")
+        }
+)
 public class User extends BaseDistributedEntity {
 
     @Column(name = "user_id",nullable = false)

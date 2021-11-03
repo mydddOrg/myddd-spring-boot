@@ -7,6 +7,7 @@ import com.google.common.base.Strings;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.BaseQuery;
+import org.myddd.querychannel.basequery.JpqlQuery;
 import org.myddd.querychannel.basequery.NamedQuery;
 import org.myddd.utils.Page;
 
@@ -34,7 +35,7 @@ public class ChannelNamedQuery<T> extends ChannelQuery<T> {
 
     @Override
     protected BaseQuery<T> createBaseQuery(String queryString) {
-        return new NamedQuery<>(queryString);
+        return new JpqlQuery<>(queryString);
     }
 
 }
