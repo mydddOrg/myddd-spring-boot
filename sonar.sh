@@ -1,6 +1,6 @@
 #!/bin/sh
 
-./gradlew test jacocoTestReport && echo "测试成功" || exit 1
+./gradlew test && echo "测试成功" || exit 1
 ./gradlew sonarqube \
   -Dsonar.projectKey=myddd-java \
   -Dsonar.host.url=http://localhost:9000 \
