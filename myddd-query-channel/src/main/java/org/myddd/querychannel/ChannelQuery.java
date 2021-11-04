@@ -8,6 +8,7 @@ import org.myddd.utils.Page;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * 查询通道查询
@@ -171,7 +172,7 @@ public abstract class ChannelQuery<T> {
         }
 
         public String buildQueryStringOfCount() {
-            var result = queryString;
+            var result = removeOrderByClause();
             int index = StringUtils.indexOfIgnoreCase(result, " from ");
 
             var builder = new StringBuilder("select count(*) ");
@@ -183,5 +184,16 @@ public abstract class ChannelQuery<T> {
             }
             return builder.toString();
         }
+
+        public String removeOrderByClause() {
+            var m = Pattern.compile("order\\s*by*", Pattern.CASE_INSENSITIVE).matcher(queryString);
+            var sb = new StringBuffer();
+            while (m.find()) {
+                m.appendReplacement(sb, "");
+            }
+            m.appendTail(sb);
+            return sb.toString();
+        }
+
     }
 }

@@ -11,7 +11,6 @@ myddd starter已经开放使用，现在开始，你可以访问[myddd starter](
 向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-java 1.X版本**来源于[dddlib](https://github.com/dayatang/dddlib).
 
 数年前，我有幸与dddlib开发者杨宇老师一同工作，使用dddlib，讨论DDD，参与dddlib的开发。一晃数年已过。
-
 我与杨宇老师仍保持密切交流。
 
 **myddd-java**来源于dddlib，无论何时，我都会明白无误的说明这一点。 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD。
