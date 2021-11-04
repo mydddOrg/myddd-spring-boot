@@ -33,7 +33,7 @@ myddd-java始终坚持以下两个原则：
 
 当前主干的SonarQube的质量状态为:
 
-![SonarQube质量报告](https://images.taoofcoding.tech/2021/11/sonar_data_of_myddd_java.png)
+![SonarQube质量报告](https://images.taoofcoding.tech/2021/11/sonar-data-of-myddd-java-2.0.0-snapshot.png)
 
 
 ## 为什么叫myddd

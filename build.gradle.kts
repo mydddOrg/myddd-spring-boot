@@ -7,9 +7,7 @@ plugins {
     id("org.sonarqube") version "3.0"
 }
 
-val projectVersion = "1.3.0-SNAPSHOT"
-
-
+val projectVersion = "2.0.0-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.32"
