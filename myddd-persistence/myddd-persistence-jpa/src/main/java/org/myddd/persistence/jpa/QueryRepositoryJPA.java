@@ -6,7 +6,6 @@ import org.myddd.querychannel.basequery.QueryParameters;
 
 import javax.inject.Named;
 import javax.persistence.Query;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Map;
 
