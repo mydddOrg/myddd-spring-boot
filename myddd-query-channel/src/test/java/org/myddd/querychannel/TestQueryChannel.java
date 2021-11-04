@@ -10,6 +10,7 @@ import org.myddd.utils.Page;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 
 @Transactional
 class TestQueryChannel extends AbstractTest{
@@ -22,6 +23,17 @@ class TestQueryChannel extends AbstractTest{
         for (int i = 0;i<= 10;i++){
            randomUser().createLocalUser();
         }
+    }
+
+    @Test
+    void testSetPageSize(){
+        ChannelQuery<User> userChannelQuery = queryChannelService.createJpqlQuery("from User", User.class);
+
+        Assertions.assertThrows(IllegalArgumentException.class,()->userChannelQuery.setPageSize(-1));
+        Assertions.assertThrows(IllegalArgumentException.class,()->userChannelQuery.setMaxResult(-1));
+        Assertions.assertThrows(IllegalArgumentException.class,()->userChannelQuery.setFirstResult(-1));
+        Assertions.assertThrows(IllegalArgumentException.class,()->userChannelQuery.setPage(-1,10));
+        Assertions.assertThrows(IllegalArgumentException.class,()->userChannelQuery.setPage(1,-10));
     }
 
     @Test
@@ -67,6 +79,15 @@ class TestQueryChannel extends AbstractTest{
 
         Assertions.assertTrue(userPage.getResultCount() > 0);
         Assertions.assertFalse(userPage.getData().isEmpty());
+
+        userPage =  queryChannelService.createJpqlQuery("from User where name LIKE :name", User.class)
+                .setParameters(Map.of("name","%"))
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
     }
 
     @Test
@@ -99,6 +120,15 @@ class TestQueryChannel extends AbstractTest{
 
         userPage = queryChannelService.createNamedQuery("User.pageListWithParamsNamedParam",User.class)
                 .addParameter("name","%")
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
+
+        userPage = queryChannelService.createNamedQuery("User.pageListWithParamsNamedParam",User.class)
+                .setParameters(Map.of("name","%"))
                 .setFirstResult(0)
                 .setPageSize(10)
                 .pagedList();
@@ -144,6 +174,14 @@ class TestQueryChannel extends AbstractTest{
         Assertions.assertTrue(userPage.getResultCount() > 0);
         Assertions.assertFalse(userPage.getData().isEmpty());
 
+        userPage =  queryChannelService.createSqlQuery("select * from user_ where name like :name", Object[].class)
+                .setParameters(Map.of("name","%"))
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
     }
 
     @Test
@@ -172,4 +210,39 @@ class TestQueryChannel extends AbstractTest{
 
         Assertions.assertNotNull(user);
     }
+
+    @Test
+    void testPageWithGroupBy(){
+        Page<Object[]> userPage =  queryChannelService.createJpqlQuery("select name,count(*) as count from User group by name", Object[].class)
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
+    }
+
+    @Test
+    void testPageWithDistinct(){
+        Page<Object[]> userPage =  queryChannelService.createJpqlQuery("select distinct(name) as name from User", Object[].class)
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
+    }
+
+    @Test
+    void testPageWithCountSQL(){
+        Page<User> userPage =  queryChannelService.createJpqlQuery("from User", User.class)
+                .setCountSQL("select count(*) as count from User")
+                .setFirstResult(0)
+                .setPageSize(10)
+                .pagedList();
+
+        Assertions.assertTrue(userPage.getResultCount() > 0);
+        Assertions.assertFalse(userPage.getData().isEmpty());
+    }
+
 }

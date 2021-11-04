@@ -2,12 +2,12 @@ package org.myddd.querychannel;
 
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.apache.commons.lang3.StringUtils;
 import org.myddd.utils.Page;
 
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 /**
  * 查询通道查询
@@ -18,6 +18,8 @@ public abstract class ChannelQuery<T> {
 
     protected QueryRepository repository;
     private BaseQuery<T> query;
+
+    private String countSQL;
 
     protected ChannelQuery(QueryRepository repository) {
         this.repository = repository;
@@ -35,9 +37,13 @@ public abstract class ChannelQuery<T> {
      */
     public ChannelQuery<T> setParameters(Object... parameters) {
         query.setParameters(parameters);
-        return  this;
+        return this;
     }
 
+    public ChannelQuery<T> setCountSQL(String sql){
+        this.countSQL = sql;
+        return this;
+    }
     /**
      * 设置定位参数（列表方式）
      *
@@ -140,18 +146,13 @@ public abstract class ChannelQuery<T> {
      * @return 符合查询条件的记录总数
      */
     public long queryResultCount() {
-
-
-        var builder = new CountQueryStringBuilder(getQueryString());
-        if (builder.containsGroupByClause()) {
-            var rows = createBaseQuery(builder.removeOrderByClause())
-                    .setParameters(query.getParameters()).list();
-            return rows == null ? 0 : rows.size();
-        } else {
-            Number result = (Number) createBaseQuery(builder.buildQueryStringOfCount())
-                    .setParameters(query.getParameters()).singleResult();
-            return result.longValue();
+        if(Strings.isNullOrEmpty(countSQL)) {
+            var builder = new CountQueryStringBuilder(getQueryString());
+            countSQL = builder.buildQueryStringOfCount();
         }
+        Number result = createBaseQuery(countSQL,Number.class)
+                .setParameters(query.getParameters()).singleResult();
+        return result.longValue();
     }
 
     /**
@@ -160,13 +161,8 @@ public abstract class ChannelQuery<T> {
      */
     protected abstract String getQueryString();
 
-    protected abstract BaseQuery createBaseQuery(String queryString);
+    protected abstract <Q> BaseQuery<Q> createBaseQuery(String queryString,Class<Q> qClass);
 
-    /**
-     * 一个辅助类，处理查询语句，根据原始查询语句生成计算查询结果总数的查询语句
-     * 因为客户代码不会直接使用该类，所以设置为包级可见性。
-     * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)
-     */
     static class CountQueryStringBuilder {
         private final String queryString;
 
@@ -174,16 +170,11 @@ public abstract class ChannelQuery<T> {
             this.queryString = queryString;
         }
 
-        /**
-         * 构造一个查询数据条数的语句,不能用于union
-         * @return 查询数据条数的语句
-         */
         public String buildQueryStringOfCount() {
-            String result = removeOrderByClause();
-
+            var result = queryString;
             int index = StringUtils.indexOfIgnoreCase(result, " from ");
 
-            var builder = new StringBuilder("select count(" + stringInCount(result, index) + ") ");
+            var builder = new StringBuilder("select count(*) ");
 
             if (index != -1) {
                 builder.append(result.substring(index));
@@ -191,54 +182,6 @@ public abstract class ChannelQuery<T> {
                 builder.append(result);
             }
             return builder.toString();
-        }
-
-        /**
-         * 去除查询语句的orderby 子句
-         *
-         * @return
-         */
-        public String removeOrderByClause() {
-            var m = Pattern.compile("order\\s*by[\\w|\\W|\\s|\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
-            var sb = new StringBuffer();
-            while (m.find()) {
-                m.appendReplacement(sb, "");
-            }
-            m.appendTail(sb);
-            return sb.toString();
-        }
-
-        private static String stringInCount(String queryString, int fromIndex) {
-            int distinctIndex = getPositionOfDistinct(queryString);
-            if (distinctIndex == -1) {
-                return "*";
-            }
-            var distinctToFrom = queryString.substring(distinctIndex, fromIndex);
-
-            // 除去“,”之后的语句
-            int commaIndex = distinctToFrom.indexOf(",");
-            String strMayBeWithAs = commaIndex == -1 ? distinctToFrom : distinctToFrom.substring(0, commaIndex);
-
-            // 除去as语句
-            int asIndex = StringUtils.indexOfIgnoreCase(strMayBeWithAs, " as ");
-            String strInCount = asIndex == -1 ? strMayBeWithAs : strMayBeWithAs.substring(0, asIndex);
-
-            // 除去()，因为HQL不支持 select count(distinct (...))，但支持select count(distinct ...)
-            return strInCount.replace("(", " ").replace(")", " ");
-        }
-
-        private static int getPositionOfDistinct(String queryString) {
-            return StringUtils.indexOfIgnoreCase(queryString, "distinct");
-        }
-
-        /**
-         * 判断查询语句中是否包含group by子句。
-         * @return 如果查询语句中包含group by子句，返回true，否则返回false
-         */
-        public boolean containsGroupByClause() {
-            var m = Pattern.compile("group\\s*by[\\w|\\W|\\s|\\S]*",
-                    Pattern.CASE_INSENSITIVE).matcher(queryString);
-            return m.find();
         }
     }
 }

@@ -31,7 +31,7 @@ public class ChannelNamedQuery<T> extends ChannelQuery<T> {
     }
 
     @Override
-    protected BaseQuery<T> createBaseQuery(String queryString) {
+    protected <Q> BaseQuery<Q> createBaseQuery(String queryString,Class<Q> qClass) {
         return new JpqlQuery<>(queryString);
     }
 
