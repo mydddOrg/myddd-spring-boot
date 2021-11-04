@@ -29,5 +29,13 @@ include(":myddd-libs:myddd-rest-advice-dubbo")
 include(":myddd-libs:myddd-dubbo-filter")
 
 
+//myddd-media
+include(":myddd-media:myddd-media-domain")
+include(":myddd-media:myddd-media-infra")
+include(":myddd-media:myddd-media-storage:myddd-media-storage-local")
+include(":myddd-media:myddd-media-storage:myddd-media-storage-aliyun")
+include(":myddd-media:myddd-media-storage:myddd-media-storage-gridfs")
+include(":myddd-media:myddd-media-storage:myddd-media-storage-qcloud")
+
 
 
