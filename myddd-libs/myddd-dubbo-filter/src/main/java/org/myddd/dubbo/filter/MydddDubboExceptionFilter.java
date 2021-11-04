@@ -64,10 +64,6 @@ public class MydddDubboExceptionFilter implements Filter, Filter.Listener{
                 if (className.startsWith("java.") || className.startsWith("javax.")) {
                     return;
                 }
-                // customer exception
-                if (className.startsWith("com.zhiri.common.base")) {
-                    return;
-                }
                 // directly throw if it's dubbo exception
                 if (exception instanceof RpcException) {
                     return;
