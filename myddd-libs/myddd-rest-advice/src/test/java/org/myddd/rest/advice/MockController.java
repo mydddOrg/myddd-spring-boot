@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE,value = "/v1")
 public class MockController {
 
+    @GetMapping("/error/exception")
+    ResponseEntity<Void> exception() throws Exception {
+        throw new Exception();
+    }
+
     /**
      * 抛出一个业务异常，不带data
      */

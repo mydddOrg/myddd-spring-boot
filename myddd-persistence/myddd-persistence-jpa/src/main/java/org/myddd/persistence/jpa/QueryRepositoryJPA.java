@@ -2,12 +2,11 @@ package org.myddd.persistence.jpa;
 
 import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.QueryRepository;
-import org.myddd.querychannel.basequery.NamedParameters;
-import org.myddd.querychannel.basequery.PositionalParameters;
 import org.myddd.querychannel.basequery.QueryParameters;
 
 import javax.inject.Named;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 import java.util.Map;
 
@@ -71,23 +70,23 @@ public class QueryRepositoryJPA extends BaseRepository implements QueryRepositor
         if (params == null) {
             return;
         }
-        if (params instanceof PositionalParameters) {
-            fillParameters(query, (PositionalParameters) params);
-        } else if (params instanceof NamedParameters) {
-            fillParameters(query, (NamedParameters) params);
+        if (params instanceof BaseQuery.PositionalParameters) {
+            fillParameters(query, (BaseQuery.PositionalParameters) params);
+        } else if (params instanceof BaseQuery.NamedParameters) {
+            fillParameters(query, (BaseQuery.NamedParameters) params);
         } else {
             throw new UnsupportedOperationException("不支持的参数形式");
         }
     }
 
-    private void fillParameters(Query query, PositionalParameters params) {
+    private void fillParameters(Query query, BaseQuery.PositionalParameters params) {
         Object[] paramArray = params.getParams();
         for (var i = 0; i < paramArray.length; i++) {
             query = query.setParameter(i + 1, paramArray[i]);
         }
     }
 
-    private void fillParameters(Query query, NamedParameters params) {
+    private void fillParameters(Query query, BaseQuery.NamedParameters params) {
         for (Map.Entry<String, Object> each : params.getParams().entrySet()) {
             query = query.setParameter(each.getKey(), each.getValue());
         }

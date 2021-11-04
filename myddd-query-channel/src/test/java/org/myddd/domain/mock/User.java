@@ -14,7 +14,9 @@ import java.util.Objects;
         })
 @NamedQueries(
         value = {
-                @NamedQuery(name = "User.pageList",query = "from User")
+                @NamedQuery(name = "User.pageList",query = "from User"),
+                @NamedQuery(name = "User.pageListWithParamsPositionParam",query = "from User where name like ?1"),
+                @NamedQuery(name = "User.pageListWithParamsNamedParam",query = "from User where name like :name"),
         }
 )
 public class User extends BaseDistributedEntity {

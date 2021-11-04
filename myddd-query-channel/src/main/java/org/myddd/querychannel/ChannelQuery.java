@@ -3,7 +3,6 @@ package org.myddd.querychannel;
 
 import com.google.common.base.Preconditions;
 import org.apache.commons.lang3.StringUtils;
-import org.myddd.querychannel.basequery.QueryParameters;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -19,7 +18,6 @@ public abstract class ChannelQuery<T> {
 
     protected QueryRepository repository;
     private BaseQuery<T> query;
-    private int pageIndex;
 
     protected ChannelQuery(QueryRepository repository) {
         this.repository = repository;
@@ -27,15 +25,6 @@ public abstract class ChannelQuery<T> {
 
     public void setQuery(BaseQuery<T> query) {
         this.query = query;
-    }
-
-    /**
-     * 获取查询参数
-     *
-     * @return 查询参数
-     */
-    public QueryParameters getParameters() {
-        return query.getParameters();
     }
 
     /**
@@ -84,15 +73,6 @@ public abstract class ChannelQuery<T> {
     }
 
     /**
-     * 针对分页查询，获取firstResult。 firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
-     *
-     * @return firstResult的设置值，
-     */
-    public int getFirstResult() {
-        return query.getFirstResult();
-    }
-
-    /**
      * 针对分页查询，设置firstResult。 firstResult代表从满足查询条件的记录的第firstResult + 1条开始获取数据子集。
      *
      * @param firstResult 要设置的firstResult值。
@@ -102,24 +82,6 @@ public abstract class ChannelQuery<T> {
         Preconditions.checkArgument(firstResult >= 0, "First result must be greater than 0!");
         query.setFirstResult(firstResult);
         return  this;
-    }
-
-    /**
-     * 获取当前页码（0为第一页）
-     *
-     * @return 当前页码
-     */
-    public int getPageIndex() {
-        return pageIndex;
-    }
-
-    /**
-     * 获取每页记录数
-     *
-     * @return 每页记录数
-     */
-    public int getPageSize() {
-        return query.getMaxResults();
     }
 
     /**
@@ -134,6 +96,11 @@ public abstract class ChannelQuery<T> {
         return this;
     }
 
+    public ChannelQuery<T> setMaxResult(int size){
+        setPageSize(size);
+        return this;
+    }
+
     /**
      * 设置分页信息
      *
@@ -144,19 +111,9 @@ public abstract class ChannelQuery<T> {
     public ChannelQuery<T> setPage(int pageIndex, int pageSize) {
         Preconditions.checkArgument(pageIndex >= 0, "Page index must be greater than or equals to 0!");
         Preconditions.checkArgument(pageSize > 0, "Page index must be greater than 0!");
-        this.pageIndex = pageIndex;
         query.setMaxResults(pageSize);
         query.setFirstResult(Page.getStartOfPage(pageIndex, pageSize));
         return this;
-    }
-
-    /**
-     * 返回查询结果数据页。
-     *
-     * @return 查询结果。
-     */
-    public List<T> list() {
-        return query.list();
     }
 
     /**
@@ -169,12 +126,11 @@ public abstract class ChannelQuery<T> {
                 query.getMaxResults(), query.list());
     }
 
-    /**
-     * 返回单条查询结果。
-     *
-     * @return 查询结果。
-     */
-    public T singleResult() {
+    public List<T> list(){
+        return query.list();
+    }
+
+    public T singleResult(){
         return query.singleResult();
     }
 
@@ -184,6 +140,8 @@ public abstract class ChannelQuery<T> {
      * @return 符合查询条件的记录总数
      */
     public long queryResultCount() {
+
+
         var builder = new CountQueryStringBuilder(getQueryString());
         if (builder.containsGroupByClause()) {
             var rows = createBaseQuery(builder.removeOrderByClause())

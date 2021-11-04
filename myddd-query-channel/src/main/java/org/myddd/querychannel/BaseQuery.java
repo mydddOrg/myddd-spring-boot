@@ -1,15 +1,12 @@
 package org.myddd.querychannel;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.querychannel.basequery.NamedParameters;
-import org.myddd.querychannel.basequery.PositionalParameters;
 import org.myddd.querychannel.basequery.QueryParameters;
 import org.myddd.querychannel.basequery.QueryType;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * 查询基类，为NamedQuery、JpqlQuery和SqlQuery提供共同行为。
@@ -150,7 +147,61 @@ public abstract class BaseQuery<T> {
     protected QueryRepository getRepository() {
         return getQueryRepository();
     }
-    
-    
-    
+
+
+    public static class NamedParameters implements QueryParameters {
+
+        private final Map<String, Object> params;
+
+        public static NamedParameters create() {
+            return new NamedParameters(new HashMap<>());
+        }
+
+        public static NamedParameters create(Map<String, Object> params) {
+            return new NamedParameters(params);
+        }
+
+        private NamedParameters(Map<String, Object> params) {
+            Preconditions.checkNotNull(params, "Parameters cannot be null");
+            this.params = new HashMap<>(params);
+        }
+
+        public NamedParameters add(String key, Object value) {
+            Preconditions.checkArgument(!Strings.isNullOrEmpty(key));
+            Preconditions.checkNotNull(value);
+            params.put(key, value);
+            return this;
+        }
+
+        public Map<String, Object> getParams() {
+            return Collections.unmodifiableMap(params);
+        }
+
+    }
+
+    public static class PositionalParameters implements QueryParameters {
+
+        private Object[] params;
+
+        public static PositionalParameters create() {
+            return new PositionalParameters(new Object[]{});
+        }
+
+        public static PositionalParameters create(Object... params) {
+            return new PositionalParameters(params);
+        }
+
+        public static PositionalParameters create(List<Object> params) {
+            return new PositionalParameters(params.toArray());
+        }
+
+        private PositionalParameters(Object[] params) {
+            Preconditions.checkNotNull(params,"params不能为空");
+            this.params = Arrays.copyOf(params, params.length);
+        }
+
+        public Object[] getParams() {
+            return Arrays.copyOf(params, params.length);
+        }
+    }
 }

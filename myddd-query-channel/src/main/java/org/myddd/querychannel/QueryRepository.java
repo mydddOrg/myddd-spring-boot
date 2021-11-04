@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface QueryRepository {
 
+
     /**
      * 执行JPQL查询，返回符合条件的实体列表
      *
