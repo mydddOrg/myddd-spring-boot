@@ -12,7 +12,11 @@ import java.util.Objects;
 @Table(name = "user_",
         indexes = {
                 @Index(name = "index_user_id", columnList = "user_id")
-        })
+        },
+        uniqueConstraints = {
+                @UniqueConstraint(name = "unique_user_id", columnNames = {"user_id"})
+        }
+)
 @NamedQueries(
         value = {@NamedQuery(name = "User.queryByUserId", query = "from User where userId = :userId")}
 )
@@ -38,6 +42,7 @@ public class User extends BaseDistributedEntity {
     private String email;
 
     private boolean disabled;
+
 
     public String getUserId() {
         return userId;
@@ -117,7 +122,6 @@ public class User extends BaseDistributedEntity {
         if (Strings.isNullOrEmpty(password)) throw new PasswordEmptyException();
         if (Strings.isNullOrEmpty(userId)) throw new UserIdEmptyException();
 
-        this.created = System.currentTimeMillis();
         this.encodePassword = password;
         return getUserRepository().save(this);
     }

@@ -7,6 +7,7 @@ import org.myddd.persistence.AbstractTest;
 import org.myddd.persistence.mock.User;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 
 @Transactional
@@ -23,9 +24,18 @@ class TestAbstractRepository extends AbstractTest {
     @Test
     void testSaveEntity(){
         User user = randomUser();
-
         User created = repository.save(user);
         Assertions.assertNotNull(created);
+    }
+
+    @Test
+    void testUniqueSaveEntity(){
+        User created = repository.save(randomUser());
+        Assertions.assertNotNull(created);
+
+        User notUniqueUser = randomUser();
+        notUniqueUser.setUserId(created.getUserId());
+        Assertions.assertThrows(PersistenceException.class,notUniqueUser::createLocalUser);
     }
 
     @Test
