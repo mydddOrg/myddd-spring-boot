@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
     id("org.springframework.boot") version "2.5.5"
     jacoco
-    id("org.sonarqube") version "3.0"
+    id("org.sonarqube") version "3.3"
 }
 
 val projectVersion = "2.0.0-SNAPSHOT"
@@ -113,6 +113,22 @@ subprojects {
                     }
                 }
 
+            }
+        }
+
+        if(!this.sonarqube.isSkipProject){
+            tasks.check {
+                finalizedBy(tasks.jacocoTestCoverageVerification) // report is always generated after tests run
+            }
+
+            tasks.jacocoTestCoverageVerification {
+                violationRules {
+                    rule {
+                        limit {
+                            minimum = "0.8".toBigDecimal()
+                        }
+                    }
+                }
             }
         }
     }

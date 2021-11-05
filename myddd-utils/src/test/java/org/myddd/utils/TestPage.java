@@ -7,6 +7,7 @@ import java.util.List;
 
 class TestPage {
 
+
     @Test
     void testCreatePageByBuilder(){
         Page<Integer> page =  Page.builder(Integer.class)
@@ -35,6 +36,19 @@ class TestPage {
         Assertions.assertEquals(26,page.getPageCount());
         Assertions.assertFalse(page.hasNextPage());
         Assertions.assertTrue(page.hasPreviousPage());
+    }
+
+    @Test
+    void testCreatePage(){
+        Page<Integer> page = new Page<>(0, 10, List.of(1, 2, 3, 4));
+        Assertions.assertFalse(page.getData().isEmpty());
+        Assertions.assertEquals(0,page.getStart());
+        Assertions.assertEquals(4,page.getData().size());
+
+        page = new Page<>(0, 10, 10,List.of(1, 2, 3, 4));
+        Assertions.assertFalse(page.getData().isEmpty());
+        Assertions.assertEquals(0,page.getStart());
+        Assertions.assertEquals(4,page.getData().size());
     }
 
 }

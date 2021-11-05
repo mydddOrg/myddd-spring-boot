@@ -120,7 +120,6 @@ public class User extends BaseDistributedEntity {
         if(Strings.isNullOrEmpty(password))throw new PasswordEmptyException();
         if(Strings.isNullOrEmpty(userId))throw new UserIdEmptyException();
 
-        this.created = System.currentTimeMillis();
         this.encodePassword = password;
         return getUserRepository().save(this);
     }
