@@ -14,6 +14,23 @@ public interface EntityRepository {
 
     EntityManager getEntityManager();
 
+
+    /**
+     * 新增一个实体
+     * @param entity 需要新增的实体
+     * @param <T> 要新增的实体类型
+     * @return 新增后的实体
+     */
+    <T extends Entity> T create(T entity);
+
+    /**
+     * 更新一个实体
+     * @param entity 需要更新的实体
+     * @param <T> 更新的实体类型
+     * @return
+     */
+    <T extends Entity> T update(T entity);
+
     /**
      * 将实体（无论是新的还是修改了的）保存到仓储中。
      *

@@ -43,8 +43,6 @@ public class User extends BaseDistributedEntity {
     }
 
     public User createUser(){
-        this.created = System.currentTimeMillis();
-        this.updated = System.currentTimeMillis();
         return getRepository().save(this);
     }
 
@@ -57,7 +55,6 @@ public class User extends BaseDistributedEntity {
         if(Objects.isNull(exists)){
             throw new RuntimeException(String.format("User %s not exists",getId()));
         }
-        exists.updated = System.currentTimeMillis();
         return getRepository().save(exists);
     }
 }

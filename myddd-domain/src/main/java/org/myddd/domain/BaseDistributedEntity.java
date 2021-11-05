@@ -15,11 +15,6 @@ public class BaseDistributedEntity extends BaseEntity{
     @Version
     @Column(name = "version")
     private int version;
-
-    protected long created;
-
-    protected long updated;
-
     public BaseDistributedEntity(){
         this.id = getIdGenerate().nextId();
     }
@@ -49,18 +44,6 @@ public class BaseDistributedEntity extends BaseEntity{
 
     public void setVersion(int version) {
         this.version = version;
-    }
-
-    public long getCreated() {
-        return created;
-    }
-
-    public long getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(long updated) {
-        this.updated = updated;
     }
 
 }

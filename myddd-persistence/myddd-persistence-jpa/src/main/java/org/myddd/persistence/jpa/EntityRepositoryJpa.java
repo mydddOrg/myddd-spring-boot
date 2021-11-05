@@ -12,6 +12,17 @@ import java.io.Serializable;
 public class EntityRepositoryJpa extends BaseRepository implements EntityRepository {
 
     @Override
+    public <T extends Entity> T create(T entity) {
+        getEntityManager().persist(entity);
+        return entity;
+    }
+
+    @Override
+    public <T extends Entity> T update(T entity) {
+        return getEntityManager().merge(entity);
+    }
+
+    @Override
     public <T extends Entity> T save(T entity) {
         if (entity.notExisted()) {
             getEntityManager().persist(entity);
