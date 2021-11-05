@@ -58,24 +58,6 @@ class TestBaseDistributedEntity extends AbstractTest {
     }
 
     @Test
-    void testCreateProperty(){
-        User randomUser = randomUser();
-        Assertions.assertEquals(0L,randomUser.getCreated());
-
-        User created = randomUser.createUser();
-        Assertions.assertTrue(created.getCreated() > 0);
-    }
-
-    @Test
-    void testUpdateProperty(){
-        User randomUser = randomUser();
-        Assertions.assertEquals(0L,randomUser.getUpdated());
-
-        User created = randomUser.createUser();
-        Assertions.assertTrue(created.getUpdated() > 0);
-    }
-
-    @Test
     void testVersionProperty(){
         User randomUser = randomUser();
         Assertions.assertEquals(0,randomUser.getVersion());
