@@ -6,6 +6,7 @@ import org.myddd.domain.mock.User;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.Set;
 
 @Transactional
 class TestAbstractRepository extends AbstractTest{
@@ -16,6 +17,13 @@ class TestAbstractRepository extends AbstractTest{
     @Test
     void testRepositoryNotNull(){
         Assertions.assertNotNull(repository);
+    }
+
+    @Test
+    void testBatchSaveEntities(){
+        Assertions.assertDoesNotThrow(()->{
+            repository.batchSaveEntities(Set.of(randomUser(), randomUser(),randomEmployee()));
+        });
     }
 
     @Test

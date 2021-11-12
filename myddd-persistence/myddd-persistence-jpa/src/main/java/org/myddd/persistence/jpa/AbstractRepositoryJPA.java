@@ -7,6 +7,7 @@ import org.myddd.domain.InstanceFactory;
 
 import javax.persistence.EntityManager;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 /**
@@ -43,6 +44,12 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository {
 
     public void remove(Entity entity){
         getEntityManager().remove(entity);
+        getEntityManager().flush();
+    }
+
+    @Override
+    public <T extends Entity> void batchSaveEntities(Collection<T> entities) {
+        entities.forEach(it -> getEntityManager().persist(it));
         getEntityManager().flush();
     }
 }
