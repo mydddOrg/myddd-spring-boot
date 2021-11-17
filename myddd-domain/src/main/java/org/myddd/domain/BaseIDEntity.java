@@ -1,6 +1,7 @@
 package org.myddd.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @MappedSuperclass
 public abstract class BaseIDEntity extends BaseEntity{
@@ -29,5 +30,18 @@ public abstract class BaseIDEntity extends BaseEntity{
 
     public void setVersion(int version) {
         this.version = version;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BaseIDEntity)) return false;
+        BaseIDEntity that = (BaseIDEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
