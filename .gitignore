@@ -4,3 +4,5 @@
 **/*.class
 target
 build/**
+.DS_Store
+**/*/.DS_Store
