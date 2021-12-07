@@ -1,4 +1,4 @@
-package org.myddd.rest.advice;
+package org.myddd.uid.worker.assigner;
 
 import org.myddd.domain.InstanceFactory;
 import org.myddd.ioc.spring.SpringInstanceProvider;
@@ -11,11 +11,10 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.myddd"})
 @EntityScan(basePackages = {"org.myddd"})
-public class Application {
+public class TestApplication {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        ApplicationContext ctx = SpringApplication.run(TestApplication.class, args);
         InstanceFactory.setInstanceProvider(SpringInstanceProvider.createInstance(ctx));
     }
-
 }

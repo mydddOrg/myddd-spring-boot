@@ -4,7 +4,7 @@ import org.myddd.domain.BaseDistributedEntity;
 import org.myddd.domain.EntityRepository;
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Objects;
 

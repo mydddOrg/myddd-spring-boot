@@ -1,8 +1,8 @@
 package org.myddd.rest.advice;
 
+import org.myddd.lang.BadParameterException;
 import org.myddd.lang.BusinessException;
 import org.myddd.lang.ErrorResponse;
-import org.myddd.lang.BadParameterException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;

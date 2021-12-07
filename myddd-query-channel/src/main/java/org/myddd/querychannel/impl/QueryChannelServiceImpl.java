@@ -3,12 +3,13 @@ package org.myddd.querychannel.impl;
 
 import com.google.common.base.Preconditions;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.ChannelQuery;
 import org.myddd.querychannel.QueryChannelService;
+import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.query.ChannelJpqlQuery;
 import org.myddd.querychannel.query.ChannelNamedQuery;
 import org.myddd.querychannel.query.ChannelSqlQuery;
+
 import javax.inject.Named;
 
 /**

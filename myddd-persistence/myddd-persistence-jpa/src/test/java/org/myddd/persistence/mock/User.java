@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import org.myddd.domain.BaseDistributedEntity;
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Objects;
 

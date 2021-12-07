@@ -6,7 +6,8 @@ import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SpringInstanceProvider implements InstanceProvider {
 
