@@ -28,6 +28,3 @@ include(":myddd-libs:myddd-rest-advice")
 include(":myddd-libs:myddd-rest-advice-dubbo")
 include(":myddd-libs:myddd-dubbo-filter")
 include(":myddd-libs:myddd-uid-worker-id-assigner")
-
-
-

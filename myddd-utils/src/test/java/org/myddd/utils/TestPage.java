@@ -12,7 +12,7 @@ class TestPage {
     void testCreatePageByBuilder(){
         Page<Integer> page =  Page.builder(Integer.class)
                 .pageSize(4)
-                .stat(0)
+                .start(0)
                 .totalSize(100)
                 .data(List.of(0,1,2,3));
 
@@ -30,7 +30,7 @@ class TestPage {
 
         page =  Page.builder(Integer.class)
                 .pageSize(4)
-                .stat(100)
+                .start(100)
                 .totalSize(101)
                 .data(List.of(0,1,2,3));
         Assertions.assertEquals(26,page.getPageCount());

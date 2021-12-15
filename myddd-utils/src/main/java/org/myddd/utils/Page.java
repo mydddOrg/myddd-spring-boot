@@ -54,7 +54,7 @@ public class Page<T> {
         return new Page<>();
     }
 
-    public Page<T> stat(long start){
+    public Page<T> start(long start){
         this.start = start;
         return this;
     }
