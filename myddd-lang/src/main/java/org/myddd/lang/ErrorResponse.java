@@ -3,6 +3,8 @@ package org.myddd.lang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -19,6 +21,9 @@ public class ErrorResponse {
     private String errorMsg;
 
     private static Properties configProperties;
+
+    private static Map<String,Properties> i18nProperties = new HashMap<>();
+
 
     private static final String ERROR_MSG_PROPERTIES = "error_msg.properties";
 
@@ -40,6 +45,8 @@ public class ErrorResponse {
         private String errorCode;
 
         private String errorMsg;
+
+        private String language = "";
 
         private String[] params;
 
@@ -65,15 +72,23 @@ public class ErrorResponse {
             return this;
         }
 
+        public Builder setLanguage(String language){
+            this.language = Objects.isNull(language)?"":language;
+            return this;
+        }
+
         public ErrorResponse build(){
             var errorResponse = new ErrorResponse();
             errorResponse.errorCode = errorCode;
             errorResponse.errorStatus = errorStatus;
             errorResponse.errorMsg = errorMsg;
-            if(getProperties().containsKey(errorResponse.errorCode)){
-                var msgString = getProperties().getProperty(errorResponse.errorCode);
-                errorResponse.errorMsg = String.format(msgString, (Object[])params);
+            var msgString = getProperties().getProperty(errorResponse.errorCode);
+
+            var properties = getProperties(language);
+            if(properties.containsKey(errorResponse.errorCode)){
+                msgString = properties.getProperty(errorResponse.errorCode);
             }
+            if(Objects.nonNull(msgString)) errorResponse.errorMsg = String.format(msgString, (Object[])params);
             return errorResponse;
         }
 
@@ -82,6 +97,29 @@ public class ErrorResponse {
                 loadProperties();
             }
             return configProperties;
+        }
+
+        private static Properties getProperties(String language){
+            if(language.isEmpty()){
+                return getProperties();
+            }else if(i18nProperties.containsKey(language)){
+                return i18nProperties.get(language);
+            }else{
+                loadI18nProperties(language);
+                return i18nProperties.get(language);
+            }
+        }
+
+        private static void loadI18nProperties(String language){
+            var properties = new Properties();
+            try(var inputStream = ErrorResponse.class.getClassLoader().getResourceAsStream("error_msg_" + language + ".properties")) {
+                if(Objects.nonNull(inputStream)) {
+                    properties.load(inputStream);
+                }
+                i18nProperties.put(language,properties);
+            }catch (Exception e){
+                logger.warn(e.getMessage(),e);
+            }
         }
 
         private static void loadProperties(){

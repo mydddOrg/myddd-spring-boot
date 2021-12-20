@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
 
 import java.util.Arrays;
 
@@ -20,8 +21,10 @@ public class DubboRPCExceptionAdvice {
 
     private static final String SPLIT = ",";
 
+    private static final String X_LANGUAGE = "X-LANGUAGE";
+
     @ExceptionHandler(value = ProtobufWrappedException.class)
-    public ResponseEntity<ErrorResponse> protobufWrappedExceptionHandler(ProtobufWrappedException exception){
+    public ResponseEntity<ErrorResponse> protobufWrappedExceptionHandler(ProtobufWrappedException exception, WebRequest request){
         logger.error(exception.getMessage(),exception);
         String exceptionOriginalClassName = exception.getOriginalClassName();
         if(MYDDD_BUSINESS_EXCEPTION.equals(exceptionOriginalClassName)){
@@ -32,6 +35,7 @@ public class DubboRPCExceptionAdvice {
                             .newBuilder()
                             .setErrorCode(params[0])
                             .setParams(Arrays.copyOfRange(params,1,params.length - 1))
+                            .setLanguage(request.getHeader(X_LANGUAGE))
                             .build()
             );
         }
