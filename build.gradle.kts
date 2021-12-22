@@ -7,14 +7,14 @@ plugins {
     id("org.sonarqube") version "3.3"
 }
 
-val projectVersion = "2.0.0-alpha4"
+val projectVersion = "2.0.0-alpha5"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.32"
-extra["spring.boot"] = "2.5.7"
-extra["junit.version"] = "5.8.1"
+extra["spring.boot"] = "2.5.8"
+extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.0.1-jre"
-extra["mockito.version"] = "4.0.0"
+extra["mockito.version"] = "4.1.0"
 extra["dubbo_version"] = "3.0.1"
 extra["h2_version"] = "1.4.200"
 extra["gson.version"] = "2.8.9"
