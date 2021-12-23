@@ -10,5 +10,5 @@ extra["publishJar"] = true
 
 dependencies {
     implementation(project(":myddd-utils"))
-    api("javax.inject:javax.inject:1")
+    api("javax.inject:javax.inject:${rootProject.extra["javax_inject_version"]}")
 }

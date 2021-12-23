@@ -12,11 +12,10 @@ dependencies {
     api(project(":myddd-domain"))
     implementation(project(":myddd-query-channel"))
 
-    api("org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${rootProject.extra["spring.boot"]}")
-    implementation("org.eclipse.persistence:javax.persistence:2.2.1")
-    implementation("javax.inject:javax.inject:1")
+    api("javax.transaction:javax.transaction-api:${rootProject.extra["javax_transaction_api_version"]}")
+    api("javax.persistence:javax.persistence-api:${rootProject.extra["javax_persistence_api_version"]}")
 
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa:${rootProject.extra["spring.boot"]}")
 
     testImplementation(project(":myddd-libs:myddd-distributed-id"))
     testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
