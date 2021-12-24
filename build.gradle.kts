@@ -7,7 +7,7 @@ plugins {
     id("org.sonarqube") version "3.3"
 }
 
-val projectVersion = "2.0.1-alpha"
+val projectVersion = "2.0.1-alpha2"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.32"
@@ -20,9 +20,10 @@ extra["h2_version"] = "1.4.200"
 extra["gson.version"] = "2.8.9"
 extra["commons-lang3.version"] = "3.12.0"
 
-extra["javax_persistence_api_version"] = "2.2"
 extra["javax_inject_version"] = "1"
-extra["javax_transaction_api_version"] = "1.3"
+
+extra["jakarta_persistence_api_version"] = "2.2.3"
+extra["jakarta_transaction_api_version"] = "1.3.3"
 
 allprojects {
     repositories {
@@ -56,8 +57,8 @@ repositories {
 subprojects {
 
     apply(plugin = "java")
-    apply(plugin = "jacoco")
     apply(plugin = "org.sonarqube")
+    apply(plugin = "jacoco")
 
     jacoco {
         toolVersion = "0.8.7"

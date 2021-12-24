@@ -12,8 +12,8 @@ dependencies {
     api(project(":myddd-domain"))
     implementation(project(":myddd-query-channel"))
 
-    api("javax.transaction:javax.transaction-api:${rootProject.extra["javax_transaction_api_version"]}")
-    api("javax.persistence:javax.persistence-api:${rootProject.extra["javax_persistence_api_version"]}")
+    api("jakarta.persistence:jakarta.persistence-api:${rootProject.extra["jakarta_persistence_api_version"]}")
+    api("jakarta.transaction:jakarta.transaction-api:${rootProject.extra["jakarta_transaction_api_version"]}")
 
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${rootProject.extra["spring.boot"]}")
 
