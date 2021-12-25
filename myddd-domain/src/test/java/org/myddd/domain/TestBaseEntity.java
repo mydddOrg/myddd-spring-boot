@@ -37,4 +37,21 @@ class TestBaseEntity extends AbstractTest{
         Assertions.assertEquals(randomId,randomOrganization.getId());
     }
 
+    @Test
+    void testEquals(){
+        var idOne = randomId();
+        var idTwo = randomId();
+        var organization1 = randomOrganizationWithId(idOne);
+        var organization2 = randomOrganizationWithId(idTwo);
+        var organization3 = randomOrganizationWithId(idOne);
+        Assertions.assertEquals(organization1,organization3);
+        Assertions.assertNotEquals(organization1,organization2);
+    }
+
+    protected Organization randomOrganizationWithId(String id){
+        var organization = new Organization();
+        organization.setId(id);
+        return organization;
+    }
+
 }

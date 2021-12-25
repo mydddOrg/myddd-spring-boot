@@ -1,6 +1,7 @@
 package org.myddd.domain;
 
 import javax.persistence.MappedSuperclass;
+import java.util.Objects;
 
 /**
  * 抽象实体类，可作为所有领域实体的基类。
@@ -46,5 +47,18 @@ public abstract class BaseEntity implements Entity {
             repository = InstanceFactory.getInstance(EntityRepository.class);
         }
         return repository;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BaseEntity)) return false;
+        BaseEntity that = (BaseEntity) o;
+        return Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
     }
 }

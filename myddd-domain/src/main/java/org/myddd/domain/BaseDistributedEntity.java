@@ -18,6 +18,7 @@ public class BaseDistributedEntity extends BaseEntity{
     @Version
     @Column(name = "version")
     private int version;
+
     public BaseDistributedEntity(){
         this.id = getIdGenerate().nextId();
     }
@@ -45,20 +46,4 @@ public class BaseDistributedEntity extends BaseEntity{
         return version;
     }
 
-    public void setVersion(int version) {
-        this.version = version;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BaseDistributedEntity)) return false;
-        BaseDistributedEntity that = (BaseDistributedEntity) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }

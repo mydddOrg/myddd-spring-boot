@@ -32,12 +32,24 @@ class TestBaseIDEntity extends AbstractTest{
     @Test
     void testSetId(){
         Employee randomEmployee = randomEmployee();
-
         randomEmployee.setId(1L);
 
         Assertions.assertEquals(1L,randomEmployee.getId());
-
         Assertions.assertThrows(RuntimeException.class, randomEmployee::createEmployee);
     }
 
+    @Test
+    void testEquals(){
+        var employee1 = randomEmployee(1L);
+        var employee2 = randomEmployee(1L);
+        var employee3 = randomEmployee(3L);
+        Assertions.assertEquals(employee1,employee2);
+        Assertions.assertNotEquals(employee1,employee3);
+    }
+
+    private Employee randomEmployee(Long id){
+        var employee = new Employee();
+        employee.setId(id);
+        return employee;
+    }
 }
