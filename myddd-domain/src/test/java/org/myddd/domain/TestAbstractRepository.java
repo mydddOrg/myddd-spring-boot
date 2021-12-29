@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.myddd.domain.mock.User;
 
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import java.util.Set;
 
@@ -24,6 +25,15 @@ class TestAbstractRepository extends AbstractTest{
         Assertions.assertDoesNotThrow(()->{
             repository.batchSaveEntities(Set.of(randomUser(), randomUser(),randomEmployee()));
         });
+    }
+
+    @Test
+    void testBatchUpdateEntities(){
+        var entities = Set.of(randomUser(), randomUser());
+        repository.batchSaveEntities(entities);
+        entities.forEach(it -> it.setName(randomId()));
+
+        Assertions.assertDoesNotThrow(()->repository.batchUpdateEntities(entities));
     }
 
     @Test
