@@ -52,4 +52,10 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository {
         entities.forEach(it -> getEntityManager().persist(it));
         getEntityManager().flush();
     }
+
+    @Override
+    public <T extends Entity> void batchUpdateEntities(Collection<T> entities) {
+        entities.forEach(it -> getEntityManager().persist(it));
+        getEntityManager().flush();
+    }
 }

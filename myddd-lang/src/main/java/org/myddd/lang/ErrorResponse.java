@@ -86,7 +86,7 @@ public class ErrorResponse {
                 msgString = properties.getProperty(errorResponse.errorCode);
             }
             if(Objects.nonNull(msgString)) errorResponse.errorMsg = String.format(msgString, (Object[])params);
-            else if(params.length > 0) errorResponse.errorMsg = String.join(",",params);
+            else if(Objects.nonNull(params) && params.length > 0) errorResponse.errorMsg = String.join(",",params);
             return errorResponse;
         }
 
