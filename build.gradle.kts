@@ -7,7 +7,7 @@ plugins {
     id("org.sonarqube") version "3.3"
 }
 
-val projectVersion = "2.0.1-alpha3"
+val projectVersion = "2.0.1-alpha4"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.32"
@@ -51,6 +51,13 @@ repositories {
     mavenCentral()
 }
 
+
+allprojects {
+    tasks.withType<JavaCompile> {
+        sourceCompatibility = "11"
+        targetCompatibility = "11"
+    }
+}
 
 
 
@@ -136,6 +143,7 @@ subprojects {
                 }
             }
         }
+
     }
 
     //默认测试依赖
