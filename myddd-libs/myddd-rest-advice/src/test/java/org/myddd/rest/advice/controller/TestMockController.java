@@ -37,6 +37,13 @@ class TestMockController extends AbstractControllerTest {
     }
 
     @Test
+    void testBadParameterExceptionWithData(){
+        ResponseEntity<ErrorResponse> response = restTemplate.getForEntity(baseUrl()+"/v1/error/badParameterExceptionWithData",ErrorResponse.class);
+        Assertions.assertEquals(401,response.getStatusCodeValue());
+        Assertions.assertEquals("ERROR",response.getBody().getErrorMsg());
+    }
+
+    @Test
     void testBadParameterExceptionTwo(){
         ResponseEntity<ErrorResponse> response = restTemplate.getForEntity(baseUrl()+"/v1/error/badParameterExceptionTwo",ErrorResponse.class);
         Assertions.assertEquals(401,response.getStatusCodeValue());

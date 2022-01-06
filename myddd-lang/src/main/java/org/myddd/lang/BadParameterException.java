@@ -8,16 +8,14 @@ public class BadParameterException extends RuntimeException{
 
     private final String[] data;
 
-    private static final String ILLEGAL_ARGUMENT = "BAD PARAMETER";
-
     public BadParameterException(){
-        this.errorCode = new ErrorCode() {
-            @Override
-            public String errorCode() {
-                return ILLEGAL_ARGUMENT;
-            }
-        };
+        this.errorCode = BadParameterError.BAD_PARAMETER_ERROR;
         this.data = new String[]{};
+    }
+
+    public BadParameterException(String... data){
+        this.errorCode = BadParameterError.BAD_PARAMETER_ERROR;
+        this.data = Arrays.stream(data).toArray(String[]::new);
     }
 
     public BadParameterException(ErrorCode errorCode){

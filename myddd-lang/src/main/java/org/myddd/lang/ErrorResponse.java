@@ -3,10 +3,7 @@ package org.myddd.lang;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
 
 public class ErrorResponse {
 
@@ -89,6 +86,7 @@ public class ErrorResponse {
                 msgString = properties.getProperty(errorResponse.errorCode);
             }
             if(Objects.nonNull(msgString)) errorResponse.errorMsg = String.format(msgString, (Object[])params);
+            else if(params.length > 0) errorResponse.errorMsg = String.join(",",params);
             return errorResponse;
         }
 

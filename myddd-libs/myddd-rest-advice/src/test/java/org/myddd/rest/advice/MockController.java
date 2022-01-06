@@ -41,6 +41,12 @@ public class MockController {
         throw new BadParameterException();
     }
 
+
+    @GetMapping("/error/badParameterExceptionWithData")
+    ResponseEntity<Object> badParameterExceptionWithData(){
+        throw new BadParameterException("ERROR");
+    }
+
     /**
      * 错误参数异常，指定自己的error code
      */
