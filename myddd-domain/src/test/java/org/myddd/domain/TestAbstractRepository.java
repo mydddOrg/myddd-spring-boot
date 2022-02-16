@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.myddd.domain.mock.User;
 
 import javax.inject.Inject;
-import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import java.util.Set;
 
