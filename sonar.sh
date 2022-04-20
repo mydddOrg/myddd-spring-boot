@@ -8,12 +8,6 @@ if [ "$token" == "" ]; then
 
 fi
 
-check=0
-
-if [ "$check" == "0" ]; then
-    echo "hello"
-fi
-
 ./gradlew test && echo "测试成功" || exit 2
 ./gradlew sonarqube \
   -Dsonar.projectKey=myddd-java \
