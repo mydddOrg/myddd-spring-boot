@@ -1,8 +1,7 @@
 package org.myddd.utils;
 
+import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,9 +154,14 @@ public class Page<T> {
         return pageIndex * pageSize;
     }
 
+
     @Override
     public String toString() {
-        return ToStringBuilder.reflectionToString(this,
-                ToStringStyle.SHORT_PREFIX_STYLE);
+        return MoreObjects.toStringHelper(this)
+                .add("pageSize", pageSize)
+                .add("start", start)
+                .add("data", data)
+                .add("resultCount", resultCount)
+                .toString();
     }
 }

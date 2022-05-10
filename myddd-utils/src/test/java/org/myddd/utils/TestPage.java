@@ -24,7 +24,7 @@ class TestPage {
         Assertions.assertEquals(0,page.getStart());
         Assertions.assertEquals(4,page.getPageSize());
 
-        Assertions.assertEquals("Page[data=[0, 1, 2, 3],pageSize=4,resultCount=100,start=0]",page.toString());
+        Assertions.assertEquals("Page{pageSize=4, start=0, data=[0, 1, 2, 3], resultCount=100}",page.toString());
         Assertions.assertEquals(4,Page.getStartOfPage(1,4));
 
 

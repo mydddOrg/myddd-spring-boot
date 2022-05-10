@@ -3,7 +3,6 @@ package org.myddd.querychannel;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import org.apache.commons.lang3.StringUtils;
 import org.myddd.utils.Page;
 
 import java.util.List;
@@ -173,7 +172,8 @@ public abstract class ChannelQuery<T> {
 
         public String buildQueryStringOfCount() {
             var result = removeOrderByClause();
-            int index = StringUtils.indexOfIgnoreCase(result, " from ");
+
+            int index = result.toLowerCase().indexOf(" from ");
 
             var builder = new StringBuilder("select count(*) ");
 
