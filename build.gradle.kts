@@ -2,16 +2,16 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.6.7"
+    id("org.springframework.boot") version "2.7.0"
     jacoco
     id("org.sonarqube") version "3.3"
 }
 
-val projectVersion = "0.2.2-alpha2"
+val projectVersion = "0.3.0-alpha"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
-extra["spring.boot"] = "2.6.7"
+extra["spring.boot"] = "2.7.0"
 extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.3.1"
