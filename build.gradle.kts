@@ -4,7 +4,7 @@ plugins {
     `maven-publish`
     id("org.springframework.boot") version "2.7.0"
     jacoco
-    id("org.sonarqube") version "3.3"
+    id("org.sonarqube") version "3.4.0.2513"
 }
 
 val projectVersion = "0.3.0-alpha"
@@ -36,18 +36,6 @@ allprojects {
 
         mavenCentral()
     }
-}
-
-repositories {
-
-    maven {
-        setUrl("https://maven.aliyun.com/repository/public/")
-    }
-    maven {
-        setUrl("https://maven.aliyun.com/repository/spring/")
-    }
-
-    mavenCentral()
 }
 
 
@@ -142,7 +130,6 @@ subprojects {
                 }
             }
         }
-
     }
 
     //默认测试依赖
