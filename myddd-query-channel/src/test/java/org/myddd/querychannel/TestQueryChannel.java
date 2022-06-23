@@ -203,6 +203,14 @@ class TestQueryChannel extends AbstractTest{
     }
 
     @Test
+    void testQueryWithOrder(){
+        var userList = queryChannelService.createJpqlQuery("from User Order by name desc", User.class)
+                .setPage(0,10)
+                .pagedList();
+        Assertions.assertFalse(userList.getData().isEmpty());
+    }
+
+    @Test
     void testSingleQuery(){
         User user = queryChannelService.createJpqlQuery("from User",User.class)
                 .setMaxResult(1)
