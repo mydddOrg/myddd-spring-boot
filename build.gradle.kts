@@ -16,7 +16,7 @@ extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.3.1"
 extra["dubbo_version"] = "3.0.1"
-extra["h2_version"] = "1.4.200"
+extra["h2_version"] = "2.1.214"
 extra["commons-lang3.version"] = "3.12.0"
 
 extra["javax_inject_version"] = "1"

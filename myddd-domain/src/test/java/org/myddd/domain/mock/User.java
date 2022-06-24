@@ -6,9 +6,11 @@ import org.myddd.domain.InstanceFactory;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Entity
+@Table(name = "user_")
 public class User extends BaseDistributedEntity {
 
     @Column(name = "user_id",nullable = false)
