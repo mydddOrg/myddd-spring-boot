@@ -187,12 +187,12 @@ public abstract class ChannelQuery<T> {
 
         public String removeOrderByClause() {
             var m = Pattern.compile("order\\s*by[\\w|\\W\\s\\S]*", Pattern.CASE_INSENSITIVE).matcher(queryString);
-            var sb = new StringBuffer();
+            var stringBuffer = new StringBuilder();
             while (m.find()) {
-                m.appendReplacement(sb, "");
+                m.appendReplacement(stringBuffer, "");
             }
-            m.appendTail(sb);
-            return sb.toString();
+            m.appendTail(stringBuffer);
+            return stringBuffer.toString();
         }
 
     }

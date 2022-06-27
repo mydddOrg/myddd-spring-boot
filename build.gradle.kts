@@ -18,9 +18,11 @@ extra["mockito.version"] = "4.3.1"
 extra["dubbo_version"] = "3.0.1"
 extra["h2_version"] = "2.1.214"
 extra["commons-lang3.version"] = "3.12.0"
+extra["gson_version"] = "2.9.0"
+extra["commons-codec"] = "1.13"
+
 
 extra["javax_inject_version"] = "1"
-
 extra["jakarta_persistence_api_version"] = "2.2.3"
 extra["jakarta_transaction_api_version"] = "1.3.3"
 
@@ -140,6 +142,7 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
+        testImplementation(project(":myddd-libs:myddd-distributed-id"))
     }
 }
 
