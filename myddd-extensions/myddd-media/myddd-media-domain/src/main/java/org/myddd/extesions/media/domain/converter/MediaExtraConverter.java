@@ -1,8 +1,8 @@
 package org.myddd.extesions.media.domain.converter;
 
+import org.myddd.domain.InstanceFactory;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
-import org.myddd.domain.InstanceFactory;
 
 import javax.persistence.AttributeConverter;
 import java.util.Objects;

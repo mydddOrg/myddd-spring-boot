@@ -1,9 +1,9 @@
 package org.myddd.extesions.media.gridfs;
 
+import com.google.gson.Gson;
 import org.myddd.extesions.media.MediaNotFoundException;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
-import com.google.gson.Gson;
 
 import javax.inject.Inject;
 import javax.inject.Named;

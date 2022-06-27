@@ -1,11 +1,11 @@
 package org.myddd.extesions.media.local;
 
 import com.google.common.base.Preconditions;
+import com.google.gson.Gson;
 import org.myddd.extesions.media.MediaNotFoundException;
 import org.myddd.extesions.media.MediaUploadFailedException;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
-import com.google.gson.Gson;
 
 import javax.inject.Named;
 import java.io.*;

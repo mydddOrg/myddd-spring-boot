@@ -3,9 +3,9 @@ package org.myddd.extesions.media.aliyun;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.OSSObject;
+import com.google.gson.Gson;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.inject.Named;

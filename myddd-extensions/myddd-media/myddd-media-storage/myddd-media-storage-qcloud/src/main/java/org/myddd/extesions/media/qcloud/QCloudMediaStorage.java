@@ -1,8 +1,5 @@
 package org.myddd.extesions.media.qcloud;
 
-import org.myddd.extesions.media.MediaUploadFailedException;
-import org.myddd.extesions.media.domain.MediaExtra;
-import org.myddd.extesions.media.domain.MediaStorage;
 import com.google.gson.Gson;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
@@ -10,6 +7,9 @@ import com.qcloud.cos.auth.BasicCOSCredentials;
 import com.qcloud.cos.http.HttpProtocol;
 import com.qcloud.cos.model.*;
 import com.qcloud.cos.region.Region;
+import org.myddd.extesions.media.MediaUploadFailedException;
+import org.myddd.extesions.media.domain.MediaExtra;
+import org.myddd.extesions.media.domain.MediaStorage;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.inject.Named;

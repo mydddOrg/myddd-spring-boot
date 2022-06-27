@@ -1,11 +1,10 @@
 package org.myddd.extesions.media.repository;
 
-import org.myddd.extesions.media.domain.Media;
-import org.myddd.extesions.media.domain.MediaRepository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import org.myddd.extesions.media.domain.Media;
+import org.myddd.extesions.media.domain.MediaRepository;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;

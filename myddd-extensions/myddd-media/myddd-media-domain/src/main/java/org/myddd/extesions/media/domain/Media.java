@@ -1,8 +1,8 @@
 package org.myddd.extesions.media.domain;
 
-import org.myddd.extesions.media.domain.converter.MediaExtraConverter;
 import org.myddd.domain.BaseDistributedEntity;
 import org.myddd.domain.InstanceFactory;
+import org.myddd.extesions.media.domain.converter.MediaExtraConverter;
 
 import javax.persistence.*;
 import java.io.InputStream;

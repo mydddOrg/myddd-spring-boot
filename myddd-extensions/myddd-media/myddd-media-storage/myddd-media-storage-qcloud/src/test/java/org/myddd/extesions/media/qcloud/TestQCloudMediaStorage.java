@@ -1,14 +1,14 @@
 package org.myddd.extesions.media.qcloud;
 
-import org.myddd.extesions.media.TestApplication;
-import org.myddd.extesions.media.domain.MediaExtra;
-import org.myddd.extesions.media.domain.MediaStorage;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.myddd.domain.InstanceFactory;
+import org.myddd.extesions.media.TestApplication;
+import org.myddd.extesions.media.domain.MediaExtra;
+import org.myddd.extesions.media.domain.MediaStorage;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
