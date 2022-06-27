@@ -5,6 +5,7 @@ plugins {
     id("org.springframework.boot") version "2.7.0"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
+    id("org.owasp.dependencycheck") version "7.1.1"
 }
 
 val projectVersion = "0.3.0-alpha"
@@ -55,6 +56,7 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "org.sonarqube")
     apply(plugin = "jacoco")
+    apply(plugin = "org.owasp.dependencycheck")
 
     jacoco {
         toolVersion = "0.8.7"
