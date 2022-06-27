@@ -8,7 +8,7 @@ plugins {
     id("org.owasp.dependencycheck") version "7.1.1"
 }
 
-val projectVersion = "0.3.0-alpha"
+val projectVersion = "0.3.0-beta"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
@@ -80,6 +80,10 @@ subprojects {
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()
+    }
+
+    java {
+        withSourcesJar()
     }
 
     afterEvaluate {
