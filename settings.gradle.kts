@@ -36,3 +36,7 @@ include(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-q
 include(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-aliyun")
 include(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-local")
 include(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-gridfs")
+
+
+include(":myddd-extensions:myddd-security:myddd-security-domain")
+include(":myddd-extensions:myddd-security:myddd-security-infra")
