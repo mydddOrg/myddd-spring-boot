@@ -12,8 +12,8 @@ import org.springframework.context.ApplicationContext;
 
 import java.util.UUID;
 
-@SpringBootTest(classes = TestApplication.class)
-public abstract class AbstractTest extends TestApplication {
+@SpringBootTest(classes = ApplicationTest.class)
+public abstract class AbstractTest extends ApplicationTest {
 
     @Autowired
     protected ApplicationContext applicationContext;
