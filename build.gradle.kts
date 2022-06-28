@@ -2,21 +2,20 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.7.0"
+    id("org.springframework.boot") version "2.7.1"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
     id("org.owasp.dependencycheck") version "7.1.1"
 }
 
-val projectVersion = "0.3.0-beta"
+val projectVersion = "0.3.1-BETA"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
-extra["spring.boot"] = "2.7.0"
+extra["spring.boot"] = "2.7.1"
 extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.3.1"
-extra["dubbo_version"] = "3.0.1"
 extra["h2_version"] = "2.1.214"
 extra["commons-lang3.version"] = "3.12.0"
 extra["gson_version"] = "2.9.0"
