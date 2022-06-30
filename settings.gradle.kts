@@ -21,7 +21,6 @@ include(":myddd-query-channel")
 
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
-include(":myddd-libs:myddd-rest-advice-dubbo")
 include(":myddd-libs:myddd-dubbo-filter")
 
 

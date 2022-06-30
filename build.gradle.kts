@@ -8,7 +8,7 @@ plugins {
     id("org.owasp.dependencycheck") version "7.1.1"
 }
 
-val projectVersion = "0.3.1-BETA"
+val projectVersion = "0.3.2-ALPHA"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
