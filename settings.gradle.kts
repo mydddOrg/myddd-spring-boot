@@ -19,10 +19,6 @@ include(":myddd-persistence:myddd-persistence-jpa")
 //一个查询通道的实现
 include(":myddd-query-channel")
 
-
-//plugin
-include(":plugin:dubbo-protobuf-gradle-plugin")
-
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
 include(":myddd-libs:myddd-rest-advice-dubbo")
