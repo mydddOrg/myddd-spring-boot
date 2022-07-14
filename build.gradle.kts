@@ -21,10 +21,13 @@ extra["commons-lang3.version"] = "3.12.0"
 extra["gson_version"] = "2.9.0"
 extra["commons-codec"] = "1.13"
 
-
 extra["javax_inject_version"] = "1"
 extra["jakarta_persistence_api_version"] = "2.2.3"
 extra["jakarta_transaction_api_version"] = "1.3.3"
+
+extra["protobuf-java"] = "3.19.1"
+extra["dubbo-protobuf-gradle-plugin"] = "3.0.9"
+extra["protoc_version"] = "3.19.1"
 
 allprojects {
     repositories {
@@ -37,6 +40,14 @@ allprojects {
         }
 
         mavenCentral()
+
+        maven {
+            setUrl("https://maven.myddd.org/releases/")
+        }
+        maven {
+            setUrl("https://maven.myddd.org/snapshots/")
+        }
+
     }
 }
 
