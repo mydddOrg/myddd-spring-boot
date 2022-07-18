@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
+import org.myddd.test.TestApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.data.mongodb.gridfs.GridFsTemplate;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-@SpringBootTest(classes = ApplicationTest.class)
+@SpringBootTest(classes = TestApplication.class)
 @Disabled("依赖GridFS服务")
 public class GridFSMediaStorageTest {
 

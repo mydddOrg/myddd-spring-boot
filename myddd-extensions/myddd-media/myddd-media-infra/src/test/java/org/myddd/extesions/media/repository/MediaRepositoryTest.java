@@ -3,6 +3,7 @@ package org.myddd.extesions.media.repository;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extesions.media.AbstractTest;
 import org.myddd.extesions.media.domain.Media;
 import org.myddd.extesions.media.domain.MediaRepository;
 
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
-class MediaRepositoryTest extends AbstractIntegrationTest{
+class MediaRepositoryTest extends AbstractTest {
 
     @Inject
     private MediaRepository mediaRepository;

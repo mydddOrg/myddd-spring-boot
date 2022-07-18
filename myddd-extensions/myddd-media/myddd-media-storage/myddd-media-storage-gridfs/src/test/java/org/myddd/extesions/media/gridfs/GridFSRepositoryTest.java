@@ -3,6 +3,7 @@ package org.myddd.extesions.media.gridfs;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.myddd.test.TestApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.inject.Inject;
@@ -12,7 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
-@SpringBootTest(classes = ApplicationTest.class)
+@SpringBootTest(classes = TestApplication.class)
 @Disabled("依赖GridFS服务")
 public class GridFSRepositoryTest {
 

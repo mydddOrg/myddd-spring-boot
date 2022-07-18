@@ -6,10 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.extesions.media.MediaNotFoundException;
-import org.myddd.extesions.media.ApplicationTest;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
 import org.myddd.ioc.spring.SpringInstanceProvider;
+import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -20,8 +20,8 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.UUID;
 
-@SpringBootTest(classes = ApplicationTest.class)
-class LocalMediaStorageTest extends ApplicationTest {
+@SpringBootTest(classes = TestApplication.class)
+class LocalMediaStorageTest {
 
     @Autowired
     private ApplicationContext applicationContext;

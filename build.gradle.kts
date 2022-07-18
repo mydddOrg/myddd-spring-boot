@@ -15,7 +15,7 @@ extra["slf4jVersion"] = "1.7.36"
 extra["spring.boot"] = "2.7.1"
 extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
-extra["mockito.version"] = "4.3.1"
+extra["mockito.version"] = "4.6.1"
 extra["h2_version"] = "2.1.214"
 extra["commons-lang3.version"] = "3.12.0"
 extra["gson_version"] = "2.9.0"
@@ -159,6 +159,8 @@ subprojects {
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
         testImplementation(project(":myddd-libs:myddd-distributed-id"))
+        testImplementation(project(":myddd-test-support"))
+
     }
 }
 

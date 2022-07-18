@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.extensions.media.TestApplication;
 import org.myddd.extensions.media.api.MediaApplication;
 import org.myddd.extensions.media.api.MediaByte;
 import org.myddd.extensions.media.api.MediaDTO;
+import org.myddd.extesions.media.MediaNotFoundException;
 import org.myddd.ioc.spring.SpringInstanceProvider;
+import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +23,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @SpringBootTest(classes = TestApplication.class)
-public class MediaApplicationTest {
+class MediaApplicationTest {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -54,9 +55,12 @@ public class MediaApplicationTest {
     }
 
     private MediaDTO createMedia() throws IOException{
+
+
         String sourcePath = MediaApplicationTest.class.getClassLoader().getResource("my_avatar.png").getPath();
         MediaByte mediaByte = MediaByte.newBuilder().setContent(ByteString.readFrom(new FileInputStream(sourcePath)))
                 .setName("my_avatar.png")
+                .setDigest(UUID.randomUUID().toString())
                 .setSize(new File(sourcePath).length())
                 .build();
 
@@ -65,11 +69,7 @@ public class MediaApplicationTest {
 
     @Test
     void testMediaNotExists(){
-        try{
-            mediaApplication.queryMedia(StringValue.of(UUID.randomUUID().toString()));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+        var randomMediaId = StringValue.of(UUID.randomUUID().toString());
+        Assertions.assertThrows(MediaNotFoundException.class,()->mediaApplication.queryMedia(randomMediaId));
     }
 }

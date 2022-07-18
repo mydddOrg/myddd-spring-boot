@@ -1,4 +1,4 @@
-package org.myddd.extesions.media.repository;
+package org.myddd.extesions.media;
 
 
 import org.junit.jupiter.api.BeforeEach;

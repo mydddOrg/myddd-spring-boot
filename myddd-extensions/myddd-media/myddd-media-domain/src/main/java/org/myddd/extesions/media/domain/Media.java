@@ -1,5 +1,7 @@
 package org.myddd.extesions.media.domain;
 
+import com.google.common.base.Preconditions;
+import com.google.common.base.Strings;
 import org.myddd.domain.BaseDistributedEntity;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.extesions.media.domain.converter.MediaExtraConverter;
@@ -75,6 +77,10 @@ public class Media extends BaseDistributedEntity {
     }
 
     public static Media createMediaFromInput(InputStream inputStream,long size,String name,String digest){
+        Preconditions.checkNotNull(inputStream);
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(name));
+        Preconditions.checkArgument(!Strings.isNullOrEmpty(digest));
+
         MediaExtra mediaExtra = getMediaStorage().uploadToStorage(name,inputStream,digest);
         Media exists = queryMediaByDigest(digest);
         if(Objects.nonNull(exists)){

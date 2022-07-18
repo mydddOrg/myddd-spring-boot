@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.extesions.media.ApplicationTest;
 import org.myddd.ioc.spring.SpringInstanceProvider;
+import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
-@SpringBootTest(classes = ApplicationTest.class)
+@SpringBootTest(classes = TestApplication.class)
 class MediaTest {
 
     @Autowired
