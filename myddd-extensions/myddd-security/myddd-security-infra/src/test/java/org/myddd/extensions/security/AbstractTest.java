@@ -40,7 +40,7 @@ public abstract class AbstractTest extends ApplicationMock {
 
     protected static User randomUser(){
         User user = new User();
-        user.setEmail(randomId() + "@foreverht.com");
+        user.setEmail(randomId() + "@taoofcoding.tech");
         user.setUserId(randomId());
         user.setPassword(randomId());
         user.setName(randomId());

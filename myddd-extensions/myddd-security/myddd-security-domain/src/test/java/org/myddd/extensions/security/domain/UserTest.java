@@ -144,7 +144,7 @@ class UserTest extends AbstractTest {
     }
 
     private User randomRegisterUser(){
-        return mockNotValidUser(randomId() + "@foreverht.com",null);
+        return mockNotValidUser(randomId() + "@taoofcoding.tech",null);
     }
 
     private User randomBadEmailUser(){
@@ -152,7 +152,7 @@ class UserTest extends AbstractTest {
     }
 
     private User randomBadPhoneUser(){
-        return mockNotValidUser(randomId() + "@foreverht.com",randomId());
+        return mockNotValidUser(randomId() + "@taoofcoding.tech",randomId());
     }
 
     private User mockNotValidUser(String email,String phone){
