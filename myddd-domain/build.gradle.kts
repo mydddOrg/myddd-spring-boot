@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    `idea`
+    idea
 }
 
 group = "org.myddd"

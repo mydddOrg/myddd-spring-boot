@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    id("idea")
+    idea
 }
 
 group = "org.myddd.extensions.security"

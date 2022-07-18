@@ -3,7 +3,7 @@ import com.google.protobuf.gradle.*
 plugins {
     `java-library`
     id("com.google.protobuf") version "0.8.19"
-    id("idea")
+    idea
 }
 
 group = "org.myddd.extensions.security"

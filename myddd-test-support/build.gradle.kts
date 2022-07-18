@@ -1,6 +1,6 @@
 plugins {
     `java-library`
-    `idea`
+    idea
 }
 
 group = "org.myddd"
@@ -11,6 +11,8 @@ extra["publishJar"] = true
 dependencies {
     implementation(project(":myddd-ioc:myddd-ioc-api"))
     implementation(project(":myddd-ioc:myddd-ioc-spring"))
+
+    implementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
 
     implementation("org.mockito:mockito-core:${rootProject.extra["mockito.version"]}")
     implementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
