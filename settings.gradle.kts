@@ -1,4 +1,4 @@
-rootProject.name = "myddd-java"
+rootProject.name = "myddd-spring-boot"
 
 //基础依赖层
 include(":myddd-lang")
@@ -19,6 +19,7 @@ include(":myddd-persistence:myddd-persistence-jpa")
 //一个查询通道的实现
 include(":myddd-query-channel")
 
+//支持第三方能力的类库
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
 include(":myddd-libs:myddd-dubbo-filter")

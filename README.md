@@ -1,6 +1,10 @@
-# myddd-java
+# myddd-spring-boot
 
-myddd-java是**myddd**全栈式领域驱动实践的java部分，用于支持基于java及spring boot的后端开发。
+myddd-spring-boot是**myddd**全栈式领域驱动实践的java部分，用于支持基于java及spring boot的后端开发。
+
+***更名通告***
+
+myddd-spring-boot原名称是`myddd-java`,现考虑到同时支持Java与Kotlin两种语言，重新命名为myddd-spring-boot,以更加表意
 
 ## 快速开始
 
@@ -13,14 +17,14 @@ myddd starter已经开放使用，现在开始，你可以访问[myddd starter](
 数年前，我有幸与dddlib开发者杨宇老师一同工作，使用dddlib，讨论DDD，参与dddlib的开发。一晃数年已过。
 我与杨宇老师仍保持密切交流。
 
-**myddd-java**来源于dddlib，无论何时，我都会明白无误的说明这一点。 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD。
+**myddd-spring-boot**来源于dddlib，无论何时，我都会明白无误的说明这一点。 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD。
 
-> 我已经按照自己对ddd的理解，对myddd-java进行了一次较大规模的重构
-> 并且自重构后，已经按照TDD的方式来开发与维护myddd-java,并且加入了SonarQube质量管控，单元测试覆盖率不少于80%。
+> 我已经按照自己对ddd的理解，对myddd-spring-boot进行了一次较大规模的重构
+> 并且自重构后，已经按照TDD的方式来开发与维护myddd-spring-boot,并且加入了SonarQube质量管控，单元测试覆盖率不少于80%。
 
-## myddd-java的原则与宗旨
+## myddd-spring-boot的原则与宗旨
 
-myddd-java始终坚持以下两个原则：
+myddd-spring-boot始终坚持以下两个原则：
 
 1. 最大化的倡导ddd编码风格与模式
 
