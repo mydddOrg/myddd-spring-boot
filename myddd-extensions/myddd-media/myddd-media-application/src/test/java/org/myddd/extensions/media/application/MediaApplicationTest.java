@@ -11,10 +11,13 @@ import org.myddd.extensions.media.api.MediaByte;
 import org.myddd.extensions.media.api.MediaDTO;
 import org.myddd.extesions.media.MediaNotFoundException;
 import org.myddd.ioc.spring.SpringInstanceProvider;
-import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 
 import javax.inject.Inject;
 import java.io.File;
@@ -22,7 +25,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-@SpringBootTest(classes = TestApplication.class)
+@SpringBootTest(classes = MediaApplicationTest.class)
+@SpringBootApplication
+@ComponentScan(basePackages = {"org.myddd"})
+@EntityScan(basePackages = {"org.myddd"})
+@ImportResource({"classpath:META-INF/*.xml"})
 class MediaApplicationTest {
 
     @Autowired

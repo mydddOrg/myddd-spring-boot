@@ -19,12 +19,9 @@ include(":myddd-persistence:myddd-persistence-jpa")
 //一个查询通道的实现
 include(":myddd-query-channel")
 
-include(":myddd-test-support")
-
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
 include(":myddd-libs:myddd-dubbo-filter")
-
 
 //media extension
 include(":myddd-extensions:myddd-media:myddd-media-domain")

@@ -7,20 +7,22 @@ import org.myddd.extensions.security.domain.Role;
 import org.myddd.extensions.security.domain.User;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Random;
 import java.util.UUID;
 
-/**
- * 集成测试基类。
- * 
- * 
- * 
- */
-@SpringBootTest(classes = ApplicationMock.class)
-public abstract class AbstractTest extends ApplicationMock {
+
+@SpringBootApplication
+@ComponentScan(basePackages = {"org.myddd"})
+@EntityScan(basePackages = {"org.myddd"})
+
+@SpringBootTest(classes = AbstractTest.class)
+public abstract class AbstractTest{
 
     @Autowired
     protected ApplicationContext applicationContext;

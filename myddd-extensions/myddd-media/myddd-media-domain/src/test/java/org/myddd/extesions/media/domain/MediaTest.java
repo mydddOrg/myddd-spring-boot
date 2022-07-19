@@ -6,10 +6,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.ioc.spring.SpringInstanceProvider;
-import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ImportResource;
 
 import javax.transaction.Transactional;
 import java.io.File;
@@ -18,7 +21,11 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
-@SpringBootTest(classes = TestApplication.class)
+@SpringBootTest(classes = MediaTest.class)
+@SpringBootApplication
+@ComponentScan(basePackages = {"org.myddd"})
+@EntityScan(basePackages = {"org.myddd"})
+@ImportResource({"classpath:META-INF/*.xml"})
 class MediaTest {
 
     @Autowired

@@ -6,15 +6,21 @@ import org.myddd.domain.IDGenerate;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.extensions.organisation.domain.*;
 import org.myddd.ioc.spring.SpringInstanceProvider;
-import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import javax.inject.Inject;
 import java.util.UUID;
 
-@SpringBootTest(classes = TestApplication.class)
+@SpringBootApplication
+@ComponentScan(basePackages = {"org.myddd"})
+@EntityScan(basePackages = {"org.myddd"})
+
+@SpringBootTest(classes = AbstractTest.class)
 public abstract class AbstractTest {
 
     @Autowired

@@ -9,10 +9,12 @@ import org.myddd.domain.InstanceFactory;
 import org.myddd.extesions.media.domain.MediaExtra;
 import org.myddd.extesions.media.domain.MediaStorage;
 import org.myddd.ioc.spring.SpringInstanceProvider;
-import org.myddd.test.TestApplication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,7 +22,10 @@ import java.io.InputStream;
 import java.util.Objects;
 import java.util.UUID;
 
-@SpringBootTest(classes = TestApplication.class)
+@SpringBootTest(classes = TestAliYunMediaStorage.class)
+@SpringBootApplication
+@ComponentScan(basePackages = {"org.myddd"})
+@EntityScan(basePackages = {"org.myddd"})
 @Disabled
 public class TestAliYunMediaStorage {
 

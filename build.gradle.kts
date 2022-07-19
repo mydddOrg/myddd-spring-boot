@@ -159,8 +159,6 @@ subprojects {
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
         testImplementation(project(":myddd-libs:myddd-distributed-id"))
-        testImplementation(project(":myddd-test-support"))
-
     }
 }
 
