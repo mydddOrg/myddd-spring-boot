@@ -19,3 +19,7 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
     implementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
 }
+
+sonarqube {
+    isSkipProject = true
+}

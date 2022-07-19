@@ -36,7 +36,12 @@ include(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-g
 include(":myddd-extensions:myddd-media:myddd-media-api")
 include(":myddd-extensions:myddd-media:myddd-media-application")
 
+//用户权限模块
 include(":myddd-extensions:myddd-security:myddd-security-domain")
 include(":myddd-extensions:myddd-security:myddd-security-infra")
 include(":myddd-extensions:myddd-security:myddd-security-api")
 include(":myddd-extensions:myddd-security:myddd-security-application")
+
+//组织模块
+include(":myddd-extensions:myddd-organisation:myddd-organisation-domain")
+include(":myddd-extensions:myddd-organisation:myddd-organisation-infra")
