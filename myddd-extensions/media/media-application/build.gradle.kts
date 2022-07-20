@@ -7,8 +7,8 @@ group = "org.myddd.extensions.media"
 version = rootProject.extra["projectVersion"]!!
 
 dependencies {
-    implementation(project(":myddd-extensions:myddd-media:myddd-media-api"))
-    implementation(project(":myddd-extensions:myddd-media:myddd-media-domain"))
+    implementation(project(":myddd-extensions:media:media-api"))
+    implementation(project(":myddd-extensions:media:media-domain"))
 
 
     implementation(project(":myddd-utils"))
@@ -16,6 +16,6 @@ dependencies {
     implementation(project(":myddd-ioc:myddd-ioc-spring"))
     api(project(":myddd-persistence:myddd-persistence-jpa"))
 
-    testImplementation(project(":myddd-extensions:myddd-media:myddd-media-infra"))
-    testImplementation(project(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-local"))
+    testImplementation(project(":myddd-extensions:media:media-infra"))
+    testImplementation(project(":myddd-extensions:media:media-storage:media-storage-local"))
 }

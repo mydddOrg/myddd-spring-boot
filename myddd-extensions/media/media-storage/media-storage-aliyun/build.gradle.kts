@@ -9,7 +9,7 @@ version = rootProject.extra["projectVersion"]!!
 extra["aliyun.sdk.version"] = "3.13.0"
 
 dependencies {
-    implementation(project(":myddd-extensions:myddd-media:myddd-media-domain"))
+    implementation(project(":myddd-extensions:media:media-domain"))
     implementation(project(":myddd-lang"))
 
     implementation("com.google.code.gson:gson:${rootProject.extra["gson_version"]}")

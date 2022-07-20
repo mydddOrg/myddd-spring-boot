@@ -14,7 +14,7 @@ dependencies {
     testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
     testImplementation("commons-codec:commons-codec:${rootProject.extra["commons-codec"]}")
 
-    testImplementation(project(":myddd-extensions:myddd-media:myddd-media-infra"))
-    testImplementation(project(":myddd-extensions:myddd-media:myddd-media-storage:myddd-media-storage-local"))
+    testImplementation(project(":myddd-extensions:media:media-infra"))
+    testImplementation(project(":myddd-extensions:media:media-storage:media-storage-local"))
 
 }

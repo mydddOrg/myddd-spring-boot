@@ -10,5 +10,5 @@ dependencies {
     implementation(project(":myddd-domain"))
     testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
     testImplementation("commons-codec:commons-codec:${rootProject.extra["commons-codec"]}")
-    testImplementation(project(":myddd-extensions:myddd-security:myddd-security-infra"))
+    testImplementation(project(":myddd-extensions:security:security-infra"))
 }

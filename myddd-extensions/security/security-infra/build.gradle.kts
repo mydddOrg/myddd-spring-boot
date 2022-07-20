@@ -8,7 +8,7 @@ version = rootProject.extra["projectVersion"]!!
 
 dependencies {
 
-    implementation(project(":myddd-extensions:myddd-security:myddd-security-domain"))
+    implementation(project(":myddd-extensions:security:security-domain"))
     api(project(":myddd-persistence:myddd-persistence-jpa"))
     implementation(project(":myddd-ioc:myddd-ioc-spring"))
     implementation("commons-codec:commons-codec:${rootProject.extra["commons-codec"]}")
