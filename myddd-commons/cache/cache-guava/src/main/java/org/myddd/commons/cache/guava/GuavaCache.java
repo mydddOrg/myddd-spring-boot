@@ -4,17 +4,18 @@ import com.google.common.base.Preconditions;
 import com.google.common.cache.CacheBuilder;
 import org.myddd.commons.cache.api.Cache;
 
-import javax.inject.Named;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-@Named
 public class GuavaCache<T> implements Cache<T> {
 
-    private com.google.common.cache.Cache<String, T> cache = CacheBuilder.newBuilder()
-            .maximumSize(1000)
-            .expireAfterWrite(10, TimeUnit.MINUTES)
-            .build();
+    private com.google.common.cache.Cache<String, T> cache;
+    public GuavaCache(long duration,long maximumSize){
+        cache = CacheBuilder.newBuilder()
+                .maximumSize(maximumSize)
+                .expireAfterAccess(duration, TimeUnit.MINUTES)
+                .build();
+    }
 
     @Override
     public void put(String key, T value) {

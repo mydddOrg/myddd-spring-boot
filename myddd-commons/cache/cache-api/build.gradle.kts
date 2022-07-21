@@ -10,6 +10,7 @@ extra["publishJar"] = true
 
 
 dependencies {
+    testImplementation(project(":myddd-commons:cache:cache-guava"))
 }
 
 sonarqube {

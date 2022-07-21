@@ -4,14 +4,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.myddd.commons.cache.AbstractTest;
 import org.myddd.commons.cache.api.Cache;
-
-import javax.inject.Inject;
+import org.myddd.commons.cache.api.CacheBuilder;
 
 class GuavaCacheTest extends AbstractTest {
 
-
-    @Inject
-    private Cache<String> cache;
+    private static final Cache<String> cache = CacheBuilder.newBuilder().build(String.class);
 
     @Test
     void putAndGet(){
