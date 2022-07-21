@@ -49,9 +49,13 @@ include(":myddd-extensions:security:security-oauth2:security-oauth2-userservice"
 include(":myddd-extensions:organisation:organisation-domain")
 include(":myddd-extensions:organisation:organisation-infra")
 
-//commons通用模块
+//commons 验证码模块（支持手机验证码与邮箱验证码）
 include(":myddd-commons:verification:verification-api")
 include(":myddd-commons:verification:verification-application")
 include(":myddd-commons:verification:verification-infra:verification-gateway-mock")
 include(":myddd-commons:verification:verification-infra:verification-gateway-email")
 include(":myddd-commons:verification:verification-rest")
+
+//cache缓存通用模块
+include(":myddd-commons:cache:cache-api")
+include(":myddd-commons:cache:cache-guava")
