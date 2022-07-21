@@ -6,7 +6,7 @@ plugins {
 group = "org.myddd.extensions.security"
 version = rootProject.extra["projectVersion"]!!
 
-val oauth2Version = "2.5.2.RELEASE"
+val oauth2Version = "0.1.0-SNAPSHOT"
 
 dependencies {
 
@@ -19,7 +19,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client:${rootProject.extra["spring.boot"]}")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa:${rootProject.extra["spring.boot"]}")
 
-    implementation("org.springframework.security.oauth:spring-security-oauth2:${oauth2Version}")
+    implementation("org.myddd.security:spring-security-oauth2:${oauth2Version}")
 
     implementation(project(":myddd-extensions:security:security-oauth2:security-oauth2-api"))
     implementation(project(":myddd-extensions:security:security-oauth2:security-oauth2-domain"))
