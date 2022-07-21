@@ -10,6 +10,6 @@ fi
 
 ./gradlew test && echo "测试成功" || exit 2
 ./gradlew sonarqube \
-  -Dsonar.projectKey=myddd-java \
+  -Dsonar.projectKey=myddd-spring-boot \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.login=$token

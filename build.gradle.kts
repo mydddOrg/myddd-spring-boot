@@ -152,6 +152,7 @@ subprojects {
 
     //默认测试依赖
     dependencies {
+
         testImplementation("org.mockito:mockito-core:${rootProject.extra["mockito.version"]}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")

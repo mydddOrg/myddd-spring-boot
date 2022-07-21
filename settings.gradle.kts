@@ -43,3 +43,10 @@ include(":myddd-extensions:security:security-application")
 //组织模块
 include(":myddd-extensions:organisation:organisation-domain")
 include(":myddd-extensions:organisation:organisation-infra")
+
+//commons通用模块
+include(":myddd-commons:verification:verification-api")
+include(":myddd-commons:verification:verification-application")
+include(":myddd-commons:verification:verification-infra:verification-gateway-mock")
+include(":myddd-commons:verification:verification-infra:verification-gateway-email")
+include(":myddd-commons:verification:verification-rest")
