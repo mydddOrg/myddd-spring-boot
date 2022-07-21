@@ -39,6 +39,11 @@ include(":myddd-extensions:security:security-domain")
 include(":myddd-extensions:security:security-infra")
 include(":myddd-extensions:security:security-api")
 include(":myddd-extensions:security:security-application")
+//Spring Security + Spring OAuth 2
+include(":myddd-extensions:security:security-oauth2:security-oauth2-api")
+include(":myddd-extensions:security:security-oauth2:security-oauth2-core")
+include(":myddd-extensions:security:security-oauth2:security-oauth2-domain")
+include(":myddd-extensions:security:security-oauth2:security-oauth2-userservice")
 
 //组织模块
 include(":myddd-extensions:organisation:organisation-domain")
