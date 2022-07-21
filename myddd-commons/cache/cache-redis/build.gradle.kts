@@ -10,6 +10,7 @@ extra["publishJar"] = true
 
 
 dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-data-redis:${rootProject.extra["spring.boot"]}")
 }
 
 sonarqube {
