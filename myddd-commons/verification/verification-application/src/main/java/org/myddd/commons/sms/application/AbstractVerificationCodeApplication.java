@@ -10,6 +10,7 @@ import java.util.Random;
 
 public abstract class AbstractVerificationCodeApplication {
 
+    private static final Random random  = new Random();
 
     private static final Map<String,String> cache = new HashMap<>();
 
@@ -43,7 +44,7 @@ public abstract class AbstractVerificationCodeApplication {
     protected String randomCode(){
         var min = 100000;
         var max = 999999;
-        return String.valueOf(new Random().nextInt(max - min) + min);
+        return String.valueOf(random.nextInt(max - min) + min);
     }
 
 }
