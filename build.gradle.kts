@@ -2,17 +2,16 @@ plugins {
     java
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.7.1"
+    id("org.springframework.boot") version "2.7.2"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
-    id("org.owasp.dependencycheck") version "7.1.1"
 }
 
 val projectVersion = "0.3.3-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
-extra["spring.boot"] = "2.7.1"
+extra["spring.boot"] = "2.7.2"
 extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.6.1"
@@ -66,7 +65,6 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "org.sonarqube")
     apply(plugin = "jacoco")
-    apply(plugin = "org.owasp.dependencycheck")
 
     jacoco {
         toolVersion = "0.8.7"

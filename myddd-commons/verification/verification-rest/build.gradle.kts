@@ -17,4 +17,5 @@ dependencies {
 
     testImplementation(project(":myddd-commons:verification:verification-application"))
     testImplementation(project(":myddd-commons:verification:verification-infra:verification-gateway-mock"))
+    testImplementation(project(":myddd-commons:cache:cache-guava"))
 }
