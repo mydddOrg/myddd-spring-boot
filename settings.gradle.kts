@@ -60,4 +60,3 @@ include(":myddd-commons:verification:verification-rest")
 include(":myddd-commons:cache:cache-api")
 include(":myddd-commons:cache:cache-guava")
 include(":myddd-commons:cache:cache-redis")
-

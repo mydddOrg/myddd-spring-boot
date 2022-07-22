@@ -7,6 +7,8 @@ import org.myddd.extensions.media.api.MediaByte;
 import org.myddd.extensions.media.api.MediaDTO;
 import org.myddd.extesions.media.MediaNotFoundException;
 import org.myddd.extesions.media.domain.Media;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -15,6 +17,7 @@ import java.util.Objects;
 
 public class MediaApplicationImpl implements MediaApplication {
 
+    private static final Logger logger = LoggerFactory.getLogger(MediaApplication.class);
     @Override
     public MediaByte queryMedia(StringValue request) {
         Media media = Media.queryMediaByMediaId(request.getValue());
@@ -24,7 +27,7 @@ public class MediaApplicationImpl implements MediaApplication {
         try(InputStream inputStream = media.getMediaInputStream()) {
             return MediaByte.newBuilder().setSize(media.getSize()).setName(media.getName()).setContent(ByteString.readFrom(inputStream)).build();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.debug(e.getLocalizedMessage(),e);
         }
         return null;
     }

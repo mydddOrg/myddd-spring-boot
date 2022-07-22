@@ -9,6 +9,7 @@ version = rootProject.extra["projectVersion"]!!
 
 dependencies {
     api(project(":myddd-commons:verification:verification-api"))
+    implementation(project(":myddd-commons:cache:cache-api"))
 
     implementation(project(":myddd-lang"))
     api(project(":myddd-ioc:myddd-ioc-api"))
@@ -16,4 +17,5 @@ dependencies {
     api("org.springframework.boot:spring-boot-starter:${rootProject.extra["spring.boot"]}")
 
     testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
+    testImplementation(project(":myddd-commons:cache:cache-guava"))
 }

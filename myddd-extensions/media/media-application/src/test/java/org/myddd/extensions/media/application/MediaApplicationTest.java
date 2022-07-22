@@ -49,34 +49,55 @@ class MediaApplicationTest {
     }
 
     @Test
-    void testCreateMedia() throws IOException {
+    void testCreateMedia() {
         MediaDTO mediaDTO = createMedia();
         Assertions.assertNotNull(mediaDTO);
     }
 
     @Test
-    void testQueryMedia() throws IOException{
+    void queryMedia() {
         MediaDTO mediaDTO = createMedia();
         MediaByte mediaByte = mediaApplication.queryMedia(StringValue.of(mediaDTO.getMediaId()));
         Assertions.assertNotNull(mediaByte);
     }
 
-    private MediaDTO createMedia() throws IOException{
 
-
-        String sourcePath = MediaApplicationTest.class.getClassLoader().getResource("my_avatar.png").getPath();
-        MediaByte mediaByte = MediaByte.newBuilder().setContent(ByteString.readFrom(new FileInputStream(sourcePath)))
-                .setName("my_avatar.png")
-                .setDigest(UUID.randomUUID().toString())
-                .setSize(new File(sourcePath).length())
-                .build();
-
-        return mediaApplication.createMedia(mediaByte);
+    @Test
+    void mediaNotExists(){
+        var randomMediaId = StringValue.of(UUID.randomUUID().toString());
+        Assertions.assertThrows(MediaNotFoundException.class,()->mediaApplication.queryMedia(randomMediaId));
     }
 
     @Test
-    void testMediaNotExists(){
-        var randomMediaId = StringValue.of(UUID.randomUUID().toString());
-        Assertions.assertThrows(MediaNotFoundException.class,()->mediaApplication.queryMedia(randomMediaId));
+    void queryMediaByDigest(){
+        Assertions.assertNull(mediaApplication.queryMediaIdByDigest(StringValue.of(randomUUIDString())));
+
+        var digest = randomUUIDString();
+        createMedia(digest);
+        Assertions.assertNotNull(mediaApplication.queryMediaIdByDigest(StringValue.of(digest)));
+    }
+
+    private String randomUUIDString(){
+        return UUID.randomUUID().toString().replaceAll("-","");
+    }
+
+    private MediaDTO createMedia(){
+        return createMedia(randomUUIDString());
+    }
+
+    private MediaDTO createMedia(String digest){
+        try {
+            String sourcePath = MediaApplicationTest.class.getClassLoader().getResource("my_avatar.png").getPath();
+            MediaByte mediaByte = MediaByte.newBuilder().setContent(ByteString.readFrom(new FileInputStream(sourcePath)))
+                    .setName("my_avatar.png")
+                    .setDigest(digest)
+                    .setSize(new File(sourcePath).length())
+                    .build();
+
+            return mediaApplication.createMedia(mediaByte);
+        }catch (IOException e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package org.myddd.commons.sms.application;
 
+import org.myddd.commons.cache.api.Cache;
+import org.myddd.commons.cache.api.CacheBuilder;
 import org.myddd.commons.sms.InvalidVerificationCodeException;
 
 import java.time.*;
@@ -12,11 +14,11 @@ public abstract class AbstractVerificationCodeApplication {
 
     private static final Random random  = new Random();
 
-    private static final Map<String,String> cache = new HashMap<>();
-
     protected static final String VERIFICATION_PREFIX = "VERIFICATION_%s";
 
     private static final DateTimeFormatter CURRENT_DAY_FORMAT = DateTimeFormatter.ofPattern("yyyyMM");
+
+    private static final Cache<String> cache = CacheBuilder.newBuilder().build(String.class);
 
     protected void cacheValidCode(String key,String code){
         cache.put(String.format(VERIFICATION_PREFIX,key),code);

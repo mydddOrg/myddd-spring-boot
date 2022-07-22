@@ -29,23 +29,29 @@ public class CacheBuilder {
     }
 
     public <T> Cache<T> build(Class<T> tClass){
-        Class<Cache<T>> cacheClass = (Class<Cache<T>>) queryCacheExists();
-        if(Objects.isNull(cacheClass))throw new CacheImplementNotExistsException();
+        assert Objects.nonNull(tClass);
 
+        Class<Cache<T>> cacheClass = (Class<Cache<T>>) queryCacheExists();
         try {
-            Constructor ct
-                    = cacheClass.getConstructor(new Class[]{Long.TYPE,Long.TYPE});
-            return (Cache<T>) ct.newInstance(maximumSize,expires);
+            Constructor<Cache<T>> ct = cacheClass.getConstructor(Long.TYPE,Long.TYPE);
+            return ct.newInstance(maximumSize,expires);
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-            throw new CacheImplementNotExistsException();
+            throw new CacheNotExistsException();
         }
     }
 
     private Class<?> queryCacheExists(){
-        Class<?> cacheClass = null;
-        try {cacheClass = Class.forName(GUAVA_CACHE_CLASS);}catch (ClassNotFoundException ignored){}
+        Class<?> cacheClass = queryGuavaCache();
+
+        if(Objects.isNull(cacheClass))throw new CacheNotExistsException();
         return cacheClass;
     }
 
-
+    private Class<?> queryGuavaCache(){
+        try {
+            return Class.forName(GUAVA_CACHE_CLASS);
+        }catch (ClassNotFoundException e){
+            return  null;
+        }
+    }
 }
