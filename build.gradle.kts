@@ -1,5 +1,8 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     java
+    kotlin("jvm") version "1.7.10"
     `java-library`
     `maven-publish`
     id("org.springframework.boot") version "2.7.2"
@@ -168,6 +171,10 @@ tasks.bootJar {
 
 tasks.jar {
     enabled = true
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "11"
 }
 
 group = "org.myddd"
