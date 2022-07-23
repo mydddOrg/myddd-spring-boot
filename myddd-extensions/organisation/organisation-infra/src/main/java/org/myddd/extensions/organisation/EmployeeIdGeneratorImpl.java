@@ -5,6 +5,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.myddd.extensions.organisation.domain.EmployeeIdGenerator;
 
 import javax.inject.Named;
+import java.security.SecureRandom;
 
 @Named
 public class EmployeeIdGeneratorImpl implements EmployeeIdGenerator {
@@ -13,7 +14,7 @@ public class EmployeeIdGeneratorImpl implements EmployeeIdGenerator {
 
     @Override
     public String randomEmployeeId(int length) {
-        return RandomStringUtils.randomAlphanumeric(length);
+        return RandomStringUtils.random(length, 0, 0, true, true, null, new SecureRandom());
     }
 
     @Override
@@ -23,6 +24,7 @@ public class EmployeeIdGeneratorImpl implements EmployeeIdGenerator {
 
     @Override
     public String randomEmployeeId(String prefix) {
-        return String.format("%s-%s",prefix,RandomStringUtils.randomAlphanumeric(DEFAULT_LENGTH));
+        var randomString = randomEmployeeId(DEFAULT_LENGTH);
+        return String.format("%s-%s",prefix,randomString);
     }
 }

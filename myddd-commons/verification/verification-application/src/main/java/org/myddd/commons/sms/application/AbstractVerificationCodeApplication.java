@@ -4,15 +4,14 @@ import org.myddd.commons.cache.api.Cache;
 import org.myddd.commons.cache.api.CacheBuilder;
 import org.myddd.commons.sms.InvalidVerificationCodeException;
 
+import java.security.SecureRandom;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public abstract class AbstractVerificationCodeApplication {
 
-    private static final Random random  = new Random();
+    private static final Random random  = new SecureRandom();
 
     protected static final String VERIFICATION_PREFIX = "VERIFICATION_%s";
 

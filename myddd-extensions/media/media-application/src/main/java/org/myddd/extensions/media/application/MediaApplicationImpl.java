@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class MediaApplicationImpl implements MediaApplication {
 
-    private static final Logger logger = LoggerFactory.getLogger(MediaApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(MediaApplicationImpl.class);
     @Override
     public MediaByte queryMedia(StringValue request) {
         Media media = Media.queryMediaByMediaId(request.getValue());
