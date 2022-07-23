@@ -3,7 +3,7 @@
 myddd-spring-boot是**myddd**全栈式领域驱动的后端开发框架，用于支持基于spring boot的后端开发，支持Java以及Kotlin两种语言。
 
 ***总览图***
-![](https://images.taoofcoding.tech/2022/07/myddd-spring-boot-20220722.png)
+![](https://images.taoofcoding.tech/2022/07/myddd-spring-boot-2.png)
 
 ***更名通告***
 myddd-spring-boot原名称是`myddd-java`,现考虑到同时支持Java与Kotlin两种语言，重新命名为myddd-spring-boot,以更加表意
@@ -19,7 +19,7 @@ myddd starter已经开放使用，现在开始，你可以访问[myddd starter](
 如果你想直接查看示例项目，可以访问如下：
 
 * Java语言示例项目： 直接查看源码中的myddd-extensions目录下的`myddd-media`子项目，这是一个媒体实现模块，功能较为完整，使用的Java。
-* Kotlin示例项目：提供了一个示例项目，直接访问[kotlin-ddd-sample](https://github.com/mydddOrg/kotlin-ddd-sample)就可以
+* Kotlin示例项目：参阅samples目录上`kotlin-ddd`项目
 
 ## 致敬
 
@@ -47,7 +47,9 @@ myddd-spring-boot始终坚持以下两个原则：
 
 当前主干的SonarQube的质量状态为:
 
-![SonarQube质量报告](https://images.taoofcoding.tech/2021/11/sonar-data-of-myddd-java-2.0.0-snapshot.png)
+**数据时间为：2022/07/23**
+
+![SonarQube质量报告](https://images.taoofcoding.tech/sonar/sonar-data-of-myddd-20220723.png)
 
 
 ## 为什么叫myddd
