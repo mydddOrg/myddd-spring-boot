@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.provider.client.ClientCredentialsToke
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeTokenGranter;
 import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.implicit.ImplicitTokenGranter;
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter;
 import org.springframework.security.oauth2.provider.refresh.RefreshTokenGranter;
@@ -88,7 +89,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     private AuthorizationCodeServices authorizationCodeServices() {
-        return new InMemoryAuthorizationCodeServices();  //使用默认
+        return new JdbcAuthorizationCodeServices(dataSource);  //使用默认
     }
 
     private OAuth2RequestFactory requestFactory() {
