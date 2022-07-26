@@ -5,8 +5,8 @@ import org.myddd.utils.Page
 
 interface UserApplication {
 
-    suspend fun createUser(userDTO: UserDTO):UserDTO?
+    fun createUser(userDTO: UserDTO):UserDTO?
 
-    suspend fun pageSearchUser(search: String,pageIndex:Int,pageSize:Int = 50):Page<UserDTO>
+    fun pageSearchUser(search: String,pageIndex:Int,pageSize:Int = 50):Page<UserDTO>
 
 }

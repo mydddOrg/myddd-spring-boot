@@ -154,7 +154,6 @@ subprojects {
 
     //默认测试依赖
     dependencies {
-
         testImplementation("org.mockito:mockito-core:${rootProject.extra["mockito.version"]}")
         testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
@@ -162,10 +161,6 @@ subprojects {
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
         testImplementation(project(":myddd-libs:myddd-distributed-id"))
-
-        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["kotlinx-coroutines"]}")
-        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:${rootProject.extra["kotlinx-coroutines"]}")
-        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:${rootProject.extra["kotlinx-coroutines"]}")
     }
 }
 

@@ -18,13 +18,13 @@ class UserController {
     lateinit var userApplication: UserApplication
 
     @PostMapping("/users")
-    suspend fun createUser(@RequestBody userDTO: UserDTO): ResponseEntity<UserDTO> {
+    fun createUser(@RequestBody userDTO: UserDTO): ResponseEntity<UserDTO> {
         val created = userApplication.createUser(userDTO)
         return ResponseEntity.ok(created)
     }
 
     @GetMapping("/users")
-    suspend fun searchUser(@RequestParam(defaultValue = "") search:String,@RequestParam(defaultValue = "0") start:Int, @RequestParam(defaultValue = "100") pageSize:Int):ResponseEntity<Page<UserDTO>>{
+    fun searchUser(@RequestParam(defaultValue = "") search:String,@RequestParam(defaultValue = "0") start:Int, @RequestParam(defaultValue = "100") pageSize:Int):ResponseEntity<Page<UserDTO>>{
         val queryResult = userApplication.pageSearchUser(search,start,pageSize)
         return ResponseEntity.ok(queryResult)
     }

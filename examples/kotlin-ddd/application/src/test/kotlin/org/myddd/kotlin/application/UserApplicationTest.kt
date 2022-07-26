@@ -1,6 +1,5 @@
 package org.myddd.kotlin.application
 
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.myddd.domain.InstanceFactory
@@ -12,13 +11,13 @@ class UserApplicationTest:AbstractTest() {
     private val userApplication by lazy { InstanceFactory.getInstance(UserApplication::class.java) }
 
     @Test
-    fun createUser() = runBlocking {
+    fun createUser() {
         val createdUserDTO = userApplication.createUser(randomUserDTO())
         Assertions.assertNotNull(createdUserDTO)
     }
 
     @Test
-    fun pageSearch() = runBlocking {
+    fun pageSearch() {
         Assertions.assertTrue(userApplication.pageSearchUser(randomString(),0).data.isEmpty())
 
         val createdUserDTO = userApplication.createUser(randomUserDTO())

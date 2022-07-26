@@ -30,10 +30,6 @@ dependencies {
     implementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.0.6")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["kotlinx-coroutines"]}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:${rootProject.extra["kotlinx-coroutines"]}")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:${rootProject.extra["kotlinx-coroutines"]}")
-
     testImplementation("org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final")
 }
 

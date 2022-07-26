@@ -17,12 +17,13 @@ open class UserApplicationImpl:UserApplication {
     private val queryChannelService by lazy { InstanceFactory.getInstance(QueryChannelService::class.java) }
 
     @Transactional
-    override suspend fun createUser(userDTO: UserDTO): UserDTO? {
+    override fun createUser(userDTO: UserDTO): UserDTO? {
         val user = userDTO.toUser()
         return user.createUser()?.toDTO()
     }
 
-    override suspend fun pageSearchUser(search: String, pageIndex: Int, pageSize: Int): Page<UserDTO> {
+    override fun pageSearchUser(search: String, pageIndex: Int, pageSize: Int): Page<UserDTO> {
+
         val pageQuery = queryChannelService
             .createJpqlQuery("from User where name like :name",User::class.java)
             .addParameter("name","%$search%")
