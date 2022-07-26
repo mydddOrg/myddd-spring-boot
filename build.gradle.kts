@@ -30,6 +30,7 @@ extra["jakarta_transaction_api_version"] = "1.3.3"
 extra["protobuf-java"] = "3.19.1"
 extra["dubbo-protobuf-gradle-plugin"] = "3.0.9"
 extra["protoc_version"] = "3.19.1"
+extra["kotlinx-coroutines"] = "1.6.4"
 
 allprojects {
     repositories {
@@ -161,6 +162,10 @@ subprojects {
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
         testImplementation(project(":myddd-libs:myddd-distributed-id"))
+
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${rootProject.extra["kotlinx-coroutines"]}")
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:${rootProject.extra["kotlinx-coroutines"]}")
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:${rootProject.extra["kotlinx-coroutines"]}")
     }
 }
 

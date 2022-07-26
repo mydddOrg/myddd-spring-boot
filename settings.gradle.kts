@@ -61,3 +61,16 @@ include(":myddd-commons:cache:cache-api")
 include(":myddd-commons:cache:cache-guava")
 include(":myddd-commons:cache:cache-redis")
 
+
+//示例项目
+include(":examples:kotlin-ddd:api")
+include(":examples:kotlin-ddd:application")
+include(":examples:kotlin-ddd:domain")
+include(":examples:kotlin-ddd:infra")
+include(":examples:kotlin-ddd:bootstrap")
+
+include(":examples:java-ddd:api")
+include(":examples:java-ddd:application")
+include(":examples:java-ddd:domain")
+include(":examples:java-ddd:infra")
+include(":examples:java-ddd:bootstrap")

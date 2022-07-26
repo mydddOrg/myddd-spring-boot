@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.provider.*;
 import org.springframework.security.oauth2.provider.client.ClientCredentialsTokenGranter;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeTokenGranter;
-import org.springframework.security.oauth2.provider.code.InMemoryAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.implicit.ImplicitTokenGranter;
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter;
@@ -102,7 +101,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         AuthorizationCodeServices authorizationCodeServices = authorizationCodeServices();
         OAuth2RequestFactory requestFactory = requestFactory();
 
-        List<TokenGranter> tokenGranters = new ArrayList<TokenGranter>();
+        List<TokenGranter> tokenGranters = new ArrayList<>();
         tokenGranters.add(new AuthorizationCodeTokenGranter(tokenServices,
                 authorizationCodeServices, clientDetails, requestFactory));
         tokenGranters.add(new RefreshTokenGranter(tokenServices, clientDetails, requestFactory));
@@ -123,7 +122,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      * 通过 tokenGranter 塞进去的就是它了
      */
     private TokenGranter tokenGranter() {
-        TokenGranter tokenGranter = new TokenGranter() {
+        return new TokenGranter() {
             private CompositeTokenGranter delegate;
 
             @Override
@@ -134,7 +133,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 return delegate.grant(grantType, tokenRequest);
             }
         };
-        return tokenGranter;
     }
 
     @Override

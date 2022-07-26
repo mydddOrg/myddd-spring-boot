@@ -18,8 +18,8 @@ myddd starter已经开放使用，现在开始，你可以访问[myddd starter](
 
 如果你想直接查看示例项目，可以访问如下：
 
-* Java语言示例项目： 直接查看源码中的myddd-extensions目录下的`myddd-media`子项目，这是一个媒体实现模块，功能较为完整，使用的Java。
-* Kotlin示例项目：[kotlin-ddd-sample](https://github.com/mydddOrg/kotlin-ddd-sample)
+* Java语言示例项目： 位于examples目录下的`java-ddd`
+* Kotlin示例项目：位于examples目录下的`kotlin-ddd`
 
 ## 致敬
 
