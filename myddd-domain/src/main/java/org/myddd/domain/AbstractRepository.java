@@ -17,4 +17,6 @@ public interface AbstractRepository {
 
     <T extends Entity> void batchUpdateEntities(Collection<T> entities);
 
+    void flush();
+
 }

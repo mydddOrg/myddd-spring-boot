@@ -29,9 +29,7 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository {
     }
 
     public <T extends Entity> T save(T entity){
-        var saved =  getEntityRepository().save(entity);
-        getEntityManager().flush();
-        return saved;
+        return getEntityRepository().save(entity);
     }
 
     public <T extends Entity> T get(Class<T> clazz, Serializable id){
@@ -44,18 +42,20 @@ public abstract class AbstractRepositoryJPA implements AbstractRepository {
 
     public void remove(Entity entity){
         getEntityManager().remove(entity);
-        getEntityManager().flush();
     }
 
     @Override
     public <T extends Entity> void batchSaveEntities(Collection<T> entities) {
         entities.forEach(it -> getEntityManager().persist(it));
-        getEntityManager().flush();
     }
 
     @Override
     public <T extends Entity> void batchUpdateEntities(Collection<T> entities) {
         entities.forEach(it -> getEntityManager().persist(it));
+    }
+
+    @Override
+    public void flush() {
         getEntityManager().flush();
     }
 }

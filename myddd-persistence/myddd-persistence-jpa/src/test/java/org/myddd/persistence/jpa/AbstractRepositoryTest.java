@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import org.myddd.domain.AbstractRepository;
 import org.myddd.persistence.AbstractTest;
 import org.myddd.persistence.mock.User;
+import org.springframework.test.annotation.Rollback;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 class AbstractRepositoryTest extends AbstractTest {
@@ -26,16 +28,6 @@ class AbstractRepositoryTest extends AbstractTest {
         User user = randomUser();
         User created = repository.save(user);
         Assertions.assertNotNull(created);
-    }
-
-    @Test
-    void testUniqueSaveEntity(){
-        User created = repository.save(randomUser());
-        Assertions.assertNotNull(created);
-
-        User notUniqueUser = randomUser();
-        notUniqueUser.setUserId(created.getUserId());
-        Assertions.assertThrows(PersistenceException.class,notUniqueUser::createLocalUser);
     }
 
     @Test
@@ -68,5 +60,14 @@ class AbstractRepositoryTest extends AbstractTest {
         User created = repository.save(randomUser());
         exists = repository.exists(User.class,created.getId());
         Assertions.assertTrue(exists);
+    }
+
+    @Test
+    void batchSave(){
+        var batchUsers = List.of(randomUser(),randomUser());
+        Assertions.assertDoesNotThrow(() -> repository.batchSaveEntities(batchUsers));
+
+        var notValidBatchUsers = List.of(randomUser(),new User());
+        Assertions.assertThrows(PersistenceException.class,()-> repository.batchSaveEntities(notValidBatchUsers));
     }
 }
