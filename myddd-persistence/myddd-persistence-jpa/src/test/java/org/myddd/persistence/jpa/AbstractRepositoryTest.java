@@ -6,6 +6,7 @@ import org.myddd.domain.AbstractRepository;
 import org.myddd.persistence.AbstractTest;
 import org.myddd.persistence.mock.User;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Propagation;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;
@@ -28,6 +29,16 @@ class AbstractRepositoryTest extends AbstractTest {
         User user = randomUser();
         User created = repository.save(user);
         Assertions.assertNotNull(created);
+    }
+
+    @Test
+    void testUniqueSaveEntity(){
+        var created = randomUser().createLocalUser();
+
+        User notUniqueUser = randomUser();
+        notUniqueUser.setUserId(created.getUserId());
+        notUniqueUser.createLocalUser();
+        Assertions.assertThrows(PersistenceException.class,()->repository.flush());
     }
 
     @Test

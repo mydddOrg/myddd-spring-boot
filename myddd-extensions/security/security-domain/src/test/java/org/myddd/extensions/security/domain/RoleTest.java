@@ -7,11 +7,15 @@ import org.myddd.extensions.security.RoleIdEmptyException;
 import org.myddd.extensions.security.RoleNameEmptyException;
 import org.myddd.extensions.security.RoleNotFoundException;
 
+import javax.inject.Inject;
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 
 @Transactional
 class RoleTest extends AbstractTest {
+
+    @Inject
+    private RoleRepository repository;
 
     @Test
     void testEquals(){
@@ -47,7 +51,6 @@ class RoleTest extends AbstractTest {
         Assertions.assertNotNull(query);
     }
 
-
     @Test
     void testUniqueRoleId(){
         Role created = randomRole().createRole();
@@ -57,7 +60,9 @@ class RoleTest extends AbstractTest {
         uniqueRoleIdRole.setRoleId(created.getRoleId());
         uniqueRoleIdRole.setName(randomId());
 
-        Assertions.assertThrows(PersistenceException.class, uniqueRoleIdRole::createRole);
+        var anotherCreated = uniqueRoleIdRole.createRole();
+
+        Assertions.assertThrows(PersistenceException.class, () -> repository.flush());
     }
 
     @Test
