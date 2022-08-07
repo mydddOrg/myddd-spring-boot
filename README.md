@@ -3,7 +3,7 @@
 myddd-spring-boot是**myddd**全栈式领域驱动的后端开发框架，用于支持基于spring boot的后端开发，支持Java以及Kotlin两种语言。
 
 ***总览图***
-![](https://images.taoofcoding.tech/2022/07/myddd-spring-boot-2.png)
+![](https://images.taoofcoding.tech/2022/08/myddd-spring-boot-2022-08-06.png)
 
 ***更名通告***
 myddd-spring-boot原名称是`myddd-java`,现考虑到同时支持Java与Kotlin两种语言，重新命名为myddd-spring-boot,以更加表意
