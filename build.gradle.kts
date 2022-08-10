@@ -32,6 +32,11 @@ extra["dubbo-protobuf-gradle-plugin"] = "3.0.9"
 extra["protoc_version"] = "3.19.1"
 extra["kotlinx-coroutines"] = "1.6.4"
 
+extra["annotation-api"] = "1.3.2"
+extra["grpc-version"] = "1.48.1"
+extra["protobuf"] = "3.21.4"
+extra["myddd-grpc-plugin"] = "0.1.0"
+
 allprojects {
     repositories {
 

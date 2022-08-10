@@ -19,6 +19,9 @@ include(":myddd-persistence:myddd-persistence-jpa")
 //一个查询通道的实现
 include(":myddd-query-channel")
 
+//myddd对GRPC的支持
+include(":myddd-grpc")
+
 //支持第三方能力的类库
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
