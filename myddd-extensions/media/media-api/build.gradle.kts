@@ -10,28 +10,31 @@ group = "org.myddd.extensions.media"
 version = rootProject.extra["projectVersion"]!!
 
 dependencies {
-    api("com.google.protobuf:protobuf-java:${rootProject.extra["protoc_version"]}")
-    api("javax.annotation:javax.annotation-api:1.3.2")
-    implementation(project(":myddd-utils"))
+    api(project(":myddd-grpc"))
 }
 
 sourceSets.main {
     proto.srcDir("src/main/protobuf")
+    java.srcDir("build/generated/proto/main/myddd-grpc")
 }
 
 protobuf {
     protoc {
-        artifact = "com.google.protobuf:protoc:${rootProject.extra["protobuf-java"]}"
+        artifact = "com.google.protobuf:protoc:${rootProject.extra["protobuf"]}"
     }
     plugins {
-        id("myddd-dubbo") {
-            artifact = "org.myddd.plugin:dubbo-protobuf-gradle-plugin:${rootProject.extra["dubbo-protobuf-gradle-plugin"]}"
+        id("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:${rootProject.extra["grpc-version"]}"
+        }
+        id("myddd-grpc") {
+            artifact = "org.myddd.plugin:myddd-grpc-gradle-plugin:${rootProject.extra["myddd-grpc-plugin"]}"
         }
     }
     generateProtoTasks {
-        ofSourceSet("main").forEach {
+        all().forEach {
             it.plugins {
-                id("myddd-dubbo")
+                id("grpc")
+                id("myddd-grpc")
             }
         }
     }

@@ -32,6 +32,11 @@ extra["dubbo-protobuf-gradle-plugin"] = "3.0.9"
 extra["protoc_version"] = "3.19.1"
 extra["kotlinx-coroutines"] = "1.6.4"
 
+extra["mariadb-java-client"] = "3.0.3"
+extra["jaxb-api-version"] = "2.3.0"
+extra["jaxb-impl-version"] = "2.3.6"
+
+
 extra["annotation-api"] = "1.3.2"
 extra["grpc-version"] = "1.48.1"
 extra["protobuf"] = "3.21.4"

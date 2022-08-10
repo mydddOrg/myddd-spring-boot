@@ -10,14 +10,17 @@ import org.myddd.extesions.media.domain.Media;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
+@Named
 public class MediaApplicationImpl implements MediaApplication {
 
     private static final Logger logger = LoggerFactory.getLogger(MediaApplicationImpl.class);
+
     @Override
     public MediaByte queryMedia(StringValue request) {
         Media media = Media.queryMediaByMediaId(request.getValue());

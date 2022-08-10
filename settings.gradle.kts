@@ -36,7 +36,8 @@ include(":myddd-extensions:media:media-storage:media-storage-local")
 include(":myddd-extensions:media:media-storage:media-storage-gridfs")
 include(":myddd-extensions:media:media-api")
 include(":myddd-extensions:media:media-application")
-
+include(":myddd-extensions:media:media-grpc-bridge")
+include(":myddd-extensions:media:media-grpc-bootstrap")
 //用户权限模块
 include(":myddd-extensions:security:security-domain")
 include(":myddd-extensions:security:security-infra")
