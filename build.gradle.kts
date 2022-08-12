@@ -130,7 +130,7 @@ subprojects {
                 publications {
 
                     create<MavenPublication>("mavenJava"){
-                        groupId = "org.myddd"
+                        groupId = project.group as String
                         afterEvaluate {
                             artifactId = tasks.jar.get().archiveBaseName.get()
                         }
