@@ -5,6 +5,8 @@ plugins {
 group = "org.myddd.commons"
 version = rootProject.extra["projectVersion"]!!
 
+extra["publishJar"] = true
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web:${rootProject.extra["spring.boot"]}")
 
