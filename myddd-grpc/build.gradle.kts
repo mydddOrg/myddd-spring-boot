@@ -1,4 +1,3 @@
-
 import com.google.protobuf.gradle.*
 
 plugins {

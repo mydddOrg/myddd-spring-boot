@@ -25,6 +25,7 @@ include(":myddd-grpc")
 //支持第三方能力的类库
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
+include(":myddd-libs:myddd-grpc-rest-advice")
 include(":myddd-libs:myddd-dubbo-filter")
 
 //media extension

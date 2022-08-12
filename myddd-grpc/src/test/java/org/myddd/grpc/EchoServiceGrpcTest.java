@@ -16,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @SpringBootTest(classes = Application.class)
 public class EchoServiceGrpcTest {

@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+option java_multiple_files = true;
+option java_package = "org.myddd.grpc.api";
+option java_outer_classname = "EchoApplicationProto";
+package org.myddd.grpc.api;
+
+service EchoService {
+
+  rpc hello(google.protobuf.Empty) returns (google.protobuf.StringValue) {}
+
+  rpc echo(EchoDto) returns (google.protobuf.Empty);
+
+}
+
+message EchoDto {
+  EchoType type = 1;
+}
+enum EchoType {
+  OK = 0;
+  Exception = 1;
+}
