@@ -2,7 +2,7 @@ import com.google.protobuf.gradle.*
 
 plugins {
     `java-library`
-    id("com.google.protobuf") version "0.8.19"
+    id("com.google.protobuf")
     idea
 }
 

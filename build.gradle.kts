@@ -1,5 +1,17 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath("com.google.protobuf:protobuf-gradle-plugin:0.8.19")
+    }
+}
+
+
 plugins {
     java
     kotlin("jvm") version "1.7.10"
@@ -171,6 +183,7 @@ subprojects {
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
         testImplementation(project(":myddd-libs:myddd-distributed-id"))
+
     }
 }
 
