@@ -6,7 +6,7 @@ plugins {
     id("com.google.protobuf")
 }
 
-group = "org.myddd.groc"
+group = "org.myddd"
 version = rootProject.extra["projectVersion"]!!
 
 extra["publishJar"] = true

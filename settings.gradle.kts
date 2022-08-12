@@ -66,6 +66,8 @@ include(":myddd-commons:cache:cache-api")
 include(":myddd-commons:cache:cache-guava")
 include(":myddd-commons:cache:cache-redis")
 
+//通用健康检查
+include(":myddd-commons:healthy")
 
 //示例项目
 include(":examples:kotlin-ddd:api")
