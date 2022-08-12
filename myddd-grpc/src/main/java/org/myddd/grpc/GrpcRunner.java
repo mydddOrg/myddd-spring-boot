@@ -12,10 +12,10 @@ import java.util.function.Supplier;
 
 public class GrpcRunner {
 
-    public static final Metadata.Key<String> KEY_ERROR_STATUS = Metadata.Key.of("error-status",Metadata.ASCII_STRING_MARSHALLER);
-    public static final Metadata.Key<String> KEY_ERROR_CODE = Metadata.Key.of("error-code",Metadata.ASCII_STRING_MARSHALLER);
-    public static final Metadata.Key<byte[]> KEY_ERROR_DATA = Metadata.Key.of("error-data-bin",Metadata.BINARY_BYTE_MARSHALLER);
-    public static final Metadata.Key<String> KEY_IS_BUSINESS_EXCEPTION = Metadata.Key.of("is-business-exception",Metadata.ASCII_STRING_MARSHALLER);
+    protected static final Metadata.Key<String> KEY_ERROR_STATUS = Metadata.Key.of("error-status",Metadata.ASCII_STRING_MARSHALLER);
+    protected static final Metadata.Key<String> KEY_ERROR_CODE = Metadata.Key.of("error-code",Metadata.ASCII_STRING_MARSHALLER);
+    protected static final Metadata.Key<byte[]> KEY_ERROR_DATA = Metadata.Key.of("error-data-bin",Metadata.BINARY_BYTE_MARSHALLER);
+    protected static final Metadata.Key<String> KEY_IS_BUSINESS_EXCEPTION = Metadata.Key.of("is-business-exception",Metadata.ASCII_STRING_MARSHALLER);
 
     public static <T> void run(StreamObserver<T> responseObserver, Supplier<T> supplier){
         try{

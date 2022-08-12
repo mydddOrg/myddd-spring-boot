@@ -13,19 +13,16 @@ extra["publishJar"] = true
 
 dependencies {
     implementation(project(":myddd-lang"))
-    implementation(project(":myddd-grpc"))
     implementation("io.grpc:grpc-api:${rootProject.extra["grpc-version"]}")
+    implementation("com.google.guava:guava:${rootProject.extra["guava.version"]}")
 
     implementation(project(":myddd-libs:myddd-rest-advice"))
     implementation("org.springframework.boot:spring-boot-starter-web:${rootProject.extra["spring.boot"]}")
-    testImplementation(project(":myddd-domain"))
-    testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
 
     testImplementation("io.grpc:grpc-api:${rootProject.extra["grpc-version"]}")
     testImplementation("io.grpc:grpc-protobuf:${rootProject.extra["grpc-version"]}")
     testImplementation("io.grpc:grpc-stub:${rootProject.extra["grpc-version"]}")
-    testImplementation(project(":myddd-lang"))
-    testImplementation("javax.annotation:javax.annotation-api:${rootProject.extra["annotation-api"]}")
+    implementation(project(":myddd-grpc"))
 
     testImplementation("io.grpc:grpc-netty:${rootProject.extra["grpc-version"]}")
     testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
