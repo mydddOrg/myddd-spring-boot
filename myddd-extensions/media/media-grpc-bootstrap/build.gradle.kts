@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":myddd-utils"))
     implementation(project(":myddd-domain"))
     implementation(project(":myddd-ioc:myddd-ioc-spring"))
+    implementation(project(":myddd-libs:myddd-grpc-rest-advice"))
 
     implementation("org.mariadb.jdbc:mariadb-java-client:${rootProject.extra["mariadb-java-client"]}")
     implementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
