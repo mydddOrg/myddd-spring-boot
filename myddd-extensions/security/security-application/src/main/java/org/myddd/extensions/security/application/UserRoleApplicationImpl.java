@@ -1,7 +1,5 @@
 package org.myddd.extensions.security.application;
 
-
-
 import org.myddd.extensions.security.api.RoleDto;
 import org.myddd.extensions.security.api.UserRoleApplication;
 import org.myddd.extensions.security.application.assembler.RoleAssembler;

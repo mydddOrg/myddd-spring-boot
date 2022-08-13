@@ -16,4 +16,5 @@ dependencies {
     api(project(":myddd-persistence:myddd-persistence-jpa"))
 
     testImplementation(project(":myddd-extensions:security:security-infra"))
+    testImplementation("io.grpc:grpc-netty:${rootProject.extra["grpc-version"]}")
 }

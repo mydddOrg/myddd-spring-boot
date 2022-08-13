@@ -17,5 +17,6 @@ dependencies {
 
     testImplementation(project(":myddd-extensions:media:media-infra"))
     testImplementation(project(":myddd-extensions:media:media-storage:media-storage-local"))
+    testImplementation("io.grpc:grpc-netty:${rootProject.extra["grpc-version"]}")
 
 }
