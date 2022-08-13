@@ -1,4 +1,4 @@
-package org.myddd.extensions.security.oauth2;
+package org.myddd.extensions.security;
 
 import org.myddd.domain.InstanceFactory;
 import org.myddd.ioc.spring.SpringInstanceProvider;
@@ -12,10 +12,10 @@ import org.springframework.context.annotation.ImportResource;
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.myddd"})
 @EntityScan(basePackages = {"org.myddd"})
-public class TestApplication {
+public class Application {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(TestApplication.class, args);
+        ApplicationContext ctx = SpringApplication.run(Application.class, args);
         InstanceFactory.setInstanceProvider(SpringInstanceProvider.createInstance(ctx));
     }
 

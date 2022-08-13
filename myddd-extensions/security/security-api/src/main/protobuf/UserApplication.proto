@@ -16,7 +16,7 @@ service UserApplication {
     /**
      * 根据用户ID查询一个本地用户
      */
-    rpc QueryLocalUserByUserId(google.protobuf.StringValue) returns (UserDto);
+    rpc QueryLocalUserByUserId(google.protobuf.StringValue) returns (OptionalUserDto);
 
     /**
      * 根据用户ID查询一个用户
@@ -62,4 +62,8 @@ message UserDto {
     string phone = 7;
     string email = 8;
     bool disabled = 9;
+}
+
+message OptionalUserDto {
+    optional UserDto user = 1;
 }

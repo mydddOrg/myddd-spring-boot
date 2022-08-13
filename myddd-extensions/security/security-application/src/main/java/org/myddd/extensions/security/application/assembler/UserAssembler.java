@@ -1,5 +1,6 @@
 package org.myddd.extensions.security.application.assembler;
 
+import org.myddd.extensions.security.api.OptionalUserDto;
 import org.myddd.extensions.security.api.UserDto;
 import org.myddd.extensions.security.domain.User;
 
@@ -23,6 +24,12 @@ public class UserAssembler {
         return user;
     }
 
+    public static OptionalUserDto toOptionalUserDto(User user){
+        if(Objects.isNull(user))return OptionalUserDto.getDefaultInstance();
+        return OptionalUserDto.newBuilder()
+                .setUser(toUserDto(user))
+                .build();
+    }
     public static UserDto toUserDto(User user){
         if(Objects.isNull(user))return null;
         UserDto.Builder builder =  UserDto.newBuilder()

@@ -17,7 +17,7 @@ public class UserApplicationGrpcBridge extends AbstractSecurityGrpcBridge implem
     }
 
     @Override
-    public UserDto queryLocalUserByUserId(StringValue request) {
+    public OptionalUserDto queryLocalUserByUserId(StringValue request) {
         var userApplicationStub = UserApplicationGrpc.newBlockingStub(getManagedChannel());
         return userApplicationStub.queryLocalUserByUserId(request);
     }

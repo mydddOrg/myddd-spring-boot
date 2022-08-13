@@ -48,6 +48,7 @@ include(":myddd-extensions:security:security-api")
 include(":myddd-extensions:security:security-application")
 include(":myddd-extensions:security:security-grpc-bridge")
 include(":myddd-extensions:security:security-grpc-bootstrap")
+include(":myddd-extensions:security:security-rest")
 
 //Spring Security + Spring OAuth 2
 include(":myddd-extensions:security:security-oauth2:security-oauth2-api")

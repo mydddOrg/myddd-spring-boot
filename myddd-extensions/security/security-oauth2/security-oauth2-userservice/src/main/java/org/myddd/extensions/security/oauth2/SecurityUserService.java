@@ -19,10 +19,12 @@ public class SecurityUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserDto userDto = userApplication.queryLocalUserByUserId(StringValue.of(username));
-        if(Objects.isNull(userDto)){
+        var optionalUserDto = userApplication.queryLocalUserByUserId(StringValue.of(username));
+        if(!optionalUserDto.hasUser()){
             throw new UsernameNotFoundException(username + " not found in local database");
         }
+
+        var userDto = optionalUserDto.getUser();
 
         if(userDto.getDisabled()){
             throw new UsernameNotFoundException(username + " is disabled");

@@ -5,8 +5,10 @@ import org.myddd.extensions.security.api.UserRoleApplication;
 import org.myddd.extensions.security.application.assembler.RoleAssembler;
 import org.myddd.extensions.security.domain.Role;
 
+import javax.inject.Named;
 import javax.transaction.Transactional;
 
+@Named
 public class UserRoleApplicationImpl implements UserRoleApplication {
 
     @Override

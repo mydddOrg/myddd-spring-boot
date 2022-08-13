@@ -19,8 +19,6 @@ import java.util.UUID;
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.myddd"})
 @EntityScan(basePackages = {"org.myddd"})
-@ImportResource({"classpath:META-INF/*.xml"})
-
 @SpringBootTest(classes = AbstractTest.class)
 public abstract class AbstractTest{
 

@@ -29,7 +29,6 @@ import java.util.UUID;
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.myddd"})
 @EntityScan(basePackages = {"org.myddd"})
-@ImportResource({"classpath:META-INF/*.xml"})
 class MediaApplicationTest {
 
     @Autowired

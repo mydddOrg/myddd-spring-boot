@@ -5,19 +5,18 @@ import com.google.protobuf.BoolValue;
 import com.google.protobuf.Int64Value;
 import com.google.protobuf.StringValue;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.extensions.security.api.PageQueryDto;
-import org.myddd.extensions.security.api.PageUserDto;
-import org.myddd.extensions.security.api.UserApplication;
-import org.myddd.extensions.security.api.UserDto;
+import org.myddd.extensions.security.api.*;
 import org.myddd.extensions.security.application.assembler.UserAssembler;
 import org.myddd.extensions.security.domain.User;
 import org.myddd.querychannel.QueryChannelService;
 import org.myddd.utils.Page;
 
+import javax.inject.Named;
 import javax.transaction.Transactional;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Named
 public class UserApplicationImpl implements UserApplication {
 
     private QueryChannelService queryChannelService;
@@ -37,9 +36,9 @@ public class UserApplicationImpl implements UserApplication {
     }
 
     @Override
-    public UserDto queryLocalUserByUserId(StringValue request) {
+    public OptionalUserDto queryLocalUserByUserId(StringValue request) {
         var query = User.queryLocalByEmailOrPhone(request.getValue());
-        return UserAssembler.toUserDto(query);
+        return UserAssembler.toOptionalUserDto(query);
     }
 
     @Override

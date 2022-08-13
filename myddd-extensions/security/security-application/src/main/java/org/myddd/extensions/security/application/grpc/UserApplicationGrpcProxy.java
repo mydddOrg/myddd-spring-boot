@@ -37,7 +37,7 @@ public class UserApplicationGrpcProxy extends UserApplicationGrpc.UserApplicatio
     }
 
     @Override
-    public void queryLocalUserByUserId(StringValue request, StreamObserver<UserDto> responseObserver) {
+    public void queryLocalUserByUserId(StringValue request, StreamObserver<OptionalUserDto> responseObserver) {
         GrpcRunner.run(responseObserver,()->getUserApplication().queryLocalUserByUserId(request));
     }
 
