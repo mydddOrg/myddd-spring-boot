@@ -1,12 +1,9 @@
 # myddd-spring-boot
 
-myddd-spring-boot是**myddd**全栈式领域驱动的后端开发框架，用于支持基于spring boot的后端开发，支持Java以及Kotlin两种语言。
+myddd-spring-boot是基于整洁架构及领域驱动理念而构建的类库，用于支持基于spring boot的后端开发，支持Java以及Kotlin两种语言。
 
 ***总览图***
-![](https://images.taoofcoding.tech/2022/08/myddd-spring-boot-2022-08-06.png)
-
-***更名通告***
-myddd-spring-boot原名称是`myddd-java`,现考虑到同时支持Java与Kotlin两种语言，重新命名为myddd-spring-boot,以更加表意
+![](https://images.taoofcoding.tech/2022/08/myddd-spring-boot-2022-08-14.png)
 
 ## 快速开始
 
@@ -20,18 +17,7 @@ myddd starter已经开放使用，现在开始，你可以访问[myddd starter](
 
 * Java语言示例项目： 位于examples目录下的`java-ddd`
 * Kotlin示例项目：位于examples目录下的`kotlin-ddd`
-
-## 致敬
-
-向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-java最初**来源于[dddlib](https://github.com/dayatang/dddlib).
-
-数年前，我有幸与dddlib开发者杨宇老师一同工作，使用dddlib，讨论DDD，参与dddlib的开发。一晃数年已过。
-我与杨宇老师仍保持密切交流。
-
-**myddd-spring-boot**来源于dddlib，无论何时，我都会明白无误的说明这一点。 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD。
-
-> 我已经按照自己对ddd的理解，对myddd-spring-boot进行了一次较大规模的重构
-> 并且自重构后，已经按照TDD的方式来开发与维护myddd-spring-boot,并且加入了SonarQube质量管控，单元测试覆盖率不少于80%。
+* `Java + gRPC + 容器编排`的云原生架构，参照[`java-grpc-sample`](https://github.com/mydddOrg/java-grpc-sample)项目
 
 ## myddd-spring-boot的原则与宗旨
 
@@ -64,3 +50,15 @@ ddd领域驱动的理念较为复杂，概念较多。包含实体，值对象�
 【myddd官网】: https://myddd.org
 
 【微言码道】官网：https://taoofcoding.tech
+
+## 致敬
+
+向[dddlib](https://github.com/dayatang/dddlib) 致敬。**myddd-java最初**来源于[dddlib](https://github.com/dayatang/dddlib).
+
+数年前，我有幸与dddlib开发者杨宇老师一同工作，使用dddlib，讨论DDD，参与dddlib的开发。一晃数年已过。
+我与杨宇老师仍保持密切交流。
+
+**myddd-spring-boot**来源于dddlib，无论何时，我都会明白无误的说明这一点。 如今杨宇老师已无精力关注dddlib，便决定基于它重整DDD。
+
+> 我已经按照自己对ddd的理解，对myddd-spring-boot进行了一次较大规模的重构
+> 并且自重构后，已经按照TDD的方式来开发与维护myddd-spring-boot,并且加入了SonarQube质量管控，单元测试覆盖率不少于80%。
