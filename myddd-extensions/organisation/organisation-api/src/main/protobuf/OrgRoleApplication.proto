@@ -1,0 +1,144 @@
+syntax = "proto3";
+
+import "OrganizationBase.proto";
+import "google/protobuf/wrappers.proto";
+
+option java_multiple_files = true;
+option java_package = "org.myddd.extensions.organization.api";
+option java_outer_classname = "OrgRoleApplicationProto";
+package org.myddd.extensions.organization.api;
+
+service OrgRoleApplication {
+
+    /**
+     * 创建一个组织关联的角色
+     */
+    rpc CreateOrgRole(OrgRoleDto) returns (OrgRoleDto);
+
+    /**
+     * 创建一个组织角色组
+     */
+    rpc CreateOrgRoleGroup(OrgRoleGroupDto) returns (OrgRoleGroupDto);
+
+    /**
+     * 更新一个角色组信息
+     */
+    rpc UpdateOrgRoleGroup(OrgRoleGroupDto) returns (OrgRoleGroupDto);
+
+    /**
+     * 查询一个组织下的所有角色组
+     */
+    rpc ListQueryRoleGroupsByOrg(google.protobuf.Int64Value) returns (ListOrgRoleGroupDto);
+
+    /**
+     * 更新一个组织角色
+     */
+    rpc UpdateOrgRole(UpdateOrgRoleDto) returns (OrgRoleDto);
+
+    /**
+     * 移除一个OrgRole
+     */
+    rpc RemoveOrgRole(google.protobuf.Int64Value) returns (google.protobuf.BoolValue);
+
+    /**
+     * 将一个雇员关联到一个组织角色中
+     */
+    rpc AssignEmployeeToOrgRole(EmployeeOrgRoleRelationDto) returns (google.protobuf.BoolValue);
+
+    /**
+     * 查询指定组织下的所有角色信息
+     */
+    rpc ListOrgRoles(ListOrgQueryDto) returns (ListOrgRoleDto);
+
+    /**
+     * 批量将雇员绑定到对应的角色中
+     */
+    rpc BatchAssignEmployeesToOrgRole(BatchEmployeeForRoleDto) returns (google.protobuf.BoolValue);
+
+    /**
+     * 批量解除雇员与角色的关系
+     */
+    rpc BatchDeAssignEmployeesToOrlRole(BatchEmployeeForRoleDto) returns (google.protobuf.BoolValue);
+
+    /**
+     * 将一个雇员从组织角色中移除
+     */
+    rpc DeAssignEmployeeFromOrgRole(EmployeeOrgRoleRelationDto) returns (google.protobuf.BoolValue);
+
+    /**
+     * 分页查询一个组织下的角色信息
+     */
+    rpc PageQueryOrgRolesByOrg(PageOrgRoleQueryDto) returns (PageOrgRole);
+
+    /**
+     * 分页查询一个权限下的所有雇员
+     */
+    rpc PageQueryEmployeesByRole(PageRoleEmployeeQueryDto) returns (PageRoleEmployeeDto);
+
+    /**
+     * 移除一个角色组
+     */
+    rpc RemoveRoleGroup(google.protobuf.Int64Value) returns (google.protobuf.BoolValue);
+
+    /**
+     * 变更一个角色的角色组
+     */
+    rpc ChangeOrgRoleGroup(ChangeOrgRoleGroupDto) returns (google.protobuf.BoolValue);
+
+}
+
+message ChangeOrgRoleGroupDto{
+    int64 role_id = 1;
+    int64 group_id = 2;
+}
+
+message PageRoleEmployeeQueryDto{
+    int32 page = 1;
+    int32 page_size = 2;
+    int64 role_id = 3;
+    string search = 4;
+    repeated int64 limits = 5;
+}
+
+message PageRoleEmployeeDto{
+    int64 total = 1;
+    int64 page = 2;
+    int32 page_size = 3;
+    repeated EmployeeDto employees = 4;
+}
+
+message ListOrgQueryDto{
+    int64 org_id = 1;
+    repeated int64 limits = 2;
+}
+
+message PageOrgRoleQueryDto{
+    int32 page = 1;
+    int32 page_size = 2;
+    int64 org_id = 3;
+    string search = 4;
+    repeated int64 limits = 5;
+}
+
+message PageOrgRole{
+    int64 total = 1;
+    int64 page = 2;
+    int32 page_size = 3;
+    repeated OrgRoleDto org_roles = 4;
+}
+
+message BatchEmployeeForRoleDto {
+    int64 org_role_id = 1;
+    repeated int64 employee_ids = 2;
+}
+
+message EmployeeOrgRoleRelationDto{
+    int64 org_role_id = 1;
+    int64 employee_id = 2;
+}
+
+message UpdateOrgRoleDto{
+    int64 id = 1;
+    string name = 2;
+    int64 role_group_id = 3;
+}

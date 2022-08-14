@@ -59,6 +59,13 @@ include(":myddd-extensions:security:security-oauth2:security-oauth2-userservice"
 //组织模块
 include(":myddd-extensions:organisation:organisation-domain")
 include(":myddd-extensions:organisation:organisation-infra")
+include(":myddd-extensions:organisation:organisation-api")
+include(":myddd-extensions:organisation:organisation-application")
+include(":myddd-extensions:organisation:organisation-grpc-bridge")
+include(":myddd-extensions:organisation:organisation-rest")
+include(":myddd-extensions:organisation:organisation-grpc-bootstrap")
+
+
 
 //commons 验证码模块（支持手机验证码与邮箱验证码）
 include(":myddd-commons:verification:verification-api")

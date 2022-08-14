@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.myddd.extensions.organization.api";
+option java_outer_classname = "OrganizationBaseProto";
+package org.myddd.extensions.organization.api;
+
+/**
+ * 对雇员的搜索
+ */
+message EmployeePageQueryDto {
+    int32 page = 1;
+    int32 page_size = 2;
+    int64 org_id = 3;
+    string search = 4;
+    repeated int64 employee_limits = 5;
+    repeated int64 organization_limits = 6;
+    repeated int64 role_limits = 7;
+}
+
+message ListEmployeeDto {
+    repeated EmployeeDto employees = 1;
+}
+
+message EmployeeDto {
+    int64 id = 1;
+    int64 user_id = 2;
+    string name = 3;
+    int64 create_time = 4;
+    string phone = 5;
+    string email = 6;
+    int64 org_id = 7;
+    string relate_user_id = 8;
+    repeated OrganizationDto organization = 9;
+    repeated OrgRoleDto role = 10;
+    string employee_id = 11;
+    string data_source = 12;
+}
+
+message OrganizationDto {
+    int64 id = 1;
+    string name = 2;
+    int64 create_time = 3;
+    enum Category {
+        COMPANY = 0;
+        DEPARTMENT = 1;
+    }
+    Category category = 4;
+    string description = 5;
+    int64 parent_id = 6;
+    string path = 7;
+    int64 create_user_id = 8;
+    string full_name_path = 9;
+    string data_source = 10;
+}
+
+
+/**
+  组织角色
+ */
+message OrgRoleDto {
+    int64 id = 1;
+    string name = 2;
+    OrganizationDto organization = 3;
+    OrgRoleGroupDto role_group = 4;
+    int64 creator = 5;
+    int64 created = 6;
+    int64 updated = 7;
+}
+
+message ListOrgRoleDto {
+    repeated OrgRoleDto roles = 1;
+}
+
+
+message OrgRoleGroupDto {
+    int64 id = 1;
+    string name = 2;
+    OrganizationDto organization = 3;
+}
+
+message ListOrgRoleGroupDto {
+    repeated OrgRoleGroupDto groups = 1;
+}

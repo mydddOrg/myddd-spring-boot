@@ -47,6 +47,8 @@ public enum OrganizationErrorCode implements ErrorCode {
     /**
      * 部门名称已存在
      */
-    ORGANIZATION_NAME_EXISTS
+    ORGANIZATION_NAME_EXISTS,
+
+    PARENT_ORG_NOT_EXISTS
 
 }
