@@ -5,6 +5,7 @@ import com.google.protobuf.StringValue;
 import org.myddd.extensions.media.api.MediaApplication;
 import org.myddd.extensions.media.api.MediaByte;
 import org.myddd.extensions.media.api.MediaDTO;
+import org.myddd.extensions.media.api.OptionalMediaDTO;
 import org.myddd.extesions.media.MediaNotFoundException;
 import org.myddd.extesions.media.domain.Media;
 import org.slf4j.Logger;
@@ -43,11 +44,13 @@ public class MediaApplicationImpl implements MediaApplication {
     }
 
     @Override
-    public MediaDTO queryMediaIdByDigest(StringValue request) {
+    public OptionalMediaDTO queryMediaIdByDigest(StringValue request) {
         Media media = Media.queryMediaByDigest(request.getValue());
         if(Objects.nonNull(media)){
-            return MediaDTO.newBuilder().setMediaId(media.getMediaId()).build();
+            return OptionalMediaDTO.newBuilder()
+                    .setMedia(MediaDTO.newBuilder().setMediaId(media.getMediaId()).build())
+                    .build();
         }
-        return null;
+        return OptionalMediaDTO.getDefaultInstance();
     }
 }

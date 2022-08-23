@@ -3,10 +3,7 @@ package org.myddd.extensions.media.application.grpc;
 import com.google.protobuf.StringValue;
 import io.grpc.stub.StreamObserver;
 import org.myddd.domain.InstanceFactory;
-import org.myddd.extensions.media.api.MediaApplication;
-import org.myddd.extensions.media.api.MediaApplicationGrpc;
-import org.myddd.extensions.media.api.MediaByte;
-import org.myddd.extensions.media.api.MediaDTO;
+import org.myddd.extensions.media.api.*;
 import org.myddd.grpc.GrpcRunner;
 
 import java.util.Objects;
@@ -33,7 +30,7 @@ public class MediaApplicationGrpcProxy extends MediaApplicationGrpc.MediaApplica
     }
 
     @Override
-    public void queryMediaIdByDigest(StringValue request, StreamObserver<MediaDTO> responseObserver) {
+    public void queryMediaIdByDigest(StringValue request, StreamObserver<OptionalMediaDTO> responseObserver) {
         GrpcRunner.run(responseObserver,()->getMediaApplication().queryMediaIdByDigest(request));
     }
 }

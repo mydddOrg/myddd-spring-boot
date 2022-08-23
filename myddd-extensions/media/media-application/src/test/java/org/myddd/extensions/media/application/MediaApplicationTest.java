@@ -25,7 +25,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.UUID;
 
-@SpringBootTest(classes = MediaApplicationTest.class)
+@SpringBootTest(classes = TestApplication.class)
 @SpringBootApplication
 @ComponentScan(basePackages = {"org.myddd"})
 @EntityScan(basePackages = {"org.myddd"})
@@ -69,11 +69,13 @@ class MediaApplicationTest {
 
     @Test
     void queryMediaByDigest(){
-        Assertions.assertNull(mediaApplication.queryMediaIdByDigest(StringValue.of(randomUUIDString())));
+        var optionalMediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(randomUUIDString()));
+        Assertions.assertFalse(optionalMediaDTO.hasMedia());
 
         var digest = randomUUIDString();
         createMedia(digest);
-        Assertions.assertNotNull(mediaApplication.queryMediaIdByDigest(StringValue.of(digest)));
+        optionalMediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(digest));
+        Assertions.assertTrue(optionalMediaDTO.hasMedia());
     }
 
     private String randomUUIDString(){

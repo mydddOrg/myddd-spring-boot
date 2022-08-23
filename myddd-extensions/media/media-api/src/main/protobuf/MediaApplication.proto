@@ -7,15 +7,12 @@ option java_multiple_files = true;
 option java_package = "org.myddd.extensions.media.api";
 option java_outer_classname = "MediaApplicationProto";
 
-//import "LowCodeOptions.proto";
-//option (kunlun_service_name) = "MediaService";
-
 package org.myddd.extensions.media.api;
 
 service MediaApplication {
   rpc queryMedia(google.protobuf.StringValue) returns (MediaByte) {}
   rpc createMedia(MediaByte) returns (MediaDTO) {}
-  rpc queryMediaIdByDigest(google.protobuf.StringValue) returns (MediaDTO) {}
+  rpc queryMediaIdByDigest(google.protobuf.StringValue) returns (OptionalMediaDTO) {}
 }
 
 message MediaByte {
@@ -27,4 +24,8 @@ message MediaByte {
 
 message MediaDTO {
   string mediaId = 1;
+}
+
+message OptionalMediaDTO {
+  optional MediaDTO media = 1;
 }

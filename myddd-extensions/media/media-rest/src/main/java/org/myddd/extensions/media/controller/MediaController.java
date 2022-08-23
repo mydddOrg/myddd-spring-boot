@@ -56,14 +56,11 @@ public class MediaController {
 
             String digest = DigestUtils.md5Hex(byteString.newInput());
 
-            MediaDTO mediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(digest));
-            if(Objects.isNull(mediaDTO)){
+            var optionalMediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(digest));
+            MediaDTO mediaDTO = optionalMediaDTO.getMedia();
+            if(!optionalMediaDTO.hasMedia()){
                 MediaByte mediaByte = MediaByte.newBuilder().setName(file.getOriginalFilename()).setDigest(digest).setSize(file.getSize()).setContent(byteString).build();
-                try {
-                    mediaDTO = mediaApplication.createMedia(mediaByte);
-                }catch (Exception e){
-                    mediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(digest));
-                }
+                mediaDTO = mediaApplication.createMedia(mediaByte);
             }
 
             if (Objects.nonNull(mediaDTO)) {
@@ -76,13 +73,11 @@ public class MediaController {
 
     @GetMapping("/medias/digest/{digest}")
     public ResponseEntity<MediaResponse> queryMediaByDigest(@PathVariable String digest) {
-        MediaDTO mediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(digest));
-        if(Objects.isNull(mediaDTO)){
+        var optionalMediaDTO = mediaApplication.queryMediaIdByDigest(StringValue.of(digest));
+        if(!optionalMediaDTO.hasMedia()){
             throw new MediaNotFoundException();
         }
-
-        return ResponseEntity.ok(MediaResponse.of(mediaDTO));
-
+        return ResponseEntity.ok(MediaResponse.of(optionalMediaDTO.getMedia()));
     }
 
     @GetMapping("/medias/{mediaId}")

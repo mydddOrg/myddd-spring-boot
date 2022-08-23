@@ -3,10 +3,7 @@ package org.myddd.extensions.media.grpc.bridge;
 import com.google.protobuf.StringValue;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import org.myddd.extensions.media.api.MediaApplication;
-import org.myddd.extensions.media.api.MediaApplicationGrpc;
-import org.myddd.extensions.media.api.MediaByte;
-import org.myddd.extensions.media.api.MediaDTO;
+import org.myddd.extensions.media.api.*;
 
 import javax.inject.Named;
 import java.util.Objects;
@@ -44,7 +41,7 @@ public class MediaApplicationGrpcBridge implements MediaApplication {
     }
 
     @Override
-    public MediaDTO queryMediaIdByDigest(StringValue request) {
+    public OptionalMediaDTO queryMediaIdByDigest(StringValue request) {
         var mediaApplicationStub = MediaApplicationGrpc.newBlockingStub(getManagedChannel());
         return mediaApplicationStub.queryMediaIdByDigest(request);
     }
