@@ -59,20 +59,38 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Inject
     private PasswordEncoder passwordEncoder;
 
-    @Inject
-    private DataSource dataSource;
 
 
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
-    }
 
     @Inject
     private ClientDetailsService clientDetailsService;
 
     @Inject
     private AuthenticationManager authenticationManager;
+
+    /**
+     * 由外部提供，支持JDBC,REDIS以及内存等多种方式。
+     *
+     *     @Bean
+     *     public TokenStore tokenStore() {
+     *         return new JdbcTokenStore(dataSource);
+     *     }
+     *
+     */
+    @Inject
+    private TokenStore tokenStore;
+
+    /**
+     * 由外部提供，支持JDBC,REDIS以及内存等多种方式。
+     *
+     *     @Bean
+     *     public AuthorizationCodeServices authorizationCodeServices() {
+     *         return new JdbcAuthorizationCodeServices(dataSource);  //使用默认
+     *     }
+     *
+     */
+    @Inject
+    private AuthorizationCodeServices authorizationCodeServices;
 
 
     @Override
@@ -87,10 +105,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .refreshTokenValiditySeconds(ACCESS_TOKEN_VALIDITY_SECONDS);
     }
 
-    private AuthorizationCodeServices authorizationCodeServices() {
-        return new JdbcAuthorizationCodeServices(dataSource);  //使用默认
-    }
-
     private OAuth2RequestFactory requestFactory() {
         return new DefaultOAuth2RequestFactory(clientDetailsService);  //使用默认
     }
@@ -98,7 +112,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private List<TokenGranter> getDefaultTokenGranters() {
         ClientDetailsService clientDetails = clientDetailsService;
         AuthorizationServerTokenServices tokenServices = tokenServices();
-        AuthorizationCodeServices authorizationCodeServices = authorizationCodeServices();
         OAuth2RequestFactory requestFactory = requestFactory();
 
         List<TokenGranter> tokenGranters = new ArrayList<>();
@@ -138,7 +151,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
-                .tokenStore(tokenStore())
+                .tokenStore(tokenStore)
                 .tokenGranter(tokenGranter())
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authManager);
@@ -148,7 +161,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Primary
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
-        defaultTokenServices.setTokenStore(tokenStore());
+        defaultTokenServices.setTokenStore(tokenStore);
         defaultTokenServices.setSupportRefreshToken(true);
         return defaultTokenServices;
     }
