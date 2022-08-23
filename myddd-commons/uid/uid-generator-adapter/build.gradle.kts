@@ -7,6 +7,7 @@ group = "org.myddd.commons"
 version = rootProject.extra["projectVersion"]!!
 
 extra["disableTestDistributedId"] = "true"
+extra["publishJar"] = true
 
 dependencies {
     implementation(project(":myddd-domain"))
