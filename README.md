@@ -3,7 +3,7 @@
 myddd-spring-boot是基于整洁架构及领域驱动理念而构建的类库，用于支持基于spring boot的后端开发，支持Java以及Kotlin两种语言。
 
 ***总览图***
-![](https://images.taoofcoding.tech/2022/08/myddd-spring-boot-2022-08-14.png)
+![](https://images.taoofcoding.tech/2022/08/myddd-spring-boot-2022-08-23.png)
 
 ## 快速开始
 
