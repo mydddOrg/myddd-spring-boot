@@ -17,16 +17,16 @@ plugins {
     kotlin("jvm") version "1.7.10"
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.7.2"
+    id("org.springframework.boot") version "2.7.3"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
 }
 
-val projectVersion = "0.3.4-ALPHA"
+val projectVersion = "0.3.5-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
-extra["spring.boot"] = "2.7.2"
+extra["spring.boot"] = "2.7.3"
 extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.6.1"
