@@ -82,6 +82,11 @@ include(":myddd-commons:cache:cache-redis")
 //通用健康检查
 include(":myddd-commons:healthy")
 
+//uid分布式主键生成策略
+include(":myddd-commons:uid:uid-generator")
+include(":myddd-commons:uid:uid-worker-id-assigner")
+include(":myddd-commons:uid:uid-generator-adapter")
+
 //示例项目
 include(":examples:kotlin-ddd:api")
 include(":examples:kotlin-ddd:application")

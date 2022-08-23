@@ -172,6 +172,12 @@ subprojects {
                 }
             }
         }
+
+        dependencies {
+            if(!project.extra.has("disableTestDistributedId")){
+                testImplementation(project(":myddd-libs:myddd-distributed-id"))
+            }
+        }
     }
 
     //默认测试依赖
@@ -182,7 +188,6 @@ subprojects {
         testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
-        testImplementation(project(":myddd-libs:myddd-distributed-id"))
 
     }
 }
