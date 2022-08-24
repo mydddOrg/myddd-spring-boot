@@ -3,7 +3,6 @@ package org.myddd.commons.uid.worker;
 import com.baidu.fsg.uid.utils.NetUtils;
 import com.baidu.fsg.uid.worker.WorkerIdAssigner;
 import org.myddd.commons.uid.ServerNameNotDefinedException;
-import org.myddd.commons.uid.ServerPortNotDefinedException;
 import com.google.common.base.Strings;
 import org.myddd.commons.uid.worker.assigner.api.WorkIDApplication;
 import org.myddd.commons.uid.worker.assigner.api.dto.WorkIdDto;
@@ -17,7 +16,7 @@ public class DBWorkerIdAssigner implements WorkerIdAssigner {
     @Value("${server.name:}")
     private String name;
 
-    @Value("${server.port:0}")
+    @Value("${server.port:8080}")
     private Integer port;
 
     @Inject
@@ -26,7 +25,6 @@ public class DBWorkerIdAssigner implements WorkerIdAssigner {
     @Override
     public long assignWorkerId() {
         if(Strings.isNullOrEmpty(name)) throw new ServerNameNotDefinedException();
-        if(port == 0) throw new ServerPortNotDefinedException();
 
         String host = NetUtils.getLocalAddress();
 
