@@ -1,7 +1,7 @@
 package org.myddd.commons.cache.redis;
 
 import org.myddd.commons.cache.api.Cache;
-import org.myddd.commons.cache.api.ValueOperation;
+import org.myddd.commons.cache.api.ValueOperations;
 import org.myddd.domain.InstanceFactory;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -15,11 +15,11 @@ public class RedisCache<T> implements Cache<T> {
 
     private long duration;
 
-    private RedisValueOperation valueOperation;
+    private RedisValueOperations valueOperation;
 
     public RedisCache(long duration,long maximumSize){
         this.duration = duration;
-        this.valueOperation = new RedisValueOperation();
+        this.valueOperation = new RedisValueOperations();
     }
 
     private RedisTemplate<String,T> getRedisTemplate(){
@@ -37,11 +37,11 @@ public class RedisCache<T> implements Cache<T> {
     }
 
     @Override
-    public ValueOperation<T> valueOperation() {
+    public ValueOperations<T> opsForValue() {
         return valueOperation;
     }
 
-    private class RedisValueOperation implements ValueOperation<T> {
+    private class RedisValueOperations implements ValueOperations<T> {
 
 
         @Override

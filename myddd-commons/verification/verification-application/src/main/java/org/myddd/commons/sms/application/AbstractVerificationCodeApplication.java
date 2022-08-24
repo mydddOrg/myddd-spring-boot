@@ -20,7 +20,7 @@ public abstract class AbstractVerificationCodeApplication {
     private static final Cache<String> cache = CacheBuilder.newBuilder().build(String.class);
 
     protected void cacheValidCode(String key,String code){
-        cache.valueOperation().put(String.format(VERIFICATION_PREFIX,key),code);
+        cache.opsForValue().put(String.format(VERIFICATION_PREFIX,key),code);
     }
 
     protected void validCode(String key,String code,boolean isMock){
@@ -39,7 +39,7 @@ public abstract class AbstractVerificationCodeApplication {
 
     private String  getValidCode(String key){
         var cacheKey = String.format(VERIFICATION_PREFIX,key);
-        return cache.valueOperation().get(cacheKey);
+        return cache.opsForValue().get(cacheKey);
     }
 
     protected String randomCode(){

@@ -16,39 +16,39 @@ public class RedisCacheTest extends AbstractTest {
     @Test
     void putAndGet(){
         var key = randomId();
-        Assertions.assertNull(cache.valueOperation().get(key));
+        Assertions.assertNull(cache.opsForValue().get(key));
 
-        cache.valueOperation().put(key,randomId());
+        cache.opsForValue().put(key,randomId());
         Assertions.assertNotNull(cache);
     }
 
     @Test
     void exists(){
         var key = randomId();
-        Assertions.assertFalse(cache.valueOperation().exists(key));
+        Assertions.assertFalse(cache.opsForValue().exists(key));
 
-        cache.valueOperation().put(key,randomId());
-        Assertions.assertTrue(cache.valueOperation().exists(key));
+        cache.opsForValue().put(key,randomId());
+        Assertions.assertTrue(cache.opsForValue().exists(key));
     }
 
     @Test
     void remove(){
         var key = randomId();
-        cache.valueOperation().put(key,randomId());
+        cache.opsForValue().put(key,randomId());
         Assertions.assertNotNull(cache);
 
-        cache.valueOperation().remove(key);
-        Assertions.assertNull(cache.valueOperation().get(key));
+        cache.opsForValue().remove(key);
+        Assertions.assertNull(cache.opsForValue().get(key));
     }
 
     @Test
     void clearAll(){
         var key = randomId();
-        cache.valueOperation().put(key,randomId());
+        cache.opsForValue().put(key,randomId());
         Assertions.assertNotNull(cache);
 
-        cache.valueOperation().clearAll();
-        Assertions.assertNull(cache.valueOperation().get(key));
+        cache.opsForValue().clearAll();
+        Assertions.assertNull(cache.opsForValue().get(key));
     }
 
 }

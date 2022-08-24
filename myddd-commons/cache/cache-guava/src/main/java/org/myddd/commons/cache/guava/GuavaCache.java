@@ -2,9 +2,8 @@ package org.myddd.commons.cache.guava;
 
 import com.google.common.base.Preconditions;
 import com.google.common.cache.CacheBuilder;
-import org.checkerframework.checker.guieffect.qual.PolyUI;
 import org.myddd.commons.cache.api.Cache;
-import org.myddd.commons.cache.api.ValueOperation;
+import org.myddd.commons.cache.api.ValueOperations;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -12,15 +11,15 @@ import java.util.concurrent.TimeUnit;
 public class GuavaCache<T> implements Cache<T> {
 
     @Override
-    public ValueOperation<T> valueOperation() {
+    public ValueOperations<T> opsForValue() {
         return guavaValueOperation;
     }
 
-    private class GuavaValueOperation implements ValueOperation<T> {
+    private class GuavaValueOperations implements ValueOperations<T> {
 
         private com.google.common.cache.Cache<String, T> cache;
 
-        GuavaValueOperation(long duration,long maximumSize) {
+        GuavaValueOperations(long duration, long maximumSize) {
             this.cache = CacheBuilder.newBuilder()
                     .maximumSize(maximumSize)
                     .expireAfterAccess(duration, TimeUnit.MINUTES)
@@ -58,10 +57,10 @@ public class GuavaCache<T> implements Cache<T> {
         }
     }
 
-    private GuavaValueOperation guavaValueOperation;
+    private GuavaValueOperations guavaValueOperation;
 
     public GuavaCache(long duration,long maximumSize){
-        this.guavaValueOperation = new GuavaValueOperation(duration,maximumSize);
+        this.guavaValueOperation = new GuavaValueOperations(duration,maximumSize);
     }
 
 }

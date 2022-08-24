@@ -1,6 +1,6 @@
 package org.myddd.commons.cache.api;
 
-public interface ValueOperation<T> {
+public interface ValueOperations<T> {
 
     void put(String key,T value);
 
