@@ -8,6 +8,8 @@ public class CacheBuilder {
 
     private static final String GUAVA_CACHE_CLASS = "org.myddd.commons.cache.guava.GuavaCache";
 
+    private static final String REDIS_CACHE_CLASS = "org.myddd.commons.cache.redis.RedisCache";
+
     private long maximumSize = 1000;
 
     private long expires = 10;
@@ -41,7 +43,8 @@ public class CacheBuilder {
     }
 
     private Class<?> queryCacheExists(){
-        Class<?> cacheClass = queryGuavaCache();
+        Class<?> cacheClass = queryRedisCache();
+        if(Objects.isNull(cacheClass))cacheClass = queryGuavaCache();
 
         if(Objects.isNull(cacheClass))throw new CacheNotExistsException();
         return cacheClass;
@@ -50,6 +53,14 @@ public class CacheBuilder {
     private Class<?> queryGuavaCache(){
         try {
             return Class.forName(GUAVA_CACHE_CLASS);
+        }catch (ClassNotFoundException e){
+            return  null;
+        }
+    }
+
+    private Class<?> queryRedisCache(){
+        try {
+            return Class.forName(REDIS_CACHE_CLASS);
         }catch (ClassNotFoundException e){
             return  null;
         }
