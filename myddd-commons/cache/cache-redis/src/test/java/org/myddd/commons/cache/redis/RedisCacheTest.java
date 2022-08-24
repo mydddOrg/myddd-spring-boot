@@ -8,7 +8,7 @@ import org.myddd.commons.cache.api.Cache;
 import org.myddd.commons.cache.api.CacheBuilder;
 
 
-@Disabled("需要启动一个REDIS服务")
+//@Disabled("需要启动一个REDIS服务")
 public class RedisCacheTest extends AbstractTest {
 
     private static final Cache<String> cache = CacheBuilder.newBuilder().build(String.class);

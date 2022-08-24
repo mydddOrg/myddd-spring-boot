@@ -1,12 +1,16 @@
 package org.myddd.commons.cache.redis;
 
 import org.myddd.commons.cache.api.Cache;
+import org.myddd.commons.cache.api.ListOperations;
 import org.myddd.commons.cache.api.ValueOperations;
 import org.myddd.domain.InstanceFactory;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 public class RedisCache<T> implements Cache<T> {
@@ -15,11 +19,14 @@ public class RedisCache<T> implements Cache<T> {
 
     private long duration;
 
-    private RedisValueOperations valueOperation;
+    private RedisValueOperations<T> valueOperation;
+
+    private RedisListOperations<T> listOperations;
 
     public RedisCache(long duration,long maximumSize){
         this.duration = duration;
-        this.valueOperation = new RedisValueOperations();
+        this.valueOperation = new RedisValueOperations<>(duration, this::getRedisTemplate);
+        this.listOperations = new RedisListOperations<>(duration,this::getRedisTemplate);
     }
 
     private RedisTemplate<String,T> getRedisTemplate(){
@@ -28,9 +35,8 @@ public class RedisCache<T> implements Cache<T> {
             redisTemplate = new RedisTemplate<>();
             redisTemplate.setConnectionFactory(connectionFactory);
 
-            var stringRedisSerializer = new StringRedisSerializer();
-            redisTemplate.setKeySerializer(stringRedisSerializer);
-            redisTemplate.setValueSerializer(stringRedisSerializer);
+            redisTemplate.setKeySerializer(new StringRedisSerializer());
+            redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
             redisTemplate.afterPropertiesSet();
         }
         return this.redisTemplate;
@@ -41,34 +47,8 @@ public class RedisCache<T> implements Cache<T> {
         return valueOperation;
     }
 
-    private class RedisValueOperations implements ValueOperations<T> {
-
-
-        @Override
-        public void put(String key, T value) {
-            getRedisTemplate().opsForValue().set(key,value,duration);
-        }
-
-        @Override
-        public T get(String key) {
-            return getRedisTemplate().opsForValue().get(key);
-        }
-
-        @Override
-        public boolean exists(String key) {
-            return Boolean.TRUE.equals(getRedisTemplate().hasKey(key));
-        }
-
-        @Override
-        public void remove(String key) {
-            getRedisTemplate().delete(key);
-        }
-
-        @Override
-        public void clearAll() {
-            var keys = getRedisTemplate().keys("*");
-            if(Objects.nonNull(keys)) getRedisTemplate().delete(keys);
-        }
-
+    @Override
+    public ListOperations<T> optForList() {
+        return listOperations;
     }
 }
