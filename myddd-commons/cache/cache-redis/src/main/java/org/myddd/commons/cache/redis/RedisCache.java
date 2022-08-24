@@ -1,6 +1,7 @@
 package org.myddd.commons.cache.redis;
 
 import org.myddd.commons.cache.api.Cache;
+import org.myddd.commons.cache.api.ValueOperation;
 import org.myddd.domain.InstanceFactory;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,8 +15,11 @@ public class RedisCache<T> implements Cache<T> {
 
     private long duration;
 
+    private RedisValueOperation valueOperation;
+
     public RedisCache(long duration,long maximumSize){
         this.duration = duration;
+        this.valueOperation = new RedisValueOperation();
     }
 
     private RedisTemplate<String,T> getRedisTemplate(){
@@ -33,28 +37,38 @@ public class RedisCache<T> implements Cache<T> {
     }
 
     @Override
-    public void put(String key, T value) {
-        getRedisTemplate().opsForValue().set(key,value,duration);
+    public ValueOperation<T> valueOperation() {
+        return valueOperation;
     }
 
-    @Override
-    public T get(String key) {
-        return getRedisTemplate().opsForValue().get(key);
-    }
+    private class RedisValueOperation implements ValueOperation<T> {
 
-    @Override
-    public boolean exists(String key) {
-        return Boolean.TRUE.equals(getRedisTemplate().hasKey(key));
-    }
 
-    @Override
-    public void remove(String key) {
-        getRedisTemplate().delete(key);
-    }
+        @Override
+        public void put(String key, T value) {
+            getRedisTemplate().opsForValue().set(key,value,duration);
+        }
 
-    @Override
-    public void clearAll() {
-        var keys = getRedisTemplate().keys("*");
-        if(Objects.nonNull(keys)) getRedisTemplate().delete(keys);
+        @Override
+        public T get(String key) {
+            return getRedisTemplate().opsForValue().get(key);
+        }
+
+        @Override
+        public boolean exists(String key) {
+            return Boolean.TRUE.equals(getRedisTemplate().hasKey(key));
+        }
+
+        @Override
+        public void remove(String key) {
+            getRedisTemplate().delete(key);
+        }
+
+        @Override
+        public void clearAll() {
+            var keys = getRedisTemplate().keys("*");
+            if(Objects.nonNull(keys)) getRedisTemplate().delete(keys);
+        }
+
     }
 }
