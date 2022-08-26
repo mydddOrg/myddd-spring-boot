@@ -35,7 +35,7 @@ myddd-spring-boot始终坚持以下两个原则：
 
 **版本：0.3.4-RC**
 
-![SonarQube质量报告](sonarqube-of-myddd-0.3.4-rc.png)
+![SonarQube质量报告](https://images.taoofcoding.tech/sonar/sonarqube-of-myddd-0.3.4-rc.png)
 
 
 ## 为什么叫myddd
