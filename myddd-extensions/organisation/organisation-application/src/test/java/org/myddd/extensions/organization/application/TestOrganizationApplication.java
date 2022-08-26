@@ -14,7 +14,6 @@ import org.myddd.extensions.security.api.UserApplication;
 import org.myddd.extensions.security.api.UserDto;
 
 import javax.inject.Inject;
-
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -48,7 +47,8 @@ class TestOrganizationApplication extends AbstractTest {
 
     @Test
     void testQueryOrganizationSystemManagerEmployees(){
-        Assertions.assertThrows(OrganizationNotExistsException.class,()->organizationApplication.queryOrganizationSystemManagerEmployees(Int64Value.of(randomLong())));
+        var notExistsOrgId = Int64Value.of(randomLong());
+        Assertions.assertThrows(OrganizationNotExistsException.class,()->organizationApplication.queryOrganizationSystemManagerEmployees(notExistsOrgId));
 
         UserDto randomUserDto = randomUserDto();
         Mockito.when(userApplication.queryUserById(any())).thenReturn(randomUserDto);
@@ -82,7 +82,8 @@ class TestOrganizationApplication extends AbstractTest {
     @Test
     void testDeleteOrganization(){
         var createdCompany = organizationApplication.createTopOrganization(randomOrganization());
-        Assertions.assertThrows(NotAllowedDeleteTopOrganizationException.class,()->organizationApplication.deleteOrganization(Int64Value.of(createdCompany.getId())));
+        var notAllowedDeleteOrgId = Int64Value.of(createdCompany.getId());
+        Assertions.assertThrows(NotAllowedDeleteTopOrganizationException.class,()->organizationApplication.deleteOrganization(notAllowedDeleteOrgId));
 
         var createdDepartment = organizationApplication.createDepartment(randomDepartment(createdCompany));
         Assertions.assertDoesNotThrow(()-> organizationApplication.deleteOrganization(Int64Value.of(createdDepartment.getId())));
@@ -91,14 +92,14 @@ class TestOrganizationApplication extends AbstractTest {
     @Test
     void testJoinOrganization(){
         Mockito.when(userApplication.queryUserById(any())).thenReturn(null);
-        Assertions.assertThrows(UserNotFoundException.class,()->{
-            organizationApplication.joinOrganization(JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(randomLong()).build());
-        });
+        var userNotFoundJoinDto = JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(randomLong()).build();
+        Assertions.assertThrows(UserNotFoundException.class,()->{organizationApplication.joinOrganization(userNotFoundJoinDto);});
 
         UserDto randomUserDto = randomUserDto();
         Mockito.when(userApplication.queryUserById(any())).thenReturn(randomUserDto);
         EmployeeDto createdEmployee = randomCreateEmployee();
-        Assertions.assertThrows(OrganizationNotExistsException.class,()-> organizationApplication.joinOrganization(JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(createdEmployee.getId()).build()));
+        var organizationNotExistsOrgId = JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(createdEmployee.getId()).build();
+        Assertions.assertThrows(OrganizationNotExistsException.class,()-> organizationApplication.joinOrganization(organizationNotExistsOrgId));
 
         OrganizationDto created = organizationApplication.createTopOrganization(randomOrganization());
         boolean success = organizationApplication.joinOrganization(JoinOrLeaveOrganizationDto.newBuilder().setOrgId(created.getId()).setUserId(randomUserDto.getId()).build()).getValue();

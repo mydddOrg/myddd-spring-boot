@@ -10,7 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import javax.inject.Inject;
 
 @ActiveProfiles({ "no-exists" })
-public class BadServerNameWorkerIdAssignerTest extends AbstractTest {
+class BadServerNameWorkerIdAssignerTest extends AbstractTest {
 
 
     @Inject

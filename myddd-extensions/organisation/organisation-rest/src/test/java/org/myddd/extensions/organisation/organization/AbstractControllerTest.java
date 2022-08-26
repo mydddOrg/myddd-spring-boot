@@ -23,7 +23,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @ExtendWith(SpringExtension.class)

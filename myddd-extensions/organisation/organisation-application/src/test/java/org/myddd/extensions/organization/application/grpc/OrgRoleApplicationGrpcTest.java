@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 
-public class OrgRoleApplicationGrpcTest extends AbstractGrpcTest {
+class OrgRoleApplicationGrpcTest extends AbstractGrpcTest {
 
 
     @Inject
@@ -34,12 +34,13 @@ public class OrgRoleApplicationGrpcTest extends AbstractGrpcTest {
         Assertions.assertThrows(StatusRuntimeException.class,() -> orgRoleApplication.createOrgRole(notValidOrgRoleDto));
         OrgRoleDto createdOrgRoleDto = createOrgRoleDto();
         Assertions.assertNotNull(createdOrgRoleDto);
-        Assertions.assertNotNull(createdOrgRoleDto.getRoleGroup().getId());
+        Assertions.assertTrue(createdOrgRoleDto.getRoleGroup().getId() > 0);
     }
 
     @Test
     void testRemoveOrgRole(){
-        Assertions.assertThrows(StatusRuntimeException.class,()->orgRoleApplication.removeOrgRole(Int64Value.of(randomLong())));
+        var notValidOrgId = Int64Value.of(randomLong());
+        Assertions.assertThrows(StatusRuntimeException.class,()->orgRoleApplication.removeOrgRole(notValidOrgId));
 
         OrgRoleDto createdOrgRoleDto = createOrgRoleDto();
         Assertions.assertDoesNotThrow(()->orgRoleApplication.removeOrgRole(Int64Value.of(createdOrgRoleDto.getId())));
@@ -83,11 +84,14 @@ public class OrgRoleApplicationGrpcTest extends AbstractGrpcTest {
 
     @Test
     void testRemoveOrgRoleGroup(){
-        Assertions.assertThrows(StatusRuntimeException.class,()-> orgRoleApplication.removeRoleGroup(Int64Value.of(randomLong())));
+        var notValidRoleGroupId = Int64Value.of(randomLong());
+        Assertions.assertThrows(StatusRuntimeException.class,()-> orgRoleApplication.removeRoleGroup(notValidRoleGroupId));
         Mockito.when(userApplication.queryUserById(any())).thenReturn(randomUserDto());
         OrgRoleDto createdOrgRoleDto = createOrgRoleDto();
 
-        Assertions.assertThrows(StatusRuntimeException.class,() -> orgRoleApplication.removeRoleGroup(Int64Value.of(createdOrgRoleDto.getRoleGroup().getId())));
+        var notValidGroupId = Int64Value.of(createdOrgRoleDto.getRoleGroup().getId());
+        Assertions.assertThrows(StatusRuntimeException.class,() -> orgRoleApplication.removeRoleGroup(notValidGroupId));
+
         var company = organizationApplication.createTopOrganization(randomOrganization());
         var created = orgRoleApplication.createOrgRoleGroup(randomOrgRoleGroup(company.getId()));
         Assertions.assertDoesNotThrow(()->orgRoleApplication.removeRoleGroup(Int64Value.of(created.getId())));
@@ -317,16 +321,13 @@ public class OrgRoleApplicationGrpcTest extends AbstractGrpcTest {
     @Test
     void testChangeOrgRoleGroup(){
 
-        Assertions.assertThrows(StatusRuntimeException.class,()->orgRoleApplication.changeOrgRoleGroup(
-                ChangeOrgRoleGroupDto.newBuilder().setRoleId(randomLong()).setGroupId(randomLong()).build()
-        ));
+        var notValidOrgRoleGroupDto = ChangeOrgRoleGroupDto.newBuilder().setRoleId(randomLong()).setGroupId(randomLong()).build();
+        Assertions.assertThrows(StatusRuntimeException.class,()->orgRoleApplication.changeOrgRoleGroup(notValidOrgRoleGroupDto));
 
         var createdOrgRole = createOrgRoleDto();
 
-        Assertions.assertThrows(
-                StatusRuntimeException.class,
-                ()->orgRoleApplication.changeOrgRoleGroup(ChangeOrgRoleGroupDto.newBuilder().setRoleId(createdOrgRole.getId()).setGroupId(randomLong()).build())
-        );
+        var notValidGroupDto = ChangeOrgRoleGroupDto.newBuilder().setRoleId(createdOrgRole.getId()).setGroupId(randomLong()).build();
+        Assertions.assertThrows(StatusRuntimeException.class, ()->orgRoleApplication.changeOrgRoleGroup(notValidGroupDto));
 
         var anotherRoleGroup = orgRoleApplication.createOrgRoleGroup(randomOrgRoleGroup(createdOrgRole.getOrganization().getId()));
         Assertions.assertDoesNotThrow(

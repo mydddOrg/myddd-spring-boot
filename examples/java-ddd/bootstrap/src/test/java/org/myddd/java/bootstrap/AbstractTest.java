@@ -1,6 +1,5 @@
 package org.myddd.java.bootstrap;
 
-import org.myddd.java.bootstrap.Application;
 import org.junit.jupiter.api.BeforeEach;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.ioc.spring.SpringInstanceProvider;

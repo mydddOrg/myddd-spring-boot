@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 
-public class HealthyControllerTest extends AbstractControllerTest{
+class HealthyControllerTest extends AbstractControllerTest{
 
     @Test
     void healthy(){

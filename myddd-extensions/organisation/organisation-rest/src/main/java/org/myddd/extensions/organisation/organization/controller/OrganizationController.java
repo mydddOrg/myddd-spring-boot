@@ -1,10 +1,10 @@
 package org.myddd.extensions.organisation.organization.controller;
 
+import com.google.protobuf.Int64Value;
 import org.myddd.extensions.organisation.organization.JoinOrLeaveOrganizationVO;
 import org.myddd.extensions.organisation.organization.OrganizationVO;
 import org.myddd.extensions.organisation.organization.WithLimitsPageQueryVO;
 import org.myddd.extensions.organisation.organization.WithLimitsQueryVO;
-import com.google.protobuf.Int64Value;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.security.IAuthentication;
 import org.myddd.utils.Page;
@@ -114,7 +114,7 @@ public class OrganizationController {
         PageOrganizationDto pageOrganizationDto = organizationApplication.pageQueryOrganizations(queryDto);
         return ResponseEntity.ok(
                 Page.builder(OrganizationVO.class)
-                        .start(page * pageSize)
+                        .start((long) page * pageSize)
                         .pageSize(pageOrganizationDto.getPageSize())
                         .totalSize(pageOrganizationDto.getTotal())
                         .data(pageOrganizationDto.getOrganizationsList().stream().map(OrganizationVO::of).collect(Collectors.toList()))
@@ -148,7 +148,7 @@ public class OrganizationController {
         PageOrganizationDto pageOrganizationDto = organizationApplication.pageSearchOrganizations(queryDto);
         return ResponseEntity.ok(
                 Page.builder(OrganizationVO.class)
-                        .start(page * pageSize)
+                        .start((long) page * pageSize)
                         .pageSize(pageOrganizationDto.getPageSize())
                         .totalSize(pageOrganizationDto.getTotal())
                         .data(pageOrganizationDto.getOrganizationsList().stream().map(OrganizationVO::of).collect(Collectors.toList()))

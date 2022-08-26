@@ -1,10 +1,10 @@
 package org.myddd.extensions.security.oauth2.auth;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.myddd.extensions.security.oauth2.AbstractControllerTest;
 import org.myddd.extensions.security.oauth2.config.TokenResponse;
 import org.myddd.extensions.security.oauth2.controller.MockUser;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 

@@ -1,7 +1,6 @@
 package org.myddd.extensions.organization.application;
 
 import com.google.protobuf.BoolValue;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.Int64Value;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,14 +13,12 @@ import org.myddd.extensions.security.api.UserApplication;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.io.FileInputStream;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
 
-public class TestEmployeeApplication extends AbstractTest {
+class TestEmployeeApplication extends AbstractTest {
 
 
     @Inject
@@ -42,15 +39,16 @@ public class TestEmployeeApplication extends AbstractTest {
     void testCreateEmployee() {
         EmployeeDto created = randomCreateEmployee();
         Assertions.assertNotNull(created);
-        Assertions.assertThrows(RuntimeException.class, () -> {
-            employeeApplication.createEmployee(EmployeeDto.newBuilder().build());
-        });
+        var emptyEmployee = EmployeeDto.newBuilder().build();
+        Assertions.assertThrows(RuntimeException.class, () -> employeeApplication.createEmployee(emptyEmployee));
 
         var subOrg = randomDepartment(OrganizationDto.newBuilder().setId(created.getOrgId()).build());
         var createdSubOrg = organizationApplication.createDepartment(subOrg);
         Assertions.assertDoesNotThrow(()->employeeApplication.createEmployee(randomEmployeeWithSubOrgIds(created.getOrgId(),List.of(created.getOrgId(),createdSubOrg.getId()))));
 
-        Assertions.assertThrows(OrganizationNotExistsException.class,()->employeeApplication.createEmployee(randomEmployeeWithSubOrgIds(created.getOrgId(),List.of(randomLong()))));
+        var notValidRandomEmployee =randomEmployeeWithSubOrgIds(created.getOrgId(),List.of(randomLong()));
+
+        Assertions.assertThrows(OrganizationNotExistsException.class,()->employeeApplication.createEmployee(notValidRandomEmployee));
     }
 
     @Test

@@ -1,15 +1,15 @@
 package org.myddd.extensions.media.controller;
 
-import org.myddd.extensions.media.AbstractControllerTest;
-import org.myddd.extensions.media.MockErrorCode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extensions.media.AbstractControllerTest;
+import org.myddd.extensions.media.MockErrorCode;
 import org.myddd.lang.ErrorResponse;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Objects;
 
-public class TestMockController extends AbstractControllerTest {
+class TestMockController extends AbstractControllerTest {
 
     @Test
     void testBusinessOneError(){

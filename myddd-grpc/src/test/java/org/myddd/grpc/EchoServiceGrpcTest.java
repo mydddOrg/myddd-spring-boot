@@ -1,7 +1,10 @@
 package org.myddd.grpc;
 
 import com.google.protobuf.Empty;
-import io.grpc.*;
+import io.grpc.ManagedChannel;
+import io.grpc.ManagedChannelBuilder;
+import io.grpc.Server;
+import io.grpc.StatusRuntimeException;
 import io.grpc.netty.NettyServerBuilder;
 import org.junit.jupiter.api.*;
 import org.myddd.domain.InstanceFactory;

@@ -1,9 +1,9 @@
 package org.myddd.extensions.organisation.organization.controller;
 
-import org.myddd.extensions.organisation.organization.AbstractControllerTest;
-import org.myddd.extensions.organisation.organization.DynamicResultVO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extensions.organisation.organization.AbstractControllerTest;
+import org.myddd.extensions.organisation.organization.DynamicResultVO;
 import org.myddd.extensions.organization.api.EmployeeApplication;
 import org.myddd.extensions.organization.api.OrganizationApplication;
 import org.myddd.extensions.security.IAuthentication;
@@ -11,13 +11,12 @@ import org.myddd.extensions.security.api.UserApplication;
 import org.springframework.http.HttpMethod;
 
 import javax.inject.Inject;
-
 import java.util.Objects;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class TestCurrentLoginController extends AbstractControllerTest {
+class TestCurrentLoginController extends AbstractControllerTest {
 
     @Inject
     private EmployeeApplication employeeApplication;

@@ -1,9 +1,9 @@
 package org.myddd.commons.uid.worker.assigner;
 
 
+import org.junit.jupiter.api.BeforeEach;
 import org.myddd.commons.uid.worker.assigner.api.dto.WorkIdDto;
 import org.myddd.commons.uid.worker.assigner.domain.WorkID;
-import org.junit.jupiter.api.BeforeEach;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.beans.factory.annotation.Autowired;

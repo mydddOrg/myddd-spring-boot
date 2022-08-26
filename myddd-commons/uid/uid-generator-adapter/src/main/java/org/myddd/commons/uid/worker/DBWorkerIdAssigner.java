@@ -2,8 +2,8 @@ package org.myddd.commons.uid.worker;
 
 import com.baidu.fsg.uid.utils.NetUtils;
 import com.baidu.fsg.uid.worker.WorkerIdAssigner;
-import org.myddd.commons.uid.ServerNameNotDefinedException;
 import com.google.common.base.Strings;
+import org.myddd.commons.uid.ServerNameNotDefinedException;
 import org.myddd.commons.uid.worker.assigner.api.WorkIDApplication;
 import org.myddd.commons.uid.worker.assigner.api.dto.WorkIdDto;
 import org.springframework.beans.factory.annotation.Value;

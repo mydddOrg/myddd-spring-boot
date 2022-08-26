@@ -1,9 +1,9 @@
 package org.myddd.extensions.security.runner;
 
-import org.myddd.extensions.security.AbstractControllerTest;
 import com.google.protobuf.StringValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extensions.security.AbstractControllerTest;
 import org.myddd.extensions.security.api.UserApplication;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -19,15 +19,15 @@ class TestInitAdminUserRunner extends AbstractControllerTest {
 
     @Test
     void testAdminUserExists(){
-        sleep(2500);
+        sleep();
         var optionalUserDto = userApplication.queryLocalUserByUserId(StringValue.of(adminEmail));
-        Assertions.assertNotNull(optionalUserDto.hasUser());
+        Assertions.assertTrue(optionalUserDto.hasUser());
     }
 
 
-    private void sleep(long millis){
+    private void sleep(){
         try {
-            Thread.sleep(millis);
+            Thread.sleep(2500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

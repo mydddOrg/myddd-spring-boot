@@ -2,7 +2,6 @@ package org.myddd.java.domain;
 
 import com.google.common.base.Strings;
 import org.myddd.domain.BaseDistributedEntity;
-import org.myddd.domain.BaseIDEntity;
 import org.myddd.domain.InstanceFactory;
 
 import javax.persistence.Entity;

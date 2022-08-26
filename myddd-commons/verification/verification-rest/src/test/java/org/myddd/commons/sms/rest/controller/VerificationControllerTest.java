@@ -1,10 +1,9 @@
 package org.myddd.commons.sms.rest.controller;
 
-import org.myddd.commons.sms.rest.AbstractControllerTest;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.myddd.commons.sms.rest.AbstractControllerTest;
 import org.springframework.http.HttpMethod;
 
 import java.time.LocalDateTime;

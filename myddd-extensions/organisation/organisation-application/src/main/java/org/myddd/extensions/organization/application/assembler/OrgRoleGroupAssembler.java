@@ -8,6 +8,9 @@ import java.util.Objects;
 
 public class OrgRoleGroupAssembler {
 
+    private OrgRoleGroupAssembler(){}
+
+
     public static OrgRoleGroup toEntity(OrgRoleGroupDto dto){
         if(Objects.isNull(dto))return null;
         var orgRoleGroup = new OrgRoleGroup();

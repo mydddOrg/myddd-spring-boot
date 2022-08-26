@@ -1,8 +1,8 @@
 package org.myddd.extensions.security.oauth2.config;
 
+import org.myddd.extensions.security.oauth2.GrantType;
 import org.myddd.extensions.security.oauth2.third.EmailValidCodeTokenGranter;
 import org.myddd.extensions.security.oauth2.third.MobileValidCodeTokenGranter;
-import org.myddd.extensions.security.oauth2.GrantType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +19,6 @@ import org.springframework.security.oauth2.provider.*;
 import org.springframework.security.oauth2.provider.client.ClientCredentialsTokenGranter;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeTokenGranter;
-import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.implicit.ImplicitTokenGranter;
 import org.springframework.security.oauth2.provider.password.ResourceOwnerPasswordTokenGranter;
 import org.springframework.security.oauth2.provider.refresh.RefreshTokenGranter;
@@ -27,10 +26,8 @@ import org.springframework.security.oauth2.provider.request.DefaultOAuth2Request
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 
 import javax.inject.Inject;
-import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
 

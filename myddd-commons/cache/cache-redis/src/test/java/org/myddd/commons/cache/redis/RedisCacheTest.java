@@ -1,7 +1,6 @@
 package org.myddd.commons.cache.redis;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.myddd.commons.cache.AbstractTest;
 import org.myddd.commons.cache.api.Cache;

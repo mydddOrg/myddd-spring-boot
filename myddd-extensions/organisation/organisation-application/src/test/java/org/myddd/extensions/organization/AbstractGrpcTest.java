@@ -14,7 +14,7 @@ import org.myddd.extensions.organization.application.grpc.PermissionGroupApplica
 import java.io.IOException;
 import java.security.SecureRandom;
 
-public class AbstractGrpcTest extends AbstractTest{
+public abstract class AbstractGrpcTest extends AbstractTest{
 
     private final static int PORT = 8080 + new SecureRandom().nextInt(500);
 

@@ -9,6 +9,8 @@ import java.util.Objects;
 
 public class OrganizationAssembler {
 
+    private OrganizationAssembler(){}
+
     public static OrganizationDto toDTO(Organization organization){
         if(Objects.isNull(organization))return null;
 

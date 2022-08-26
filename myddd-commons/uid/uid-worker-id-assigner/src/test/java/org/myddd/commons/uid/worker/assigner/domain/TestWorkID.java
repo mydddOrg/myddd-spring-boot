@@ -1,14 +1,14 @@
 package org.myddd.commons.uid.worker.assigner.domain;
 
-import org.myddd.commons.uid.worker.assigner.AbstractTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.commons.uid.worker.assigner.AbstractTest;
 
 import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 
 @Transactional
-public class TestWorkID extends AbstractTest {
+class TestWorkID extends AbstractTest {
 
     @Test
     void testCreateWorkId(){

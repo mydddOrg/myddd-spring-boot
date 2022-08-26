@@ -1,6 +1,5 @@
 package org.myddd.extensions.organisation.organization.controller;
 
-import com.google.protobuf.ByteString;
 import com.google.protobuf.Int64Value;
 import org.myddd.extensions.organisation.organization.*;
 import org.myddd.extensions.organization.api.*;
@@ -11,11 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.inject.Inject;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.stream.Collectors;
 
 @Controller()

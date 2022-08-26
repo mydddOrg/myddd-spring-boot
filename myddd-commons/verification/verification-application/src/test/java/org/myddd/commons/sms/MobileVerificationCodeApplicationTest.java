@@ -1,12 +1,12 @@
 package org.myddd.commons.sms;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.myddd.commons.AbstractTest;
 import org.myddd.commons.sms.application.SMSGateway;
 import org.myddd.commons.verification.MobileVerificationCodeApplication;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 import java.time.LocalDateTime;

@@ -23,7 +23,7 @@ public class InitAdminUserRunner implements ApplicationRunner {
     @Value("${oauth2.admin.password:admin}")
     private String adminPassword;
 
-    @Value("${oauth2.admin.email:admin@foreverht.com}")
+    @Value("${oauth2.admin.email:admin@myddd.org}")
     private String adminEmail;
 
     @Inject

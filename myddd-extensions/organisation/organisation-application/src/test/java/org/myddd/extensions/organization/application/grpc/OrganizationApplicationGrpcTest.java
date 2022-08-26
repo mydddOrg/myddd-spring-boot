@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 
-public class OrganizationApplicationGrpcTest extends AbstractGrpcTest {
+class OrganizationApplicationGrpcTest extends AbstractGrpcTest {
 
     @Inject
     private UserApplication userApplication;
@@ -40,7 +40,9 @@ public class OrganizationApplicationGrpcTest extends AbstractGrpcTest {
     void testQueryOrganizationSystemManagerEmployees(){
         var organizationApplication = OrganizationApplicationGrpc.newBlockingStub(managedChannel);
 
-        Assertions.assertThrows(StatusRuntimeException.class,()->organizationApplication.queryOrganizationSystemManagerEmployees(Int64Value.of(randomLong())));
+        var notExistsEmployeeId = Int64Value.of(randomLong());
+
+        Assertions.assertThrows(StatusRuntimeException.class,()->organizationApplication.queryOrganizationSystemManagerEmployees(notExistsEmployeeId));
 
         UserDto randomUserDto = randomUserDto();
         Mockito.when(userApplication.queryUserById(any())).thenReturn(randomUserDto);
@@ -80,7 +82,8 @@ public class OrganizationApplicationGrpcTest extends AbstractGrpcTest {
         var organizationApplication = OrganizationApplicationGrpc.newBlockingStub(managedChannel);
 
         var createdCompany = organizationApplication.createTopOrganization(randomOrganization());
-        Assertions.assertThrows(StatusRuntimeException.class,()->organizationApplication.deleteOrganization(Int64Value.of(createdCompany.getId())));
+        var notAllowedDeleteOrgId = Int64Value.of(createdCompany.getId());
+        Assertions.assertThrows(StatusRuntimeException.class,()->organizationApplication.deleteOrganization(notAllowedDeleteOrgId));
 
         var createdDepartment = organizationApplication.createDepartment(randomDepartment(createdCompany));
         Assertions.assertDoesNotThrow(()-> organizationApplication.deleteOrganization(Int64Value.of(createdDepartment.getId())));
@@ -91,14 +94,15 @@ public class OrganizationApplicationGrpcTest extends AbstractGrpcTest {
         var organizationApplication = OrganizationApplicationGrpc.newBlockingStub(managedChannel);
 
         Mockito.when(userApplication.queryUserById(any())).thenReturn(null);
-        Assertions.assertThrows(StatusRuntimeException.class,()->{
-            organizationApplication.joinOrganization(JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(randomLong()).build());
-        });
+        var notValidDto = JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(randomLong()).build();
+        Assertions.assertThrows(StatusRuntimeException.class,()-> organizationApplication.joinOrganization(notValidDto));
 
         UserDto randomUserDto = randomUserDto();
         Mockito.when(userApplication.queryUserById(any())).thenReturn(randomUserDto);
         EmployeeDto createdEmployee = randomCreateEmployee();
-        Assertions.assertThrows(StatusRuntimeException.class,()-> organizationApplication.joinOrganization(JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(createdEmployee.getId()).build()));
+
+        var notExistsOrgId = JoinOrLeaveOrganizationDto.newBuilder().setOrgId(-1L).setUserId(createdEmployee.getId()).build();
+        Assertions.assertThrows(StatusRuntimeException.class,()-> organizationApplication.joinOrganization(notExistsOrgId));
 
         OrganizationDto created = organizationApplication.createTopOrganization(randomOrganization());
         boolean success = organizationApplication.joinOrganization(JoinOrLeaveOrganizationDto.newBuilder().setOrgId(created.getId()).setUserId(randomUserDto.getId()).build()).getValue();

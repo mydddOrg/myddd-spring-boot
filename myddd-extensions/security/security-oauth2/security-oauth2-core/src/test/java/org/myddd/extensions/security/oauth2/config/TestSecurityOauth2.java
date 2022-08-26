@@ -1,8 +1,8 @@
 package org.myddd.extensions.security.oauth2.config;
 
-import org.myddd.extensions.security.oauth2.AbstractControllerTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extensions.security.oauth2.AbstractControllerTest;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;

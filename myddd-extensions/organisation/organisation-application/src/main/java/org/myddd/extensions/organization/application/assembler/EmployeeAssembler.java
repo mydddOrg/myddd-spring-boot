@@ -12,6 +12,8 @@ import java.util.Objects;
 
 public class EmployeeAssembler {
 
+    private EmployeeAssembler(){}
+
     public static Employee toEmployee(EmployeeDto employeeDto) {
         if (Objects.isNull(employeeDto)) return null;
         Employee employee = new Employee();

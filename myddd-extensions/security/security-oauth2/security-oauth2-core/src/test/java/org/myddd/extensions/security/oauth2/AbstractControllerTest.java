@@ -1,10 +1,10 @@
 package org.myddd.extensions.security.oauth2;
 
-import org.myddd.extensions.security.oauth2.config.TokenResponse;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.myddd.domain.InstanceFactory;
+import org.myddd.extensions.security.oauth2.config.TokenResponse;
 import org.myddd.ioc.spring.SpringInstanceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

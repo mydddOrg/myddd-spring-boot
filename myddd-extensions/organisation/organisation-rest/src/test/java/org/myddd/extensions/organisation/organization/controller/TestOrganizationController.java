@@ -1,10 +1,10 @@
 package org.myddd.extensions.organisation.organization.controller;
 
-import org.myddd.extensions.organisation.organization.AbstractControllerTest;
-import org.myddd.extensions.organisation.organization.OrganizationVO;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extensions.organisation.organization.AbstractControllerTest;
+import org.myddd.extensions.organisation.organization.OrganizationVO;
 import org.myddd.extensions.organization.api.EmployeeApplication;
 import org.myddd.extensions.organization.api.OrganizationApplication;
 import org.myddd.extensions.security.IAuthentication;
@@ -21,7 +21,7 @@ import java.util.List;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
-public class TestOrganizationController extends AbstractControllerTest {
+class TestOrganizationController extends AbstractControllerTest {
 
     @Inject
     private IAuthentication authentication;

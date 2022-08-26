@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.myddd.domain.AbstractRepository;
 import org.myddd.persistence.AbstractTest;
 import org.myddd.persistence.mock.User;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Propagation;
 
 import javax.inject.Inject;
 import javax.persistence.PersistenceException;

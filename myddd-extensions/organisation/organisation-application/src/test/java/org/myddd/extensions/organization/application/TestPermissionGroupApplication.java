@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.myddd.extensions.organisation.EmployeeNotExistsException;
 import org.myddd.extensions.organisation.PermissionGroupNotExistsException;
-import org.myddd.extensions.organisation.domain.PermissionGroupType;
 import org.myddd.extensions.organization.AbstractTest;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.security.api.UserApplication;
@@ -60,7 +59,8 @@ class TestPermissionGroupApplication extends AbstractTest {
 
     @Test
     void testQueryPermissionGroup(){
-        Assertions.assertThrows(PermissionGroupNotExistsException.class,()->permissionGroupApplication.queryPermissionGroup(Int64Value.of(-1L)));
+        var permissionGroupNotExistsId = Int64Value.of(-1L);
+        Assertions.assertThrows(PermissionGroupNotExistsException.class,()->permissionGroupApplication.queryPermissionGroup(permissionGroupNotExistsId));
 
         PermissionGroupDto created = createPermissionGroupDto();
         PermissionGroupDto query = permissionGroupApplication.queryPermissionGroup(Int64Value.of(created.getId()));
@@ -125,11 +125,9 @@ class TestPermissionGroupApplication extends AbstractTest {
     @Test
     void testUpdatePermissionGroup(){
 
-        Assertions.assertThrows(PermissionGroupNotExistsException.class,()-> permissionGroupApplication.updatePermissionGroup(
-                PermissionGroupDto.newBuilder()
-                        .setId(-1L)
-                        .build()
-        ));
+        var permissionGroupNotExistDto =  PermissionGroupDto.newBuilder().setId(-1L).build();
+        Assertions.assertThrows(PermissionGroupNotExistsException.class,()-> permissionGroupApplication.updatePermissionGroup(permissionGroupNotExistDto));
+
         PermissionGroupDto created = createPermissionGroupDto();
 
         PermissionGroupDto updateDto = PermissionGroupDto.newBuilder()

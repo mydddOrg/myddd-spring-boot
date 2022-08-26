@@ -1,10 +1,9 @@
 package org.myddd.commons.healthy;
 
-import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.Temporal;
 
 public class HealthyResponse {
 
@@ -52,7 +51,7 @@ public class HealthyResponse {
 
     private String queryHost(){
         try {
-            return Inet4Address.getLocalHost().getHostAddress();
+            return InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             return e.getMessage();
         }

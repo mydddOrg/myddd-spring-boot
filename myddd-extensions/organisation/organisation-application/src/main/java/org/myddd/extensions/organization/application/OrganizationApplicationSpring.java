@@ -1,15 +1,15 @@
 package org.myddd.extensions.organization.application;
 
+import com.google.common.base.Strings;
+import com.google.protobuf.BoolValue;
+import com.google.protobuf.Int64Value;
+import org.myddd.domain.InstanceFactory;
 import org.myddd.extensions.organisation.OrganizationNotExistsException;
 import org.myddd.extensions.organisation.ParentOrganizationNotExists;
 import org.myddd.extensions.organisation.domain.*;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.organization.application.assembler.EmployeeAssembler;
 import org.myddd.extensions.organization.application.assembler.OrganizationAssembler;
-import com.google.common.base.Strings;
-import com.google.protobuf.BoolValue;
-import com.google.protobuf.Int64Value;
-import org.myddd.domain.InstanceFactory;
 import org.myddd.querychannel.QueryChannelService;
 import org.myddd.utils.Page;
 
@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Named
 public class OrganizationApplicationSpring implements OrganizationApplication {
 
+    public static final String ROOT_PARENT_ID = "rootParentId";
     private OrganizationService organizationService;
 
     private OrganizationService getOrganizationService(){
@@ -103,7 +104,7 @@ public class OrganizationApplicationSpring implements OrganizationApplication {
         }
 
         sql.append(" and organization.rootParentId = :rootParentId");
-        params.put("rootParentId",request.getOrgId());
+        params.put(ROOT_PARENT_ID,request.getOrgId());
 
         query = getQueryChannelService()
                 .createJpqlQuery(sql.toString(),EmployeeOrganizationRelation.class)
@@ -146,7 +147,7 @@ public class OrganizationApplicationSpring implements OrganizationApplication {
 
         StringBuilder querySQL = new StringBuilder("from Organization where rootParentId = :rootParentId");
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("rootParentId",request.getOrgId());
+        parameters.put(ROOT_PARENT_ID,request.getOrgId());
 
         if(!request.getLimitsList().isEmpty()){
             querySQL.append(" and ( id in :ids ");
@@ -166,7 +167,7 @@ public class OrganizationApplicationSpring implements OrganizationApplication {
         var organizationMap = organizationList.stream().collect(Collectors.toMap(Organization::getId, Function.identity()));
         var parentOrgIds = getQueryChannelService()
                 .createSqlQuery("select id,parent_ from organization_ where root_parent_id_ =:rootParentId ",Object.class)
-                .addParameter("rootParentId",request.getOrgId())
+                .addParameter(ROOT_PARENT_ID,request.getOrgId())
                 .list();
 
         parentOrgIds.forEach(it -> {
@@ -190,7 +191,7 @@ public class OrganizationApplicationSpring implements OrganizationApplication {
 
         StringBuilder querySQL = new StringBuilder("from Organization where rootParentId = :rootParentId");
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("rootParentId",request.getOrgId());
+        parameters.put(ROOT_PARENT_ID,request.getOrgId());
 
         if(!Strings.isNullOrEmpty(request.getSearch())){
             querySQL.append(" and name like :search");

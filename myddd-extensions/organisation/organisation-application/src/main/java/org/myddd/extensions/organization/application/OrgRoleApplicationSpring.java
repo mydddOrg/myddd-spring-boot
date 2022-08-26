@@ -1,5 +1,9 @@
 package org.myddd.extensions.organization.application;
 
+import com.google.common.base.Strings;
+import com.google.protobuf.BoolValue;
+import com.google.protobuf.Int64Value;
+import org.myddd.domain.InstanceFactory;
 import org.myddd.extensions.organisation.OrgRoleNotExistsException;
 import org.myddd.extensions.organisation.domain.EmployeeOrganizationRelation;
 import org.myddd.extensions.organisation.domain.EmployeeRoleAssignment;
@@ -10,10 +14,6 @@ import org.myddd.extensions.organization.application.assembler.EmployeeAssembler
 import org.myddd.extensions.organization.application.assembler.OrgRoleAssembler;
 import org.myddd.extensions.organization.application.assembler.OrgRoleGroupAssembler;
 import org.myddd.extensions.organization.application.assembler.OrganizationAssembler;
-import com.google.common.base.Strings;
-import com.google.protobuf.BoolValue;
-import com.google.protobuf.Int64Value;
-import org.myddd.domain.InstanceFactory;
 import org.myddd.querychannel.QueryChannelService;
 import org.myddd.utils.Page;
 
@@ -28,6 +28,8 @@ import java.util.stream.Collectors;
 @Named
 public class OrgRoleApplicationSpring implements OrgRoleApplication {
 
+    public static final String ORG_ID = "orgId";
+    public static final String AND_ID_IN_IDS = " and id in :ids";
     private static QueryChannelService queryChannelService;
 
     private static QueryChannelService getQueryChannelService(){
@@ -62,7 +64,7 @@ public class OrgRoleApplicationSpring implements OrgRoleApplication {
     public ListOrgRoleGroupDto listQueryRoleGroupsByOrg(Int64Value request) {
         var list = getQueryChannelService()
                 .createJpqlQuery("from OrgRoleGroup where company.id = :orgId", OrgRoleGroup.class)
-                .addParameter("orgId",request.getValue())
+                .addParameter(ORG_ID,request.getValue())
                 .list();
 
         return ListOrgRoleGroupDto.newBuilder()
@@ -106,10 +108,10 @@ public class OrgRoleApplicationSpring implements OrgRoleApplication {
     public ListOrgRoleDto listOrgRoles(ListOrgQueryDto request) {
         var querySQL = "from OrgRole where company.id = :orgId";
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("orgId",request.getOrgId());
+        parameters.put(ORG_ID,request.getOrgId());
 
         if(!request.getLimitsList().isEmpty()){
-            querySQL += " and id in :ids";
+            querySQL += AND_ID_IN_IDS;
             parameters.put("ids",request.getLimitsList());
         }
 
@@ -126,18 +128,14 @@ public class OrgRoleApplicationSpring implements OrgRoleApplication {
     @Override
     @Transactional
     public BoolValue batchAssignEmployeesToOrgRole(BatchEmployeeForRoleDto request) {
-        request.getEmployeeIdsList().forEach(it -> {
-            EmployeeRoleAssignment.assignEmployeeToRole(it,request.getOrgRoleId());
-        });
+        request.getEmployeeIdsList().forEach(it -> EmployeeRoleAssignment.assignEmployeeToRole(it,request.getOrgRoleId()));
         return BoolValue.of(true);
     }
 
     @Override
     @Transactional
     public BoolValue batchDeAssignEmployeesToOrlRole(BatchEmployeeForRoleDto request) {
-        request.getEmployeeIdsList().forEach(it -> {
-            EmployeeRoleAssignment.deAssignEmployeeFromRole(it,request.getOrgRoleId());
-        });
+        request.getEmployeeIdsList().forEach(it -> EmployeeRoleAssignment.deAssignEmployeeFromRole(it,request.getOrgRoleId()));
         return BoolValue.of(true);
     }
 
@@ -154,7 +152,7 @@ public class OrgRoleApplicationSpring implements OrgRoleApplication {
 
         var querySQL = "from OrgRole where company.id = :orgId";
         Map<String,Object> parameters = new HashMap<>();
-        parameters.put("orgId",request.getOrgId());
+        parameters.put(ORG_ID,request.getOrgId());
 
         if(!Strings.isNullOrEmpty(request.getSearch())){
             querySQL += " and name like :search";
@@ -162,7 +160,7 @@ public class OrgRoleApplicationSpring implements OrgRoleApplication {
         }
 
         if(!request.getLimitsList().isEmpty()){
-            querySQL += " and id in :ids";
+            querySQL += AND_ID_IN_IDS;
             parameters.put("ids",request.getLimitsList());
         }
 
@@ -194,7 +192,7 @@ public class OrgRoleApplicationSpring implements OrgRoleApplication {
         }
 
         if(!request.getLimitsList().isEmpty()){
-            querySQL += " and id in :ids";
+            querySQL += AND_ID_IN_IDS;
             parameters.put("ids",request.getLimitsList());
         }
 

@@ -7,6 +7,8 @@ import org.myddd.extensions.organization.api.OrgRoleGroupDto;
 
 public class OrgRoleAssembler {
 
+    private OrgRoleAssembler(){}
+
     public static OrgRole toOrgRole(OrgRoleDto orgRoleDto){
         OrgRole orgRole = new OrgRole();
         if(orgRoleDto.getId() > 0) orgRole.setId(orgRoleDto.getId());

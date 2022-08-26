@@ -22,6 +22,10 @@ import java.util.stream.Collectors;
 @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE,value = "/v1")
 public class EmployeeOrgRoleController {
 
+    private static final String PAGE_SIZE_MUST_GREATER_THAN_ZERO = "每页条数必须大于0";
+
+    private static final String CURRENT_PAGE_CAN_NOT_SMALL_THAN_ZERO = "当前页必须大于等于0";
+
     @Inject
     private IAuthentication authentication;
 
@@ -163,8 +167,8 @@ public class EmployeeOrgRoleController {
 
     @GetMapping("/organizations/{orgId}/roles")
     public ResponseEntity<Page<OrgRoleVO>> pageQueryOrgRoles(@PathVariable Long orgId, @RequestParam(defaultValue = "") String search, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "100") int pageSize){
-        Preconditions.checkArgument(page >= 0, "当前页必须>=0");
-        Preconditions.checkArgument(pageSize > 0,"每页条数必须大于0");
+        Preconditions.checkArgument(page >= 0, CURRENT_PAGE_CAN_NOT_SMALL_THAN_ZERO);
+        Preconditions.checkArgument(pageSize > 0,PAGE_SIZE_MUST_GREATER_THAN_ZERO);
         if(!authentication.isAuthentication()){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
@@ -182,14 +186,14 @@ public class EmployeeOrgRoleController {
                         .data(pageOrgRole.getOrgRolesList().stream().map(OrgRoleVO::of).collect(Collectors.toList()))
                         .totalSize(pageOrgRole.getTotal())
                         .pageSize(pageSize)
-                        .start(pageSize * page)
+                        .start((long) pageSize * page)
         );
     }
 
     @PostMapping("/organizations/{orgId}/roles/page-query")
     public ResponseEntity<Page<OrgRoleVO>> pageQueryOrgRolesWithLimits(@PathVariable Long orgId,@RequestBody WithLimitsPageQueryVO pageQueryVO){
-        Preconditions.checkArgument(pageQueryVO.getPage() >= 0, "当前页必须>=0");
-        Preconditions.checkArgument(pageQueryVO.getPageSize() > 0,"每页条数必须大于0");
+        Preconditions.checkArgument(pageQueryVO.getPage() >= 0, CURRENT_PAGE_CAN_NOT_SMALL_THAN_ZERO);
+        Preconditions.checkArgument(pageQueryVO.getPageSize() > 0,PAGE_SIZE_MUST_GREATER_THAN_ZERO);
         if(!authentication.isAuthentication()){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
@@ -214,8 +218,8 @@ public class EmployeeOrgRoleController {
 
     @GetMapping("/organizations/{orgId}/roles/{roleId}/employees")
     public ResponseEntity<Page<EmployeeVO>> pageQueryRoleEmployees(@RequestParam(defaultValue = "") String search, @PathVariable Long roleId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "100") int pageSize){
-        Preconditions.checkArgument(page >= 0, "当前页必须>=0");
-        Preconditions.checkArgument(pageSize > 0,"每页条数必须大于0");
+        Preconditions.checkArgument(page >= 0, CURRENT_PAGE_CAN_NOT_SMALL_THAN_ZERO);
+        Preconditions.checkArgument(pageSize > 0,PAGE_SIZE_MUST_GREATER_THAN_ZERO);
 
         if(!authentication.isAuthentication()){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -233,7 +237,7 @@ public class EmployeeOrgRoleController {
         return ResponseEntity.ok(
                 Page.builder(EmployeeVO.class)
                         .pageSize(pageSize)
-                        .start(page * pageSize)
+                        .start((long) page * pageSize)
                         .totalSize(pageRoleEmployeeDto.getTotal())
                         .data(pageRoleEmployeeDto.getEmployeesList().stream().map(EmployeeVO::of).collect(Collectors.toList()))
         );
@@ -241,8 +245,8 @@ public class EmployeeOrgRoleController {
 
     @PostMapping("/organizations/{orgId}/roles/{roleId}/employees/page-query")
     public ResponseEntity<Page<EmployeeVO>> pageQueryRoleEmployeesWithLimits(@PathVariable Long roleId,@RequestBody  WithLimitsPageQueryVO queryVO){
-        Preconditions.checkArgument(queryVO.getPage() >= 0, "当前页必须>=0");
-        Preconditions.checkArgument(queryVO.getPageSize() > 0,"每页条数必须大于0");
+        Preconditions.checkArgument(queryVO.getPage() >= 0, CURRENT_PAGE_CAN_NOT_SMALL_THAN_ZERO);
+        Preconditions.checkArgument(queryVO.getPageSize() > 0,PAGE_SIZE_MUST_GREATER_THAN_ZERO);
 
         if(!authentication.isAuthentication()){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -261,7 +265,7 @@ public class EmployeeOrgRoleController {
         return ResponseEntity.ok(
                 Page.builder(EmployeeVO.class)
                         .pageSize(queryVO.getPageSize())
-                        .start(queryVO.getPage() * queryVO.getPageSize())
+                        .start((long) queryVO.getPage() * queryVO.getPageSize())
                         .totalSize(pageRoleEmployeeDto.getTotal())
                         .data(pageRoleEmployeeDto.getEmployeesList().stream().map(EmployeeVO::of).collect(Collectors.toList()))
         );

@@ -1,9 +1,9 @@
 package org.myddd.extensions.organisation.organization.controller;
 
+import com.google.protobuf.Int64Value;
 import org.myddd.extensions.organisation.organization.DynamicResultVO;
 import org.myddd.extensions.organisation.organization.EmployeeVO;
 import org.myddd.extensions.organisation.organization.OrganizationVO;
-import com.google.protobuf.Int64Value;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.security.IAuthentication;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package org.myddd.extensions.security.oauth2;
 
-import org.myddd.extensions.security.oauth2.auth.LoginUserInfo;
 import org.myddd.extensions.security.api.UserDto;
+import org.myddd.extensions.security.oauth2.auth.LoginUserInfo;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

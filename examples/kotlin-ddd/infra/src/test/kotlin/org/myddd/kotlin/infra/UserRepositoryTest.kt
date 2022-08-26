@@ -3,8 +3,8 @@ package org.myddd.kotlin.infra
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.myddd.domain.InstanceFactory
-import org.myddd.kotlin.domain.UserRepository
 import org.myddd.kotlin.AbstractTest
+import org.myddd.kotlin.domain.UserRepository
 import javax.transaction.Transactional
 
 class UserRepositoryTest: AbstractTest() {

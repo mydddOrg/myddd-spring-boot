@@ -1,12 +1,12 @@
 package org.myddd.extensions.media.controller;
 
+import com.google.protobuf.ByteString;
+import com.google.protobuf.StringValue;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.myddd.extensions.media.api.MediaApplication;
 import org.myddd.extensions.media.api.MediaByte;
 import org.myddd.extensions.media.api.MediaDTO;
 import org.myddd.extensions.media.controller.response.MediaResponse;
-import com.google.protobuf.ByteString;
-import com.google.protobuf.StringValue;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +50,7 @@ public class MediaController {
     }
 
     @PostMapping("/medias")
-    ResponseEntity uploadMedia(@RequestParam(name = "file") MultipartFile file) throws IOException {
+    ResponseEntity<MediaResponse> uploadMedia(@RequestParam(name = "file") MultipartFile file) throws IOException {
         try(InputStream inputStream = file.getInputStream()){
             ByteString byteString = ByteString.readFrom(inputStream);
 

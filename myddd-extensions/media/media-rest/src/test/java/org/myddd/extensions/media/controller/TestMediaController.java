@@ -1,11 +1,11 @@
 package org.myddd.extensions.media.controller;
 
 
-import org.myddd.extensions.media.AbstractControllerTest;
-import org.myddd.extensions.media.controller.response.MediaResponse;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.myddd.extensions.media.AbstractControllerTest;
+import org.myddd.extensions.media.controller.response.MediaResponse;
 import org.myddd.lang.ErrorResponse;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.UUID;
 
-public class TestMediaController extends AbstractControllerTest {
+class TestMediaController extends AbstractControllerTest {
 
     @Test
     void testQueryMediaByDigest() throws IOException {

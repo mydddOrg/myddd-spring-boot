@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.myddd.extensions.organisation.domain.PermissionGroupType;
 import org.myddd.extensions.organization.AbstractGrpcTest;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.security.api.UserApplication;
@@ -16,7 +15,7 @@ import java.util.Set;
 
 import static org.mockito.ArgumentMatchers.any;
 
-public class PermissionGroupApplicationGrpcTest extends AbstractGrpcTest {
+class PermissionGroupApplicationGrpcTest extends AbstractGrpcTest {
 
     private OrganizationDto parentOrg;
 
@@ -58,7 +57,8 @@ public class PermissionGroupApplicationGrpcTest extends AbstractGrpcTest {
 
     @Test
     void testQueryPermissionGroup(){
-        Assertions.assertThrows(StatusRuntimeException.class,()->permissionGroupApplication.queryPermissionGroup(Int64Value.of(-1L)));
+        var notExistsPermissionId = Int64Value.of(-1L);
+        Assertions.assertThrows(StatusRuntimeException.class,()->permissionGroupApplication.queryPermissionGroup(notExistsPermissionId));
 
         PermissionGroupDto created = createPermissionGroupDto();
         PermissionGroupDto query = permissionGroupApplication.queryPermissionGroup(Int64Value.of(created.getId()));
@@ -123,11 +123,8 @@ public class PermissionGroupApplicationGrpcTest extends AbstractGrpcTest {
     @Test
     void testUpdatePermissionGroup(){
 
-        Assertions.assertThrows(StatusRuntimeException.class,()-> permissionGroupApplication.updatePermissionGroup(
-                PermissionGroupDto.newBuilder()
-                        .setId(-1L)
-                        .build()
-        ));
+        var notExistsPermissionId = PermissionGroupDto.newBuilder().setId(-1L).build();
+        Assertions.assertThrows(StatusRuntimeException.class,()-> permissionGroupApplication.updatePermissionGroup(notExistsPermissionId));
         PermissionGroupDto created = createPermissionGroupDto();
 
         PermissionGroupDto updateDto = PermissionGroupDto.newBuilder()

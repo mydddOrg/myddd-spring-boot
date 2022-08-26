@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 
 public class PermissionGroupAssembler {
 
+    private PermissionGroupAssembler(){}
+
     public static PermissionGroup toPermissionGroup(PermissionGroupDto permissionGroupDto){
         if(Objects.isNull(permissionGroupDto)){
             return null;

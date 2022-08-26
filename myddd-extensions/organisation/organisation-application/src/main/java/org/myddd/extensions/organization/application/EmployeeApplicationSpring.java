@@ -1,5 +1,9 @@
 package org.myddd.extensions.organization.application;
 
+import com.google.common.base.Strings;
+import com.google.protobuf.BoolValue;
+import com.google.protobuf.Int64Value;
+import org.myddd.domain.InstanceFactory;
 import org.myddd.extensions.organisation.EmployeeNotExistsException;
 import org.myddd.extensions.organisation.OrganizationNotExistsException;
 import org.myddd.extensions.organisation.domain.*;
@@ -7,11 +11,6 @@ import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.organization.application.assembler.EmployeeAssembler;
 import org.myddd.extensions.organization.application.assembler.OrgRoleAssembler;
 import org.myddd.extensions.organization.application.assembler.OrganizationAssembler;
-import com.google.common.base.Strings;
-import com.google.protobuf.BoolValue;
-import com.google.protobuf.Int64Value;
-import org.myddd.domain.InstanceFactory;
-import org.myddd.extensions.security.api.UserApplication;
 import org.myddd.querychannel.QueryChannelService;
 import org.myddd.utils.Page;
 
@@ -26,6 +25,7 @@ import java.util.stream.Collectors;
 @Named
 public class EmployeeApplicationSpring implements EmployeeApplication {
 
+    public static final String EMPLOYEE_IDS = "employeeIds";
     private QueryChannelService queryChannelService;
 
     private QueryChannelService getQueryChannelService(){
@@ -33,15 +33,6 @@ public class EmployeeApplicationSpring implements EmployeeApplication {
             queryChannelService = InstanceFactory.getInstance(QueryChannelService.class);
         }
         return queryChannelService;
-    }
-
-    private UserApplication userApplication;
-
-    private UserApplication getUserApplication(){
-        if(Objects.isNull(userApplication)){
-            userApplication = InstanceFactory.getInstance(UserApplication.class);
-        }
-        return userApplication;
     }
 
 
@@ -93,14 +84,14 @@ public class EmployeeApplicationSpring implements EmployeeApplication {
          var employeeIds = pageResult.getData().stream().map(it -> it.getEmployee().getId()).collect(Collectors.toList());
          var roleAssignments = getQueryChannelService()
                  .createJpqlQuery("from EmployeeRoleAssignment where employee.id in :employeeIds", EmployeeRoleAssignment.class)
-                 .addParameter("employeeIds",employeeIds)
+                 .addParameter(EMPLOYEE_IDS,employeeIds)
                  .list();
          var employeeRolesMap = roleAssignments.stream().collect(Collectors.groupingBy(it -> it.getEmployee().getId(), Collectors.mapping(it-> OrgRoleAssembler.toOrgRoleDto(it.getOrgRole()),Collectors.toList())));
 
          //查询雇员的所有组织信息
          var employeeOrganizations = getQueryChannelService()
                  .createJpqlQuery("from EmployeeOrganizationRelation where employee.id in :employeeIds",EmployeeOrganizationRelation.class)
-                 .addParameter("employeeIds",employeeIds)
+                 .addParameter(EMPLOYEE_IDS,employeeIds)
                  .list();
          var allOrganizations = employeeOrganizations.stream().map(EmployeeOrganizationRelation::getOrganization).collect(Collectors.toList());
          Organization.fetchOrganizationFullNamePath(allOrganizations);
@@ -185,13 +176,13 @@ public class EmployeeApplicationSpring implements EmployeeApplication {
 
         var roleAssignments = getQueryChannelService()
                 .createJpqlQuery("from EmployeeRoleAssignment where employee.id in :employeeIds", EmployeeRoleAssignment.class)
-                .addParameter("employeeIds",employeeIds)
+                .addParameter(EMPLOYEE_IDS,employeeIds)
                 .list();
         var employeeRolesMap = roleAssignments.stream().collect(Collectors.groupingBy(it -> it.getEmployee().getId(), Collectors.mapping(it-> OrgRoleAssembler.toOrgRoleDto(it.getOrgRole()),Collectors.toList())));
 
         var employeeOrganizations = getQueryChannelService()
                 .createJpqlQuery("from EmployeeOrganizationRelation where employee.id in :employeeIds",EmployeeOrganizationRelation.class)
-                .addParameter("employeeIds",employeeIds)
+                .addParameter(EMPLOYEE_IDS,employeeIds)
                 .list();
         var allOrganizations = employeeOrganizations.stream().map(EmployeeOrganizationRelation::getOrganization).collect(Collectors.toList());
         Organization.fetchOrganizationFullNamePath(allOrganizations);

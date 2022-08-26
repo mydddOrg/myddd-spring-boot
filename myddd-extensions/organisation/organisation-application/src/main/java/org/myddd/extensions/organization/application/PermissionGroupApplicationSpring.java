@@ -1,5 +1,7 @@
 package org.myddd.extensions.organization.application;
 
+import com.google.protobuf.BoolValue;
+import com.google.protobuf.Int64Value;
 import org.myddd.extensions.organisation.PermissionGroupNotExistsException;
 import org.myddd.extensions.organisation.domain.PermissionGroup;
 import org.myddd.extensions.organisation.domain.PermissionGroupCreatorService;
@@ -7,8 +9,6 @@ import org.myddd.extensions.organisation.domain.PermissionGroupService;
 import org.myddd.extensions.organisation.domain.PermissionGroupType;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.organization.application.assembler.PermissionGroupAssembler;
-import com.google.protobuf.BoolValue;
-import com.google.protobuf.Int64Value;
 
 import javax.inject.Named;
 import javax.transaction.Transactional;

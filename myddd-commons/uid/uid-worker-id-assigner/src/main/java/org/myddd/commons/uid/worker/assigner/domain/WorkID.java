@@ -66,4 +66,18 @@ public class WorkID extends BaseIDEntity {
         return getRepository().queryWorkId(host,port);
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof WorkID)) return false;
+        if (!super.equals(o)) return false;
+        WorkID workID = (WorkID) o;
+        return port == workID.port && Objects.equals(name, workID.name) && Objects.equals(host, workID.host);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name, host, port);
+    }
 }

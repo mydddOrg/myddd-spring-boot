@@ -1,10 +1,10 @@
 package org.myddd.extensions.security.controller;
 
-import org.myddd.extensions.security.AbstractControllerTest;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.myddd.extensions.security.AbstractControllerTest;
 import org.myddd.extensions.security.IAuthentication;
 import org.springframework.http.ResponseEntity;
 

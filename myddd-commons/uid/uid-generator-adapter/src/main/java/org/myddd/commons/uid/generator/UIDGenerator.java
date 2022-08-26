@@ -10,10 +10,10 @@ import javax.inject.Named;
 public class UIDGenerator implements IDGenerate {
 
     @Inject
-    private UidGenerator uidGenerator;
+    private UidGenerator generator;
 
     @Override
     public Long nextId() {
-        return uidGenerator.getUID();
+        return generator.getUID();
     }
 }

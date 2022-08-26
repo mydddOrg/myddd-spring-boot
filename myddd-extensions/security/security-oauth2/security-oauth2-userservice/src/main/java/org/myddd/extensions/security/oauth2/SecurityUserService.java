@@ -2,14 +2,12 @@ package org.myddd.extensions.security.oauth2;
 
 import com.google.protobuf.StringValue;
 import org.myddd.extensions.security.api.UserApplication;
-import org.myddd.extensions.security.api.UserDto;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Objects;
 
 @Named
 public class SecurityUserService implements UserDetailsService {

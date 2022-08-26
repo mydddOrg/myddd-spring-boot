@@ -42,12 +42,13 @@ class TestOrgRoleApplication extends AbstractTest {
         Assertions.assertThrows(OrganizationNotExistsException.class,() -> orgRoleApplication.createOrgRole(notValidOrgRoleDto));
         OrgRoleDto createdOrgRoleDto = createOrgRoleDto();
         Assertions.assertNotNull(createdOrgRoleDto);
-        Assertions.assertNotNull(createdOrgRoleDto.getRoleGroup().getId());
+        Assertions.assertTrue(createdOrgRoleDto.getRoleGroup().getId() > 0);
     }
 
     @Test
     void testRemoveOrgRole(){
-        Assertions.assertThrows(OrgRoleNotExistsException.class,()->orgRoleApplication.removeOrgRole(Int64Value.of(randomLong())));
+        var notValidOrgRoleId = Int64Value.of(randomLong());
+        Assertions.assertThrows(OrgRoleNotExistsException.class,()->orgRoleApplication.removeOrgRole(notValidOrgRoleId));
 
         OrgRoleDto createdOrgRoleDto = createOrgRoleDto();
         Assertions.assertDoesNotThrow(()->orgRoleApplication.removeOrgRole(Int64Value.of(createdOrgRoleDto.getId())));
@@ -91,11 +92,13 @@ class TestOrgRoleApplication extends AbstractTest {
 
     @Test
     void testRemoveOrgRoleGroup(){
-        Assertions.assertThrows(OrgRoleGroupNotExistsException.class,()-> orgRoleApplication.removeRoleGroup(Int64Value.of(randomLong())));
+        var notValidOrgRoleId = Int64Value.of(randomLong());
+        Assertions.assertThrows(OrgRoleGroupNotExistsException.class,()-> orgRoleApplication.removeRoleGroup(notValidOrgRoleId));
         Mockito.when(userApplication.queryUserById(any())).thenReturn(randomUserDto());
         OrgRoleDto createdOrgRoleDto = createOrgRoleDto();
 
-        Assertions.assertThrows(OrgRoleGroupNotEmptyException.class,() -> orgRoleApplication.removeRoleGroup(Int64Value.of(createdOrgRoleDto.getRoleGroup().getId())));
+        var notEmptyOrgRoleId = Int64Value.of(createdOrgRoleDto.getRoleGroup().getId());
+        Assertions.assertThrows(OrgRoleGroupNotEmptyException.class,() -> orgRoleApplication.removeRoleGroup(notEmptyOrgRoleId));
         var company = organizationApplication.createTopOrganization(randomOrganization());
         var created = orgRoleApplication.createOrgRoleGroup(randomOrgRoleGroup(company.getId()));
         Assertions.assertDoesNotThrow(()->orgRoleApplication.removeRoleGroup(Int64Value.of(created.getId())));
@@ -325,16 +328,14 @@ class TestOrgRoleApplication extends AbstractTest {
     @Test
     void testChangeOrgRoleGroup(){
 
-        Assertions.assertThrows(OrgRoleNotExistsException.class,()->orgRoleApplication.changeOrgRoleGroup(
-                ChangeOrgRoleGroupDto.newBuilder().setRoleId(randomLong()).setGroupId(randomLong()).build()
-        ));
+        var orgRoleNotExistsDto = ChangeOrgRoleGroupDto.newBuilder().setRoleId(randomLong()).setGroupId(randomLong()).build();
+
+        Assertions.assertThrows(OrgRoleNotExistsException.class,()->orgRoleApplication.changeOrgRoleGroup(orgRoleNotExistsDto));
 
         var createdOrgRole = createOrgRoleDto();
 
-        Assertions.assertThrows(
-                OrgRoleGroupNotExistsException.class,
-                ()->orgRoleApplication.changeOrgRoleGroup(ChangeOrgRoleGroupDto.newBuilder().setRoleId(createdOrgRole.getId()).setGroupId(randomLong()).build())
-        );
+        var orgRoleGroupNotExistsDto = ChangeOrgRoleGroupDto.newBuilder().setRoleId(createdOrgRole.getId()).setGroupId(randomLong()).build();
+        Assertions.assertThrows(OrgRoleGroupNotExistsException.class, ()->orgRoleApplication.changeOrgRoleGroup(orgRoleGroupNotExistsDto));
 
         var anotherRoleGroup = orgRoleApplication.createOrgRoleGroup(randomOrgRoleGroup(createdOrgRole.getOrganization().getId()));
         Assertions.assertDoesNotThrow(

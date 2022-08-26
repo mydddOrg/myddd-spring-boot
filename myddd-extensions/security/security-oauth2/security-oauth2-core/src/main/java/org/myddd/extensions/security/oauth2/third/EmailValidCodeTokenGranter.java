@@ -4,7 +4,8 @@ import org.myddd.commons.verification.EmailVerificationCodeApplication;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.extensions.security.oauth2.GrantType;
 import org.springframework.security.oauth2.common.exceptions.InvalidGrantException;
-import org.springframework.security.oauth2.provider.*;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.OAuth2RequestFactory;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 
 import java.util.Map;

@@ -1,32 +1,29 @@
 package org.myddd.extensions.organisation.organization.controller;
 
-import org.myddd.extensions.organisation.organization.AbstractControllerTest;
-import org.myddd.extensions.organisation.organization.EmployeeVO;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.myddd.extensions.organisation.organization.AbstractControllerTest;
+import org.myddd.extensions.organisation.organization.EmployeeVO;
 import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.security.IAuthentication;
 import org.myddd.extensions.security.api.UserApplication;
 import org.myddd.extensions.security.api.UserDto;
 import org.myddd.utils.Page;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.http.*;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 
 import javax.inject.Inject;
-import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-public class TestEmployeeController extends AbstractControllerTest {
+class TestEmployeeController extends AbstractControllerTest {
 
     @Inject
     private EmployeeApplication employeeApplication;

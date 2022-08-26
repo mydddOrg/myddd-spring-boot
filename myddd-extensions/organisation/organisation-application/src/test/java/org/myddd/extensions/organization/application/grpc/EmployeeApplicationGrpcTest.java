@@ -1,26 +1,22 @@
 package org.myddd.extensions.organization.application.grpc;
 
-import org.myddd.extensions.organization.AbstractGrpcTest;
-import org.myddd.extensions.organization.api.*;
-import org.myddd.extensions.organization.application.TestEmployeeApplication;
 import com.google.protobuf.BoolValue;
-import com.google.protobuf.ByteString;
 import com.google.protobuf.Int64Value;
 import io.grpc.StatusRuntimeException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.myddd.extensions.organization.AbstractGrpcTest;
+import org.myddd.extensions.organization.api.*;
 import org.myddd.extensions.security.api.UserApplication;
 
 import javax.inject.Inject;
-import java.io.FileInputStream;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
 
-public class EmployeeApplicationGrpcTest extends AbstractGrpcTest {
+class EmployeeApplicationGrpcTest extends AbstractGrpcTest {
 
     @Inject
     private UserApplication userApplication;
@@ -34,15 +30,15 @@ public class EmployeeApplicationGrpcTest extends AbstractGrpcTest {
 
         EmployeeDto created = randomCreateEmployee();
         Assertions.assertNotNull(created);
-        Assertions.assertThrows(StatusRuntimeException.class, () -> {
-            employeeApplication.createEmployee(EmployeeDto.newBuilder().build());
-        });
+        var emptyEmployeeDto = EmployeeDto.newBuilder().build();
+        Assertions.assertThrows(StatusRuntimeException.class, () -> employeeApplication.createEmployee(emptyEmployeeDto));
 
         var subOrg = randomDepartment(OrganizationDto.newBuilder().setId(created.getOrgId()).build());
         var createdSubOrg = organizationApplication.createDepartment(subOrg);
         Assertions.assertDoesNotThrow(()->employeeApplication.createEmployee(randomEmployeeWithSubOrgIds(created.getOrgId(), List.of(created.getOrgId(),createdSubOrg.getId()))));
 
-        Assertions.assertThrows(StatusRuntimeException.class,()->employeeApplication.createEmployee(randomEmployeeWithSubOrgIds(created.getOrgId(),List.of(randomLong()))));
+        var notValidSubOrgIdDto = randomEmployeeWithSubOrgIds(created.getOrgId(),List.of(randomLong()));
+        Assertions.assertThrows(StatusRuntimeException.class,()->employeeApplication.createEmployee(notValidSubOrgIdDto));
     }
 
     @Test
