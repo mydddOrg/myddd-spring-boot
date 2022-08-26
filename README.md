@@ -33,9 +33,9 @@ myddd-spring-boot始终坚持以下两个原则：
 
 当前主干的SonarQube的质量状态为:
 
-**版本：0.3.3-ALPHA**
+**版本：0.3.4-RC**
 
-![SonarQube质量报告](https://images.taoofcoding.tech/sonar/sonar-data-of-myddd-0.3.3-ALPHA.png)
+![SonarQube质量报告](sonarqube-of-myddd-0.3.4-rc.png)
 
 
 ## 为什么叫myddd
