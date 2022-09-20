@@ -5,7 +5,7 @@ myddd-spring-boot is based on Java and Spring Boot, it supports development for 
 > 其它语言(Other language): [中文Chinese](./README_CN.md)
 
 ***brain map***
-![](https://images.taoofcoding.tech/2022/09/myddd-spring-boot-english-2022-09-20.png)
+![](https://images.taoofcoding.tech/2022/09/myddd-en-2022-09-20.png)
 
 ## Quick Start
 
