@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import net.ltgt.gradle.errorprone.errorprone
 
 
 buildscript {
@@ -20,6 +21,8 @@ plugins {
     id("org.springframework.boot") version "2.7.4"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
+
+    id("net.ltgt.errorprone") version "3.0.1"
 }
 
 val projectVersion = "0.3.5-SNAPSHOT"
@@ -91,6 +94,7 @@ subprojects {
     apply(plugin = "java")
     apply(plugin = "org.sonarqube")
     apply(plugin = "jacoco")
+    apply(plugin = "net.ltgt.errorprone")
 
     jacoco {
         toolVersion = "0.8.7"
@@ -171,6 +175,10 @@ subprojects {
                     }
                 }
             }
+
+            tasks.withType<JavaCompile>().configureEach {
+                options.errorprone.disableWarningsInGeneratedCode.set(true)
+            }
         }
 
         dependencies {
@@ -187,8 +195,8 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
         testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
 
+        errorprone("com.google.errorprone:error_prone_core:2.16")
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
-
     }
 }
 
