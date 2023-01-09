@@ -144,8 +144,8 @@ subprojects {
                     repositories {
                         maven {
 
-                            val releasesRepoUrl = "sftp://ssh.myddd.org:10010/repositories/releases"
-                            val snapshotsRepoUrl = "sftp://ssh.myddd.org:10010/repositories/snapshots"
+                            val releasesRepoUrl = "sftp://api.myddd.org:10010/repositories/releases"
+                            val snapshotsRepoUrl = "sftp://api.myddd.org:10010/repositories/snapshots"
                             version = projectVersion
                             url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
 
