@@ -6,7 +6,7 @@ import org.myddd.commons.sms.SendEmailErrorException;
 import org.myddd.commons.sms.application.EmailGateway;
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;

@@ -4,9 +4,9 @@ import com.google.common.base.Strings;
 import org.myddd.domain.BaseDistributedEntity;
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import java.util.Objects;
 
 @Entity

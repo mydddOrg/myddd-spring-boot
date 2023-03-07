@@ -4,9 +4,9 @@ package org.myddd.persistence.jpa;
 import org.myddd.domain.InstanceFactory;
 import org.myddd.domain.IocInstanceNotFoundException;
 
-import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 
 /**
  * JPA 实体管理器提供者。如果当前线程中尚未存在entityManager线程变量，则从IoC容器中获取一个并存入当前线程，

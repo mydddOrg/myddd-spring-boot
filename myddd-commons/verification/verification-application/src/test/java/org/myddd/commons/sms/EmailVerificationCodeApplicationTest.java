@@ -8,7 +8,7 @@ import org.myddd.commons.AbstractTest;
 import org.myddd.commons.sms.application.EmailGateway;
 import org.myddd.commons.verification.EmailVerificationCodeApplication;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

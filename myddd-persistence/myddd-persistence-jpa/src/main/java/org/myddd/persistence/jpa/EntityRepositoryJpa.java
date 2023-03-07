@@ -3,7 +3,7 @@ package org.myddd.persistence.jpa;
 import org.myddd.domain.Entity;
 import org.myddd.domain.EntityRepository;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import java.io.Serializable;
 
 /**

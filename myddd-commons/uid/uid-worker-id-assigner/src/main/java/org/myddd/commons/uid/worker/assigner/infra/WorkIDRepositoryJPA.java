@@ -4,7 +4,7 @@ import org.myddd.commons.uid.worker.assigner.domain.WorkID;
 import org.myddd.commons.uid.worker.assigner.domain.WorkIDRepository;
 import org.myddd.persistence.jpa.AbstractRepositoryJPA;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 @Named
 public class WorkIDRepositoryJPA extends AbstractRepositoryJPA implements WorkIDRepository {

@@ -1,6 +1,6 @@
 package org.myddd.domain;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.io.Serializable;
 
 /**

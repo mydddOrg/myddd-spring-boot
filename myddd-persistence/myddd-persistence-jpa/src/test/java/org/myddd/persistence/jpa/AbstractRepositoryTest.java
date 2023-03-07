@@ -6,9 +6,9 @@ import org.myddd.domain.AbstractRepository;
 import org.myddd.persistence.AbstractTest;
 import org.myddd.persistence.mock.User;
 
-import javax.inject.Inject;
-import javax.persistence.PersistenceException;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @Transactional

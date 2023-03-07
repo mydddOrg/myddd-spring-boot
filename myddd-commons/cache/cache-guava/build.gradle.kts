@@ -10,7 +10,7 @@ extra["publishJar"] = true
 
 
 dependencies {
-    api("javax.inject:javax.inject:${rootProject.extra["javax_inject_version"]}")
+    api("jakarta.inject:jakarta.inject-api:${rootProject.extra["jakarta_inject_version"]}")
     implementation(project(":myddd-commons:cache:cache-api"))
     implementation("com.google.guava:guava:${rootProject.extra["guava.version"]}")
     implementation(project(":myddd-ioc:myddd-ioc-api"))

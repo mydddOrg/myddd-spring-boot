@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.myddd.commons.gateway.AbstractTest;
 import org.myddd.commons.sms.application.EmailGateway;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 @Disabled("会发送真实的邮件")
 public class EmailGatewayTest extends AbstractTest{
 

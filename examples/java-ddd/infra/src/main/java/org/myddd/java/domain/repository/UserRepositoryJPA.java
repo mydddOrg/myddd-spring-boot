@@ -4,7 +4,7 @@ import org.myddd.java.domain.User;
 import org.myddd.java.domain.UserRepository;
 import org.myddd.persistence.jpa.AbstractRepositoryJPA;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import java.util.List;
 
 @Named

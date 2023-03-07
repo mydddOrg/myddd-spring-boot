@@ -4,7 +4,7 @@ import org.myddd.domain.mock.User;
 import org.myddd.domain.mock.UserRepository;
 import org.myddd.persistence.jpa.AbstractRepositoryJPA;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 @Named
 public class UserRepositoryJPA extends AbstractRepositoryJPA implements UserRepository {

@@ -73,9 +73,9 @@ package org.myddd.kotlin.domain
 
 import org.myddd.domain.BaseIDEntity
 import org.myddd.domain.InstanceFactory
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
 
 @Entity
 @Table(name = "user_")
@@ -84,7 +84,7 @@ class User:BaseIDEntity() {
     @Column(name = "user_id")
     lateinit var userId:String
 
-    @javax.persistence.Transient
+    @jakarta.persistence.Transient
     lateinit var password:String
 
     @Column(name = "encode_password")

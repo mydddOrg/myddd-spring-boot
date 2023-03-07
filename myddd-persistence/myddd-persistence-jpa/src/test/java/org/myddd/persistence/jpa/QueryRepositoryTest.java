@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.myddd.persistence.AbstractTest;
 import org.myddd.querychannel.QueryRepository;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @Transactional
 class QueryRepositoryTest extends AbstractTest {

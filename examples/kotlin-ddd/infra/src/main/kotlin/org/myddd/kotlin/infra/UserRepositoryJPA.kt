@@ -3,7 +3,7 @@ package org.myddd.kotlin.infra
 import org.myddd.kotlin.domain.User
 import org.myddd.kotlin.domain.UserRepository
 import org.myddd.persistence.jpa.AbstractRepositoryJPA
-import javax.inject.Named
+import jakarta.inject.Named
 
 @Named
 class UserRepositoryJPA:AbstractRepositoryJPA(),UserRepository {

@@ -10,7 +10,7 @@ import org.myddd.querychannel.query.ChannelJpqlQuery;
 import org.myddd.querychannel.query.ChannelNamedQuery;
 import org.myddd.querychannel.query.ChannelSqlQuery;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 /**
  * @author lingenliu (<a href="mailto:lingenliu@gmail.com">lingenliu@gmail.com</a>)

@@ -2,7 +2,7 @@ package org.myddd.domain.distributed;
 
 import org.myddd.domain.IDGenerate;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 /**
  * Twitter_Snowflake<br>

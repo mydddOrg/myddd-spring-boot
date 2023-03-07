@@ -8,8 +8,8 @@ import org.myddd.kotlin.application.assembler.toUser
 import org.myddd.kotlin.domain.User
 import org.myddd.querychannel.QueryChannelService
 import org.myddd.utils.Page
-import javax.inject.Named
-import javax.transaction.Transactional
+import jakarta.inject.Named
+import jakarta.transaction.Transactional
 
 @Named
 open class UserApplicationImpl:UserApplication {

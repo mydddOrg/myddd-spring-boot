@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.myddd.java.domain.AbstractTest;
 import org.myddd.java.domain.UserRepository;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 @Transactional
 public class UserRepositoryJPATest extends AbstractTest {

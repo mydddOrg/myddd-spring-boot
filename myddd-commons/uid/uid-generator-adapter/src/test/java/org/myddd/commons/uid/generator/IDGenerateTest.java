@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.myddd.commons.uid.AbstractTest;
 import org.myddd.domain.IDGenerate;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 class IDGenerateTest extends AbstractTest {
 

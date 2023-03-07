@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.myddd.persistence.AbstractTest;
 import org.myddd.persistence.mock.User;
 
-import javax.inject.Inject;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.PersistenceException;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 
 @Transactional
 class EntityRepositoryTest extends AbstractTest {

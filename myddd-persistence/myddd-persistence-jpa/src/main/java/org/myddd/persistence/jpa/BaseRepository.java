@@ -2,7 +2,7 @@ package org.myddd.persistence.jpa;
 
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 
 public abstract class BaseRepository {
 

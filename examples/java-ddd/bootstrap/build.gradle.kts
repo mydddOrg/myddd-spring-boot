@@ -35,7 +35,6 @@ dependencies {
     implementation("javax.activation:activation:1.1.1")
 
 
-    testImplementation("org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final")
 
 }
 

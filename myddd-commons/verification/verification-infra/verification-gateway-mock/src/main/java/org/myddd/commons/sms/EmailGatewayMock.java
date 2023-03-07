@@ -2,7 +2,7 @@ package org.myddd.commons.sms;
 
 import org.myddd.commons.sms.application.EmailGateway;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 @Named
 public class EmailGatewayMock implements EmailGateway {

@@ -5,7 +5,7 @@ import org.myddd.domain.Entity;
 import org.myddd.domain.EntityRepository;
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;

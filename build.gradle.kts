@@ -17,17 +17,17 @@ plugins {
     kotlin("jvm") version "1.7.10"
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "2.7.4"
+    id("org.springframework.boot") version "3.0.4"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
 
 }
 
-val projectVersion = "0.3.5-SNAPSHOT"
+val projectVersion = "0.4.0-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "1.7.36"
-extra["spring.boot"] = "2.7.4"
+extra["spring.boot"] = "3.0.4"
 extra["junit.version"] = "5.8.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.6.1"
@@ -36,9 +36,9 @@ extra["commons-lang3.version"] = "3.12.0"
 extra["gson_version"] = "2.9.0"
 extra["commons-codec"] = "1.13"
 
-extra["javax_inject_version"] = "1"
-extra["jakarta_persistence_api_version"] = "2.2.3"
-extra["jakarta_transaction_api_version"] = "1.3.3"
+extra["jakarta_inject_version"] = "2.0.1"
+extra["jakarta_persistence_api_version"] = "3.1.0"
+extra["jakarta_transaction_api_version"] = "2.0.1"
 
 extra["protobuf-java"] = "3.19.1"
 extra["dubbo-protobuf-gradle-plugin"] = "3.0.9"
@@ -80,8 +80,8 @@ allprojects {
 
 allprojects {
     tasks.withType<JavaCompile> {
-        sourceCompatibility = "11"
-        targetCompatibility = "11"
+        sourceCompatibility = "17"
+        targetCompatibility = "17"
     }
 }
 
@@ -188,6 +188,8 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
         testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
+
+        testImplementation("jakarta.transaction:jakarta.transaction-api:${rootProject.extra["jakarta_transaction_api_version"]}")
 
         testImplementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
     }

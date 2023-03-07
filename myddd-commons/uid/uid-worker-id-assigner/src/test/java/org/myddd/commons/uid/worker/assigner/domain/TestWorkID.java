@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.myddd.commons.uid.worker.assigner.AbstractTest;
 
-import javax.persistence.PersistenceException;
-import javax.transaction.Transactional;
+import jakarta.persistence.PersistenceException;
+import jakarta.transaction.Transactional;
 
 @Transactional
 class TestWorkID extends AbstractTest {

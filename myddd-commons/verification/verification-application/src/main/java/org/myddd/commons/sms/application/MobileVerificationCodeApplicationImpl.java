@@ -2,8 +2,8 @@ package org.myddd.commons.sms.application;
 
 import org.myddd.commons.verification.MobileVerificationCodeApplication;
 
-import javax.inject.Inject;
-import javax.inject.Named;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 
 @Named
 public class MobileVerificationCodeApplicationImpl extends AbstractVerificationCodeApplication implements MobileVerificationCodeApplication {

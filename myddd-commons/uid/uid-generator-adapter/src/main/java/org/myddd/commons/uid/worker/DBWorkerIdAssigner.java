@@ -8,7 +8,7 @@ import org.myddd.commons.uid.worker.assigner.api.WorkIDApplication;
 import org.myddd.commons.uid.worker.assigner.api.dto.WorkIdDto;
 import org.springframework.beans.factory.annotation.Value;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import java.util.Objects;
 
 public class DBWorkerIdAssigner implements WorkerIdAssigner {

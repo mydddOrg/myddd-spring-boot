@@ -9,7 +9,7 @@ version = rootProject.extra["projectVersion"]!!
 extra["publishJar"] = true
 
 dependencies {
-    api("javax.inject:javax.inject:${rootProject.extra["javax_inject_version"]}")
+    api("jakarta.inject:jakarta.inject-api:${rootProject.extra["jakarta_inject_version"]}")
     api("jakarta.persistence:jakarta.persistence-api:${rootProject.extra["jakarta_persistence_api_version"]}")
 
     api("com.google.guava:guava:${rootProject.extra["guava.version"]}")

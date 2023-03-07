@@ -1,6 +1,6 @@
 package org.myddd.domain;
 
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.MappedSuperclass;
 import java.util.Objects;
 
 /**

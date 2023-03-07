@@ -8,7 +8,6 @@ version = rootProject.extra["projectVersion"]!!
 
 dependencies {
     api(project(":myddd-lang"))
-    api("javax.inject:javax.inject:1")
 }
 
 sonarqube {

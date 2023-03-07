@@ -3,7 +3,7 @@ package org.myddd.commons.uid.worker.assigner.application.assembler;
 import org.myddd.commons.uid.worker.assigner.api.dto.WorkIdDto;
 import org.myddd.commons.uid.worker.assigner.domain.WorkID;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 import java.util.Objects;
 
 @Named

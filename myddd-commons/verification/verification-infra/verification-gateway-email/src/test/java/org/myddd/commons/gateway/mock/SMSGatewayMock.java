@@ -3,7 +3,7 @@ package org.myddd.commons.gateway.mock;
 
 import org.myddd.commons.sms.application.SMSGateway;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 @Named
 public class SMSGatewayMock implements SMSGateway {

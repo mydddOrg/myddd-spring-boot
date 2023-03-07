@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.myddd.java.AbstractTest;
 import org.myddd.java.api.UserApplication;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 public class UserApplicationImplTest extends AbstractTest {
 

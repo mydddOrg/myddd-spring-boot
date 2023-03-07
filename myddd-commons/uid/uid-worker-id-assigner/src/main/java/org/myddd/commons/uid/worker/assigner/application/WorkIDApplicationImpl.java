@@ -5,9 +5,9 @@ import org.myddd.commons.uid.worker.assigner.api.dto.WorkIdDto;
 import org.myddd.commons.uid.worker.assigner.application.assembler.WorkIDAssembler;
 import org.myddd.commons.uid.worker.assigner.domain.WorkID;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.transaction.Transactional;
 
 @Named
 public class WorkIDApplicationImpl implements WorkIDApplication {

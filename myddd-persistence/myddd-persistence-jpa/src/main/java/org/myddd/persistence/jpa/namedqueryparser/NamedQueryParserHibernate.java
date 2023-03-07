@@ -3,7 +3,7 @@ package org.myddd.persistence.jpa.namedqueryparser;
 import org.hibernate.Session;
 import org.myddd.persistence.jpa.NamedQueryParser;
 
-import javax.inject.Named;
+import jakarta.inject.Named;
 
 /**
  * NamedQueryParser接口的Hibernate实现

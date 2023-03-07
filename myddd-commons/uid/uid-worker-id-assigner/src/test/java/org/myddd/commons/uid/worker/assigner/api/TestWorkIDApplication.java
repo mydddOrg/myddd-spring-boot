@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.myddd.commons.uid.worker.assigner.AbstractTest;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 class TestWorkIDApplication extends AbstractTest {
 

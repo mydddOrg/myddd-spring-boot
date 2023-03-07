@@ -30,7 +30,6 @@ dependencies {
     implementation("com.h2database:h2:${rootProject.extra["h2_version"]}")
     implementation("org.mariadb.jdbc:mariadb-java-client:3.0.6")
 
-    testImplementation("org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:1.1.1.Final")
 }
 
 tasks.bootJar {

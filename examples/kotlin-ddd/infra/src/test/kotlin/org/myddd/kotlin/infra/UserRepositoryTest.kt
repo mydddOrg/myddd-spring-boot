@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.myddd.domain.InstanceFactory
 import org.myddd.kotlin.AbstractTest
 import org.myddd.kotlin.domain.UserRepository
-import javax.transaction.Transactional
+import jakarta.transaction.Transactional
 
 class UserRepositoryTest: AbstractTest() {
 

@@ -4,8 +4,8 @@ import org.myddd.querychannel.BaseQuery;
 import org.myddd.querychannel.QueryRepository;
 import org.myddd.querychannel.basequery.QueryParameters;
 
-import javax.inject.Named;
-import javax.persistence.Query;
+import jakarta.inject.Named;
+import jakarta.persistence.Query;
 import java.util.List;
 import java.util.Map;
 

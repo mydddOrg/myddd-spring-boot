@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.myddd.domain.mock.User;
 import org.myddd.utils.Page;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
 

@@ -26,45 +26,6 @@ include(":myddd-grpc")
 include(":myddd-libs:myddd-distributed-id")
 include(":myddd-libs:myddd-rest-advice")
 include(":myddd-libs:myddd-grpc-rest-advice")
-include(":myddd-libs:myddd-dubbo-filter")
-
-//media extension
-include(":myddd-extensions:media:media-domain")
-include(":myddd-extensions:media:media-infra")
-include(":myddd-extensions:media:media-storage:media-storage-qcloud")
-include(":myddd-extensions:media:media-storage:media-storage-aliyun")
-include(":myddd-extensions:media:media-storage:media-storage-local")
-include(":myddd-extensions:media:media-storage:media-storage-gridfs")
-include(":myddd-extensions:media:media-api")
-include(":myddd-extensions:media:media-application")
-include(":myddd-extensions:media:media-grpc-bridge")
-include(":myddd-extensions:media:media-grpc-bootstrap")
-include(":myddd-extensions:media:media-rest")
-
-//用户权限模块
-include(":myddd-extensions:security:security-domain")
-include(":myddd-extensions:security:security-infra")
-include(":myddd-extensions:security:security-api")
-include(":myddd-extensions:security:security-application")
-include(":myddd-extensions:security:security-grpc-bridge")
-include(":myddd-extensions:security:security-grpc-bootstrap")
-include(":myddd-extensions:security:security-rest")
-
-//Spring Security + Spring OAuth 2
-include(":myddd-extensions:security:security-oauth2:security-oauth2-api")
-include(":myddd-extensions:security:security-oauth2:security-oauth2-core")
-include(":myddd-extensions:security:security-oauth2:security-oauth2-domain")
-include(":myddd-extensions:security:security-oauth2:security-oauth2-userservice")
-
-//组织模块
-include(":myddd-extensions:organisation:organisation-domain")
-include(":myddd-extensions:organisation:organisation-infra")
-include(":myddd-extensions:organisation:organisation-api")
-include(":myddd-extensions:organisation:organisation-application")
-include(":myddd-extensions:organisation:organisation-grpc-bridge")
-include(":myddd-extensions:organisation:organisation-rest")
-include(":myddd-extensions:organisation:organisation-grpc-bootstrap")
-
 
 
 //commons 验证码模块（支持手机验证码与邮箱验证码）

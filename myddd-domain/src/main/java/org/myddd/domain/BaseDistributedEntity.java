@@ -2,10 +2,10 @@ package org.myddd.domain;
 
 import com.google.common.base.Preconditions;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Version;
 import java.util.Objects;
 
 @MappedSuperclass

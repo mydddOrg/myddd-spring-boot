@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.myddd.persistence.AbstractTest;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 
 class EntityManagerProviderTest extends AbstractTest {

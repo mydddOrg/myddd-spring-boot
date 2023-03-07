@@ -4,8 +4,8 @@ import org.myddd.domain.BaseEntity;
 import org.myddd.domain.EntityRepository;
 import org.myddd.domain.InstanceFactory;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class Organization extends BaseEntity {

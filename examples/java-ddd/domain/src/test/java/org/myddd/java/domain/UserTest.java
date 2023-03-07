@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.myddd.java.AbstractTest;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 
 public class UserTest extends AbstractTest {
 

@@ -12,6 +12,7 @@ dependencies {
     implementation(project(":myddd-ioc:myddd-ioc-spring"))
     implementation("com.google.guava:guava:${rootProject.extra["guava.version"]}")
     implementation("org.springframework.boot:spring-boot-starter-web:${rootProject.extra["spring.boot"]}")
+    implementation("jakarta.inject:jakarta.inject-api:${rootProject.extra["jakarta_inject_version"]}")
 
     testImplementation("com.google.code.gson:gson:${rootProject.extra["gson_version"]}")
 

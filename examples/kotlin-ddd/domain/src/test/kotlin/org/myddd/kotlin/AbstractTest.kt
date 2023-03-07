@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.ComponentScan
 import java.util.*
-import javax.inject.Inject
+import jakarta.inject.Inject
 
 @SpringBootTest(classes = [AbstractTest::class])
 @SpringBootApplication

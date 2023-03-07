@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.myddd.commons.uid.AbstractTest;
 import org.springframework.test.context.ActiveProfiles;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 @ActiveProfiles({ "no-exists" })
 class BadServerNameWorkerIdAssignerTest extends AbstractTest {
