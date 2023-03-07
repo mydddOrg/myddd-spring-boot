@@ -26,22 +26,22 @@ plugins {
 val projectVersion = "0.4.0-SNAPSHOT"
 
 extra["projectVersion"] = projectVersion
-extra["slf4jVersion"] = "1.7.36"
+extra["slf4jVersion"] = "2.0.6"
 extra["spring.boot"] = "3.0.4"
-extra["junit.version"] = "5.8.2"
+extra["junit.version"] = "5.9.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "4.6.1"
 extra["h2_version"] = "2.1.214"
 extra["commons-lang3.version"] = "3.12.0"
-extra["gson_version"] = "2.9.0"
-extra["commons-codec"] = "1.13"
+extra["gson_version"] = "2.10.1"
+extra["commons-codec"] = "1.15"
 
 extra["jakarta_inject_version"] = "2.0.1"
 extra["jakarta_persistence_api_version"] = "3.1.0"
 extra["jakarta_transaction_api_version"] = "2.0.1"
 
 extra["protobuf-java"] = "3.19.1"
-extra["dubbo-protobuf-gradle-plugin"] = "3.0.9"
+
 extra["protoc_version"] = "3.19.1"
 extra["kotlinx-coroutines"] = "1.6.4"
 
