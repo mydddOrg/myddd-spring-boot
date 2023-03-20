@@ -23,7 +23,7 @@ plugins {
 
 }
 
-val projectVersion = "0.4.0-SNAPSHOT"
+val projectVersion = "0.4.0-BETA"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "2.0.6"
