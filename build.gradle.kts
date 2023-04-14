@@ -14,23 +14,24 @@ buildscript {
 
 plugins {
     java
-    kotlin("jvm") version "1.7.10"
+    kotlin("jvm") version "1.8.20"
     `java-library`
     `maven-publish`
-    id("org.springframework.boot") version "3.0.4"
+    idea
+    id("org.springframework.boot") version "3.0.5"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
 
 }
 
-val projectVersion = "0.4.0-BETA"
+val projectVersion = "0.4.1-BETA"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "2.0.6"
-extra["spring.boot"] = "3.0.4"
+extra["spring.boot"] = "3.0.5"
 extra["junit.version"] = "5.9.2"
 extra["guava.version"] = "31.1-jre"
-extra["mockito.version"] = "4.6.1"
+extra["mockito.version"] = "5.3.0"
 extra["h2_version"] = "2.1.214"
 extra["commons-lang3.version"] = "3.12.0"
 extra["gson_version"] = "2.10.1"
@@ -49,7 +50,6 @@ extra["mariadb-java-client"] = "3.0.3"
 extra["jaxb-api-version"] = "2.3.0"
 extra["jaxb-impl-version"] = "2.3.6"
 
-
 extra["annotation-api"] = "1.3.2"
 extra["grpc-version"] = "1.48.1"
 extra["protobuf"] = "3.21.4"
@@ -57,13 +57,6 @@ extra["myddd-grpc-plugin"] = "0.1.0"
 
 allprojects {
     repositories {
-
-        maven {
-            setUrl("https://maven.aliyun.com/repository/public/")
-        }
-        maven {
-            setUrl("https://maven.aliyun.com/repository/spring/")
-        }
 
         mavenCentral()
 
@@ -205,7 +198,7 @@ tasks.jar {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "17"
 }
 
 group = "org.myddd"
