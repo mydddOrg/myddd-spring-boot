@@ -69,10 +69,10 @@ public class QueryRepositoryJPA extends BaseRepository implements QueryRepositor
         if (params == null) {
             return;
         }
-        if (params instanceof BaseQuery.PositionalParameters) {
-            fillParameters(query, (BaseQuery.PositionalParameters) params);
-        } else if (params instanceof BaseQuery.NamedParameters) {
-            fillParameters(query, (BaseQuery.NamedParameters) params);
+        if (params instanceof BaseQuery.PositionalParameters positionalparameters) {
+            fillParameters(query, positionalparameters);
+        } else if (params instanceof BaseQuery.NamedParameters namedParameters) {
+            fillParameters(query, namedParameters);
         } else {
             throw new UnsupportedOperationException("不支持的参数形式");
         }

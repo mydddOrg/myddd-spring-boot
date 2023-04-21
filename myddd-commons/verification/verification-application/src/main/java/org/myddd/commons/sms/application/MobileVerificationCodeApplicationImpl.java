@@ -2,7 +2,6 @@ package org.myddd.commons.sms.application;
 
 import org.myddd.commons.verification.MobileVerificationCodeApplication;
 
-import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import org.myddd.domain.InstanceFactory;
 
