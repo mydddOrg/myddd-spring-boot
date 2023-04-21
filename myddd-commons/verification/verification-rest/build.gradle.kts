@@ -6,6 +6,7 @@ plugins {
 group = "org.myddd.commons.verification"
 version = rootProject.extra["projectVersion"]!!
 
+
 dependencies {
     implementation(project(":myddd-commons:verification:verification-api"))
 
