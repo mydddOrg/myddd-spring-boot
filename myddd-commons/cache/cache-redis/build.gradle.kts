@@ -20,6 +20,6 @@ dependencies {
     testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
 }
 
-sonarqube {
+sonar {
     isSkipProject = true
 }

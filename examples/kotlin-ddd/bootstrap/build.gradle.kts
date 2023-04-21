@@ -36,6 +36,6 @@ tasks.bootJar {
     enabled = true
 }
 
-sonarqube {
+sonar {
     isSkipProject = true
 }

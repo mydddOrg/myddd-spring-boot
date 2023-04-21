@@ -10,6 +10,6 @@ dependencies {
     implementation(project(":myddd-utils"))
 }
 
-sonarqube {
+sonar {
     isSkipProject = true
 }

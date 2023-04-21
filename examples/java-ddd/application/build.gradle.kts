@@ -19,6 +19,6 @@ dependencies {
     testImplementation(project(":examples:java-ddd:infra"))
 
 }
-sonarqube {
+sonar {
     isSkipProject = true
 }

@@ -20,8 +20,7 @@ plugins {
     idea
     id("org.springframework.boot") version "3.0.6"
     jacoco
-    id("org.sonarqube") version "3.4.0.2513"
-
+    id("org.sonarqube") version "4.0.0.2929"
 }
 
 val projectVersion = "0.4.2-BETA"
@@ -151,7 +150,7 @@ subprojects {
             }
         }
 
-        if(!this.sonarqube.isSkipProject){
+        if(!this.sonar.isSkipProject){
             tasks.check {
                 finalizedBy(tasks.jacocoTestCoverageVerification) // report is always generated after tests run
             }

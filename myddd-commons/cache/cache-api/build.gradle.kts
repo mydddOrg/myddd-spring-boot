@@ -13,6 +13,6 @@ dependencies {
     testImplementation(project(":myddd-commons:cache:cache-redis"))
 }
 
-sonarqube {
+sonar {
     isSkipProject = true
 }

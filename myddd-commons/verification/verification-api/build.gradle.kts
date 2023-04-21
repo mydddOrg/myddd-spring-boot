@@ -12,6 +12,6 @@ dependencies {
     api(project(":myddd-lang"))
 }
 
-sonarqube {
+sonar {
     isSkipProject = true
 }

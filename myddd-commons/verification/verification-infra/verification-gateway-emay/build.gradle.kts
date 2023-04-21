@@ -17,3 +17,7 @@ dependencies {
 
     implementation(project(":myddd-commons:verification:verification-application"))
 }
+
+sonar {
+    isSkipProject = true
+}

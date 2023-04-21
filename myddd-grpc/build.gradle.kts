@@ -47,7 +47,7 @@ protobuf {
     }
 }
 
-sonarqube {
+sonar {
     isSkipProject = true
 }
 

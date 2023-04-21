@@ -14,10 +14,6 @@ dependencies {
     testImplementation(project(":examples:kotlin-ddd:infra"))
 }
 
-sonarqube {
-    isSkipProject = true
-}
-
-sonarqube {
+sonar {
     isSkipProject = true
 }
