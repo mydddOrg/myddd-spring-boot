@@ -33,6 +33,7 @@ include(":myddd-commons:verification:verification-api")
 include(":myddd-commons:verification:verification-application")
 include(":myddd-commons:verification:verification-infra:verification-gateway-mock")
 include(":myddd-commons:verification:verification-infra:verification-gateway-email")
+include(":myddd-commons:verification:verification-infra:verification-gateway-emay")
 include(":myddd-commons:verification:verification-rest")
 
 //cache缓存通用模块

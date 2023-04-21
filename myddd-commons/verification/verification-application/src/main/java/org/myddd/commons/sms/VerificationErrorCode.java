@@ -17,5 +17,10 @@ public enum VerificationErrorCode implements ErrorCode {
     /**
      * 邮件发送错误
      */
-    SEND_EMAIL_ERROR
+    SEND_EMAIL_ERROR,
+
+
+    SMS_SERVICE_ERROR,
+
+    SMS_CONFIG_ERROR
 }

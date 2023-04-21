@@ -18,17 +18,17 @@ plugins {
     `java-library`
     `maven-publish`
     idea
-    id("org.springframework.boot") version "3.0.5"
+    id("org.springframework.boot") version "3.0.6"
     jacoco
     id("org.sonarqube") version "3.4.0.2513"
 
 }
 
-val projectVersion = "0.4.1-BETA"
+val projectVersion = "0.4.2-BETA"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "2.0.6"
-extra["spring.boot"] = "3.0.5"
+extra["spring.boot"] = "3.0.6"
 extra["junit.version"] = "5.9.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "5.3.0"
@@ -181,6 +181,8 @@ subprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-api:${rootProject.extra["junit.version"]}")
         testImplementation("org.junit.jupiter:junit-jupiter-engine:${rootProject.extra["junit.version"]}")
         testImplementation("org.springframework.boot:spring-boot-starter-test:${rootProject.extra["spring.boot"]}")
+
+        testImplementation(project(":myddd-ioc:myddd-ioc-spring"))
 
         testImplementation("jakarta.transaction:jakarta.transaction-api:${rootProject.extra["jakarta_transaction_api_version"]}")
 

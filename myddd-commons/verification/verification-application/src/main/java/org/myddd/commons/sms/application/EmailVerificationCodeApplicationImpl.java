@@ -4,18 +4,26 @@ import org.myddd.commons.verification.EmailVerificationCodeApplication;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import org.myddd.domain.InstanceFactory;
+
+import java.util.Objects;
 
 @Named
 public class EmailVerificationCodeApplicationImpl extends AbstractVerificationCodeApplication implements EmailVerificationCodeApplication {
 
-    @Inject
-    private EmailGateway emailGateway;
+    private static EmailGateway emailGateway;
 
+    private static EmailGateway getEmailGateway(){
+        if(Objects.isNull(emailGateway)){
+            emailGateway = InstanceFactory.getInstance(EmailGateway.class);
+        }
+        return emailGateway;
+    }
     @Override
     public void sendEmailCode(String email) {
         var nextCode = randomCode();
         cacheValidCode(email,nextCode);
-        emailGateway.sendSmsToEmail(email,nextCode);
+        getEmailGateway().sendSmsToEmail(email,nextCode);
     }
 
     @Override
