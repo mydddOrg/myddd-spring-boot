@@ -18,8 +18,8 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = BadParameterException.class)
     public ResponseEntity<ErrorResponse> businessExceptionHandler(BadParameterException exception, WebRequest request){
-        logger.error(exception.getMessage(),exception);
-        return ResponseEntity.status(401).body(
+        logger.error(exception.getMessage());
+        return ResponseEntity.status(400).body(
                 ErrorResponse
                         .newBuilder()
                         .setErrorCode(exception.getErrorCode().errorCode())
@@ -33,7 +33,7 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = BusinessException.class)
     public ResponseEntity<ErrorResponse> businessExceptionHandler(BusinessException exception,WebRequest request){
-        logger.error(exception.getMessage(),exception);
+        logger.error(exception.getMessage());
         return ResponseEntity.badRequest().body(
                 ErrorResponse
                         .newBuilder()
@@ -47,7 +47,7 @@ public class ExceptionAdvice {
 
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<ErrorResponse> exceptionHandler(Exception exception){
-        logger.error(exception.getMessage(),exception);
+        logger.error(exception.getMessage());
         return ResponseEntity.status(500).body(ErrorResponse.badRequest(exception.getMessage()).build());
     }
 

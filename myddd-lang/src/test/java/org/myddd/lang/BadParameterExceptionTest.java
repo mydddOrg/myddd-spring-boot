@@ -32,6 +32,5 @@ class BadParameterExceptionTest {
         BadParameterException badParameterException = new BadParameterException(MockErrorCode.MOCK_ERROR_CODE,"A");
         Assertions.assertEquals(1,badParameterException.getData().length);
         Assertions.assertEquals(MockErrorCode.MOCK_ERROR_CODE.errorCode(),badParameterException.getErrorCode().errorCode());
-
     }
 }
