@@ -1,6 +1,6 @@
 .gradle
 .idea
-**/*/build
+**/**/*/build
 *.class
 **/*/*.class
 target

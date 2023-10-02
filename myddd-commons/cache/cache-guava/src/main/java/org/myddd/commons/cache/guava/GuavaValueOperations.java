@@ -8,7 +8,7 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class GuavaValueOperations<T> implements ValueOperations<T> {
-    private com.google.common.cache.Cache<String, T> cache;
+    private final com.google.common.cache.Cache<String, T> cache;
 
     GuavaValueOperations(long duration, long maximumSize) {
         this.cache = CacheBuilder.newBuilder()
