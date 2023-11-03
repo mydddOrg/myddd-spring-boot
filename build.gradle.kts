@@ -14,11 +14,11 @@ buildscript {
 
 plugins {
     java
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.9.20"
     `java-library`
     `maven-publish`
     idea
-    id("org.springframework.boot") version "3.1.4"
+    id("org.springframework.boot") version "3.1.5"
     jacoco
     id("org.sonarqube") version "4.0.0.2929"
 }
@@ -27,7 +27,7 @@ val projectVersion = "0.4.3-BETA"
 
 extra["projectVersion"] = projectVersion
 extra["slf4jVersion"] = "2.0.6"
-extra["spring.boot"] = "3.1.4"
+extra["spring.boot"] = "3.1.5"
 extra["junit.version"] = "5.9.2"
 extra["guava.version"] = "31.1-jre"
 extra["mockito.version"] = "5.3.0"
